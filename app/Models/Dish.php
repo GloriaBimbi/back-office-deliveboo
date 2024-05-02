@@ -4,8 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Dish extends Model
 {
-    use HasFactory;
+    public function orders()
+    {
+        return $this->BelongsToMany(Order::class);
+    }
 }
