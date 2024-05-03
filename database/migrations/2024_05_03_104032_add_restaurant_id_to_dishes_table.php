@@ -13,11 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('restaurants', function (Blueprint $table) {
-            $table->foreignId('user_id')->after('id')->constrained()->nullable();
-
-
-
+        Schema::table('dishes', function (Blueprint $table) {
+            $table->foreignId('restaurant_id')->after('id')->constrained()->nullable();
         });
     }
 
@@ -28,9 +25,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('restaurants', function (Blueprint $table) {
-            $table->dropForeign('restaurants_user_id_foreign');
-            $table->dropColumn('user_id');
+        Schema::table('dishes', function (Blueprint $table) {
+            $table->dropForeign('dishes_restaurant_id_foreign');
+            $table->dropColumn('restaurant_id');
         });
     }
 };

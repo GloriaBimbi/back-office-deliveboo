@@ -12,4 +12,8 @@ class Dish extends Model
     {
         return $this->BelongsToMany(Order::class)->withPivot('total_price');
     }
+
+    public function restaurant(){
+        return $this->belongsTo(Restaurant::class);
+    }
 }
