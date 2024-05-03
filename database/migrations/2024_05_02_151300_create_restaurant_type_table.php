@@ -14,10 +14,8 @@ return new class extends Migration {
     {
         Schema::create('restaurant_type', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('restaurant_id')
-                ->constrained();
-            $table->foreignId('type_id')
-                ->constrained();
+            $table->foreignId('restaurant_id')->constrained();
+            $table->foreignId('type_id')->constrained();
             $table->timestamps();
         });
     }

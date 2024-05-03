@@ -14,7 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::table('restaurants', function (Blueprint $table) {
-            $table->foreignId('user_id')->
+            $table->foreign('user_id')->after('id')->constrained();
+
+
+
         });
     }
 
@@ -26,7 +29,8 @@ return new class extends Migration
     public function down()
     {
         Schema::table('restaurants', function (Blueprint $table) {
-            //
+            $table->dropForeign('restaurants_user_id_foreign');
+            $table->dropColumn('user_id');
         });
     }
 };
