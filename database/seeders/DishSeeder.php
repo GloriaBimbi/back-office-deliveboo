@@ -23,7 +23,6 @@ class DishSeeder extends Seeder
     {
 
         $restaurants=Restaurant::all()->pluck('id');
-        $restaurants[]=null;
 
         // $dish = new Dish;
         // $dish->restaurant_id = $faker->randomElement($restaurants);
@@ -47,11 +46,12 @@ class DishSeeder extends Seeder
         // $dish->ingredients_list = 'riso erbolario, prezzemolo, gambero, olio evo, burro';
         // $dish->save();
 
-        for($i = 0; $i < 20; $i++){
-            $restaurant_id = $faker->randomElement($restaurants);
+        for($i = 0; $i < 15; $i++){
+            $restaurant_id_value = $faker->randomElement($restaurants);
+            // var_dump($restaurants);
 
             $dish = new Dish;
-            $dish->restaurant_id = $restaurant_id;
+            $dish->restaurant_id = $restaurant_id_value;
             $dish->name = $faker->catchPhrase();
             $dish->image = $faker->imageUrl(null, 360, 360, 'foods', true);
             $dish->description = $faker->paragraph();

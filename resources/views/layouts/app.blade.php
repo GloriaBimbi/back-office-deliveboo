@@ -36,7 +36,11 @@
       </script>
     @endauth
 
+    @yield('delete_modal')
+
     @yield('js')
+      
+    
   </body>
 
 </html>
