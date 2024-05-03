@@ -10,6 +10,6 @@ class Dish extends Model
 {
     public function orders()
     {
-        return $this->BelongsToMany(Order::class);
+        return $this->BelongsToMany(Order::class)->withPivot('total_price');
     }
 }

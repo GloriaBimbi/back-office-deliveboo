@@ -13,13 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('dish_order', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('dish_id')
-                ->constrained();
-            $table->foreignId('order_id')
-                ->constrained();
-            $table->timestamps();
+        Schema::table('restaurants', function (Blueprint $table) {
+            $table->foreignId('user_id')->
         });
     }
 
@@ -30,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dish_order');
+        Schema::table('restaurants', function (Blueprint $table) {
+            //
+        });
     }
 };

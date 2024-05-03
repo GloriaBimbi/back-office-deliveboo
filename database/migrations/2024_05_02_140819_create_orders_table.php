@@ -25,6 +25,8 @@ return new class extends Migration
             $table->string('card', 60)->required();
             $table->string('expiration')->required();
             $table->string('cvv', 60)->required();
+            // $table->tinyInteger('quantity', 20)->unsigned()->require();
+            $table->unsignedDecimal('total_price')->require();
             $table->timestamps();
         });
     }

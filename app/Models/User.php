@@ -41,4 +41,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // relationship one to one 
+    public function restaurant()
+    {
+        return $this->belongsTo(Restaurant::class);
+    }
 }

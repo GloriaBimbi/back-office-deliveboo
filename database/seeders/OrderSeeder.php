@@ -20,7 +20,7 @@ class OrderSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        for($i = 0; $i < 10; $i++){
+        for ($i = 0; $i < 10; $i++) {
             $order = new Order;
             $order->name = $faker->firstName();
             $order->lastname = $faker->lastName();
@@ -32,6 +32,8 @@ class OrderSeeder extends Seeder
             $order->card = Hash::make($faker->creditCardNumber());
             $order->cvv = Hash::make($faker->randomNumber(3, true));
             $order->expiration = $faker->creditCardExpirationDateString();
+            // $order->quantity = $faker->randomNumber(1, 20);
+            $order->total_price = $order->dishes->sum('price');
             $order->save();
         }
     }
