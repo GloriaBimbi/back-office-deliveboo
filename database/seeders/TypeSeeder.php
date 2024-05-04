@@ -19,7 +19,7 @@ class TypeSeeder extends Seeder
     {
         for($i = 0; $i < 20; $i++){
             $type = new Type;
-            $type->name = $faker->catchphrase();
+            $type->name = 'Restaurant from ' . $faker->state();
             $type->logo = $faker->imageUrl(360, 360, 'foods', true);
             $type->color = $faker->hexColor();
             $type->save();

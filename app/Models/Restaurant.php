@@ -26,9 +26,7 @@ class Restaurant extends Model
     }
 
     // fillable for data $request
-    protected $fillable=['name',
-    'piva',
-    'image'];
+    protected $fillable=['description','name','piva','image', 'user->name'];
 
     public function getTypeText(){
         return $this->types->implode(',',$this->types->pluck('name')->toArray());

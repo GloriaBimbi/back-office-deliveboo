@@ -28,6 +28,7 @@ class RestaurantSeeder extends Seeder
         foreach($users_id as $user_id){
             $restaurant = new Restaurant;
             $restaurant->user_id = $user_id;
+            $restaurant->description = $faker->paragraph();
             $restaurant->name = $faker->catchPhrase();
             $restaurant->address =  $faker->address();
             $restaurant->piva = $faker->randomNumber(5,true).$faker->randomNumber(6,true);
@@ -39,22 +40,54 @@ class RestaurantSeeder extends Seeder
 
 
         // $restaurant = new Restaurant;
-        // $restaurant->users_id = $faker->randomElement($users_id);
-        // $restaurant->name = 'Gambero Rosso';
-        // $restaurant->address = 'Via Marconi, 15';
+        // // $restaurant->users_id = $faker->randomElement($users_id);
+        // $restaurant->name = 'Red Shrimp';
+        // // $restaurant->user()->name = 'Christian Slaiter';
+        // // $restaurant->types()->name = 'Restaurant from Mississippi';
+        // $restaurant->address = 'Ambrose St, 214, 39361 Shuqualak (Mississippi)';
         // $restaurant->piva = '12345678924';
-        // $restaurant->image = 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.ristorantegamberorossoriccione.it%2F&psig=AOvVaw1gfjKLDC9mWQi4hJy_Ec_h&ust=1714742636743000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCPjs66GI74UDFQAAAAAdAAAAABAO';
+        // $restaurant->image = 'https://tse3.mm.bing.net/th/id/OIG3.XY.CWMcEbm5U5B8KBfT3?pid=ImgGn';
+        // $restaurant->description = 'Unique culinary experience featuring our freshest red prawns: a journey of marine flavors in a cozy and refined setting, where quality is our top priority.';
         // $restaurant->slug = Str::slug($restaurant->name);
         // $restaurant->save();
 
 
         // $restaurant = new Restaurant;
-        // $restaurant->user_id = $faker->randomElement($users_id);
-        // $restaurant->name = 'Giallo Zafferano';
-        // $restaurant->address = 'Via Roma, 3/B';
+        // // $restaurant->user_id = $faker->randomElement($users_id);
+        // $restaurant->name = 'Da GiGi';
+        // // $restaurant->user->name = 'Gigi Diletto';
+        // // $restaurant->types->name = 'Restaurant from California';
+        // $restaurant->address = 'Avenida La Promesa, 10, 92679 Trabuco Canyon (California)';
         // $restaurant->piva = '14523687952';
-        // $restaurant->image = 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.tripadvisor.it%2FRestaurant_Review-g194878-d1535638-Reviews-Ristorante_Gambero_Rosso-Riccione_Province_of_Rimini_Emilia_Romagna.html&psig=AOvVaw1gfjKLDC9mWQi4hJy_Ec_h&ust=1714742636743000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCPjs66GI74UDFQAAAAAdAAAAABAW';
+        // $restaurant->image = 'https://tse4.mm.bing.net/th/id/OIG4.XCJJkPRPeoFNTmmvF.4H?pid=ImgGn';
+        // $restaurant->description = 'Indulge in a culinary celebration of beef at our restaurant. From succulent steaks to gourmet burgers, each dish is crafted to perfection, showcasing the finest cuts and flavors for a truly unforgettable dining experience';
         // $restaurant->slug = Str::slug($restaurant->name);
         // $restaurant->save();
+
+        // $restaurant = new Restaurant;
+        // // $restaurant->user_id = $faker->randomElement($users_id);
+        // $restaurant->name = 'TEXXN';
+        // // $restaurant->user->name = 'Julia Michael';
+        // // $restaurant->types->name = 'Restaurant from Texas';
+        // $restaurant->address = 'Sarum Ct, 4679, 75052 Grand Prairie (Texas)';
+        // $restaurant->piva = '14523687934';
+        // $restaurant->image = 'https://tse3.mm.bing.net/th/id/OIG1.WbNZde_2WmQUATDfDapq?pid=ImgGn';
+        // $restaurant->description = 'Savor the bold flavors of Texas with our authentic Texan fast food. From mouthwatering barbecue to hearty burgers and crispy fried chicken, experience a taste of the Lone Star State in every bite!';
+        // $restaurant->slug = Str::slug($restaurant->name);
+        // $restaurant->save();
+
+        // $restaurant = new Restaurant;
+        // // $restaurant->user_id = $faker->randomElement($users_id);
+        // $restaurant->name = 'Mamma Sushi';
+        // // $restaurant->user->name = 'Gloria Stewart';
+        // // $restaurant->types->name = 'Restaurant from Hawaii';
+        // $restaurant->address = 'Kanealii Ave, 2404, 96813 Honolulu (Hawaii)';
+        // $restaurant->piva = '14523687945';
+        // $restaurant->image = 'https://tse2.mm.bing.net/th/id/OIG4.QMc_ZuZ.dvyLsj1Gcg0s?pid=ImgGn';
+        // $restaurant->description = 'Transport your taste buds to paradise at our Hawaiian sushi restaurant. Dive into a world of fresh seafood, vibrant flavors, and creative sushi rolls inspired by the islands. Experience a taste of Hawaii with every bite!';
+        // $restaurant->slug = Str::slug($restaurant->name);
+        // $restaurant->save();
+
+
     }
 }

@@ -23,6 +23,12 @@
                             <input type="number" class="form-control" name="piva" id="piva">
                         </div>
                     </div>
+                    <div class="card p-3 mb-2">
+                    <div class="input-group">
+                        <span for="owner" class="input-group-text">Owner</span>
+                        <input type="text" class="form-control" name="owner" id="owner">
+                        </div>
+                    </div>
                     <div class="card p-3">                   
                         <div class="input-group">
                             <span for="image" class="input-group-text">Image</span>
@@ -32,19 +38,19 @@
                 </div>
                 <div class="col-6">
                     <div class="card p-3">
-                        <div class="input-group mb-2">
-                            <span for="address_civic" class="input-group-text">Civic</span>
-                            <input type="text" class="form-control" name="address_civic" id="address_civic">
-                        </div>
-                        <div class="input-group mb-2">
+                        <div class="input-group mb-4">
                             <span for="address_street" class="input-group-text">Street Address</span>
                             <input type="text" class="form-control" name="address_street" id="address_street">
                         </div>
-                        <div class="input-group mb-2">
-                            <span for="address_postal_code" class="input-group-text">Postal Code</span>
+                        <div class="input-group mb-4">
+                            <span for="address_civic" class="input-group-text">Civic</span>
+                            <input type="text" class="form-control" name="address_civic" id="address_civic">
+                        </div>
+                        <div class="input-group mb-4">
+                            <span for="address_postal_code" class="input-group-text">Zip Code</span>
                             <input type="text" class="form-control" name="address_postal_code" id="address_postal_code">
                         </div>
-                        <div class="input-group mb-2">
+                        <div class="input-group mb-3">
                             <span for="address_city" class="input-group-text">City</span>
                             <input type="text" class="form-control" name="address_city" id="address_city">
                         </div>
@@ -52,8 +58,13 @@
                             <span for="address_country" class="input-group-text">Country</span>
                             <input type="text" class="form-control" name="address_country" id="address_country">
                         </div>
+                        
                     </div>
                 </div>
+                <div class="form-floating mb-2">
+                    <textarea class="form-control" type="text-area" placeholder="Create a description" name="description" id="description" style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">Description</label>
+                  </div>
 
                 <div class="card p-2">
                     <label for="">Type</label>

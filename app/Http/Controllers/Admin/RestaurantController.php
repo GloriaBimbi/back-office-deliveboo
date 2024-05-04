@@ -50,7 +50,7 @@ class RestaurantController extends Controller
         $restaurant->fill($data);
         $restaurant->user_id=Auth::id();
         $restaurant->slug=Str::slug($restaurant->name);
-        $restaurant->address=$data['address_street'].','.$data['address_civic'].', '.$data['address_city'].', '.$data['address_postal_code'].', '.$data['address_country'];
+        $restaurant->address=$data['address_street'].', '.$data['address_civic'].', '.$data['address_postal_code'].' '.$data['address_city'].' ('.$data['address_country'].')';
         $restaurant->save();
         
         $restaurant->types()->attach($data['types']);

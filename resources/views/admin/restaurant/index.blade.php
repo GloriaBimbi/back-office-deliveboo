@@ -5,13 +5,14 @@
 @section('content')
     <section>
         <div class="container my-5">
+            <h1 class="text-info">Restaurants' List</h1>
             <table class="table">
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
-                        <th scope="col">Owner</th>
                         <th scope="col">Name</th>
                         <th scope="col">Address</th>
+                        <th scope="col">Owner</th>
                         <th scope="col">...</th>
                     </tr>
                 </thead>
@@ -19,9 +20,9 @@
                     @foreach ($restaurants as $restaurant)
                         <tr>
                             <td>{{ $restaurant->id }}</td>
-                            <td>{{ $restaurant->user->name }}</td>
                             <td>{{ $restaurant->name }}</td>
                             <td>{{ $restaurant->address }}</td>
+                            <td>{{ $restaurant->user->name }}</td>
                             <td>
                                 <a class="btn btn-primary" href="{{ route('admin.restaurants.show', $restaurant) }}"><i
                                         class="fa-solid fa-eye"></i></a>
@@ -37,7 +38,7 @@
                 </tbody>
             </table>
             <div class="row">
-                <div class="col"><a href="{{ route('admin.restaurants.create') }}" class="btn btn-primary"><i
+                <div class="col"><a href="{{ route('admin.restaurants.create') }}" class="btn btn-success"><i
                             class="fa-solid fa-plus"></i> Add Restaurant </a></div>
                 <div class="col">{{ $restaurants->links() }}</div>
             </div>

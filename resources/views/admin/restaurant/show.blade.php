@@ -7,47 +7,39 @@
     <div class="container my-5">
         <div class="card">
             <div class="card-header">
-                <h2 class="fs-4 text-secondary my-4 text-capitalize">
+                <h2 class="text-black my-4 text-capitalize">
                     {{ $restaurant->name }}
                 </h2>
             </div>
             <div class="card-body">
                 <div class="row">
-                    <div class="col"><img src="{{$restaurant->image}}" alt="restaurant image"></div>
-                    <div class="col">
-                        <p>{{$restaurant->description}}</p>
-                        <p>{{$restaurant->address}}</p>
-                        <p>{{$restaurant->piva}}</p>
-                        <p>{{$restaurant->user->name}}</p>
+                    <div class="col-6 ">
+                        <p><span class="text-info fw-medium">Description:</span> {{$restaurant->description}}</p>
+                        <p><span class="text-info fw-medium list-group">Address:</span> {{$restaurant->address}}</p>
+                        <p><span class="text-info fw-medium list-group">P.IVA:</span> {{$restaurant->piva}}</p>
+                        <p><span class="text-info fw-medium list-group">Owner:</span> {{$restaurant->user->name}}</p>
+                        <p class="fw-medium text-info fw-medium list-group">Types:</p>
                         <ul>
                             @foreach($restaurant->types as $type)
                             <li>{{$type->name}}</li>
                             @endforeach
                         </ul>
                     </div>
+                    <div class="col-6"><img src="{{$restaurant->image}}" alt="restaurant image" class="img-fluid"></div>
                 </div>
             </div>
             <div class="card-footer">
                 <div class="row">
                     <div class="col">
-                        <a class="btn btn-primary" href="{{route('admin.restaurants.index')}}">
+                        <a class="btn btn-warning" href="{{route('admin.restaurants.index')}}">
                             {{ __('Go Back to List') }}
                         </a>
                     </div>
                     <div class="col">
-                        <a class="btn btn-primary" href="{{route('admin.restaurants.edit', $restaurant->id)}}">
-                            {{ __('Edit') }}
-                        </a>
-                    </div>
-                    <div class="col">
-                        
-                        
                             <button type="submit" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete-restaurant-{{ $restaurant->id }}">
                                <i class="fa-solid fa-trash-can"></i>
-                            </button>
-                        
+                            </button>  
                     </div>
-            
             </div>
         </div>
     </div>
@@ -71,7 +63,7 @@
         Are you sure? {{ $restaurant->name }}?
         </div>
         <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Go Back</button>
+        <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Go Back</button>
 
         <form action="{{ route('admin.restaurants.destroy', $restaurant) }}" method="POST" class="">
             @method('DELETE')
