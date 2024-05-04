@@ -3,7 +3,7 @@
 @section('title','Add Restaurant')
 
 @section('content')
-<section>
+<section data-bs-theme="dark">
     <div class="container my-5">
         <form action="{{route('admin.restaurants.store')}}" method="POST">
             @csrf

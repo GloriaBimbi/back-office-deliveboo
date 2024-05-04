@@ -3,7 +3,7 @@
 @section('title', 'Restaurants')
 
 @section('content')
-    <section>
+    <section data-bs-theme="dark">
         <div class="container my-5">
             <h1 class="text-info">Restaurants' List</h1>
             <table class="table">

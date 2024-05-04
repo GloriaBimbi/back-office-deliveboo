@@ -3,27 +3,32 @@
 @section('title','Restaurant Details')
 
 @section('content')
-<section>
+<section data-bs-theme="dark">
     <div class="container my-5">
         <div class="card">
             <div class="card-header">
-                <h2 class="text-black my-4 text-capitalize">
+                <h2 class="text-success-emphasis my-4 text-capitalize card-title">
                     {{ $restaurant->name }}
                 </h2>
             </div>
             <div class="card-body">
                 <div class="row">
-                    <div class="col-6 ">
-                        <p><span class="text-info fw-medium">Description:</span> {{$restaurant->description}}</p>
-                        <p><span class="text-info fw-medium list-group">Address:</span> {{$restaurant->address}}</p>
-                        <p><span class="text-info fw-medium list-group">P.IVA:</span> {{$restaurant->piva}}</p>
-                        <p><span class="text-info fw-medium list-group">Owner:</span> {{$restaurant->user->name}}</p>
-                        <p class="fw-medium text-info fw-medium list-group">Types:</p>
-                        <ul>
+                    <div class="col-6">
+                        <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><span class="text-info fw-medium">Address: </span> {{$restaurant->address}}</li>
+                        <li class="list-group-item"><span class="text-info fw-medium">P.IVA: </span> {{$restaurant->piva}}</li>
+                        <li class="list-group-item"><span class="text-info fw-medium">Owner: </span> {{$restaurant->user->name}}</li>
+                    </ul>
+                        <ul class="list-group list-group-flush mt-5">
+                            <p class="fw-medium text-info fw-medium m-0 list-group-item">Types:</p>
                             @foreach($restaurant->types as $type)
-                            <li>{{$type->name}}</li>
+                            <li class="list-group-item">{{$type->name}}</li>
                             @endforeach
                         </ul>
+                        <div class="card mt-5">
+                        <p class="text-info fw-medium card-title text-center pt-3 fs-5">Restaurant Description:</p> 
+                        <p class="card-text text-center pb-4">{{$restaurant->description}}</p>
+                    </div>
                     </div>
                     <div class="col-6"><img src="{{$restaurant->image}}" alt="restaurant image" class="img-fluid"></div>
                 </div>
