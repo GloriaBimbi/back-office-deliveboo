@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->text('description');
             $table->string('name', 75)->required();
-            $table->string('address', 150)->required();
+            $table->string('address', 255)->required();
             $table->string('piva', 11)->required()->unique();
             $table->text('image');
             $table->string('slug', 150)->required()->unique();

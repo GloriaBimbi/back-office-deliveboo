@@ -8,7 +8,11 @@ use App\Models\Type;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Support\Arr;
+// Generic request
 use Illuminate\Http\Request;
+// Store restaurant request
+use App\Http\Requests\StoreRestaurantRequest;
+
 
 
 class RestaurantController extends Controller
@@ -42,8 +46,10 @@ class RestaurantController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreRestaurantRequest $request)
     {
+        // Controllare metodo validated
+        $request->validated();
         $data = $request->all();
         // dd($data);
         $restaurant = new Restaurant;
