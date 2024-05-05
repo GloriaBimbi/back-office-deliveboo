@@ -1,38 +1,63 @@
 @extends('layouts.app')
 
-@section('title','Add Restaurant')
+@section('title', 'Add Restaurant')
 
 @section('content')
-<section data-bs-theme="dark">
-    <div class="container my-5">
-        <form action="{{route('admin.restaurants.store')}}" method="POST">
-            @csrf
-            <h1 class="mb-4">Add your Restaurant</h1>
-            <div class="row g-2">
-                <div class="col-6">
-                    <div class="card p-3 mb-2">
-                        <div class="input-group">
-                            <span for="name" class="input-group-text">Name</span>
-                            <input type="text" class="form-control" name="name" id="name">
+    <section data-bs-theme="dark">
+        <div class="container my-5">
+            <form action="{{ route('admin.restaurants.store') }}" method="POST">
+                @csrf
+                <h1 class="mb-4">Add your Restaurant</h1>
+                <div class="row g-2">
+                    <div class="col-6">
+                        <div class="card p-3 mb-2">
+                            <div class="input-group">
+                                <span for="name" class="input-group-text">Name</span>
+                                <input type="text" class="form-control @error('name') is-invalid @enderror"
+                                    name="name" id="name" value={{ old('name', $restaurant->name) }}>
+                                @error('name')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
                         </div>
                     </div>
                     <div class="card p-3 mb-2">
-                        
+
                         <div class="input-group">
                             <span for="piva" class="input-group-text">PIVA</span>
-                            <input type="number" class="form-control" name="piva" id="piva">
+                            <input type="number" class="form-control @error('piva') is-invalid @enderror" name="piva"
+                                id="piva" value={{ old('piva', $restaurant->piva) }}>
+                                @error('piva')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                     </div>
                     <div class="card p-3 mb-2">
-                    <div class="input-group">
-                        <span for="owner" class="input-group-text">Owner</span>
-                        <input type="text" class="form-control" name="owner" id="owner">
+                        <div class="input-group">
+                            <span for="owner" class="input-group-text">Owner</span>
+                            <input type="text" class="form-control @error('user->name') is-invalid @enderror"
+                                name="owner" id="owner" value={{ old('user->name', $user->name) }}>
+                                @error('user->name')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                     </div>
-                    <div class="card p-3">                   
+                    <div class="card p-3">
                         <div class="input-group">
                             <span for="image" class="input-group-text">Image</span>
-                            <input type="url" class="form-control" name="image" id="image">
+                            <input type="url" class="form-control @error('image') is-invalid @enderror" name="image"
+                                id="image" value={{ old('image', $restaurant->image) }}>
+                                @error('image')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                     </div>
                 </div>
@@ -58,27 +83,36 @@
                             <span for="address_country" class="input-group-text">Country</span>
                             <input type="text" class="form-control" name="address_country" id="address_country">
                         </div>
-                        
+
                     </div>
                 </div>
                 <div class="form-floating mb-2">
-                    <textarea class="form-control" type="text-area" placeholder="Create a description" name="description" id="description" style="height: 100px"></textarea>
+                    <textarea class="form-control @error('description') is-invalid @enderror" type="text-area"
+                        placeholder="Create a description" name="description" id="description" style="height: 100px">{{ old('description', $restaurant->description) }}</textarea>
+                        @error('description')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                     <label for="floatingTextarea2">Description</label>
-                  </div>
+                </div>
 
                 <div class="card p-2">
                     <label for="">Type</label>
                     <div class="d-flex flex-row justify-content-between flex-wrap">
-                        @foreach($types as $type)
-                        <div class="col-6 form-check">
-                            <input type="checkbox" id="type-{{$type->id}}" value="{{$type->id}}" name="types[]" >
-                            <label for="type-{{$type->id}}" class="form-check-label">{{$type->name}}</label>
-                        </div>
-                        @endforeach
-                        {{-- @error("types")
-                        <div class="invalid-feedback">{{$message}}</div>
-                        @enderror --}}
-                    </div>
+                        @foreach ($types as $type)
+                            <div class="col-6 form-check">
+                                <input type="checkbox" id="type-{{ $type->id }}" value="{{ $type->id }}"
+                                    name="types[]"
+                                    {{ in_array($type->id, old('types', $restaurant->types->pluck('id')->toArray() ?? [])) ? 'checked' : '' }}>
+                                <label for="type-{{ $type->id }}"
+                                    class="form-check-label ">{{ $type->name }}</label>
+                                </div>
+                                @endforeach
+                                @error('types[]')
+                                <div class="invalid-feedback">{{$message}}</div>
+                                @enderror
+                            </div>
                 </div>
 
                 <div class="col-6">
@@ -87,12 +121,14 @@
                 <div class="col-6">
                     <button class="btn btn-warning w-100" type="reset">Reset</button>
                 </div>
-            </div>
+        </div>
         </form>
-    </div>
-</section>
+        </div>
+    </section>
 @endsection
 
 @section('css')
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 @endsection

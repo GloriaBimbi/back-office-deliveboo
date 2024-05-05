@@ -27,11 +27,10 @@ class StoreRestaurantRequest extends FormRequest
             'description' => ['string','max:1000'],
             'name' => ['required','string', 'max:75'],
             'address' => ['required','string','max:255'],
-            // Da sistemare max e min
-            'piva' => ['required','unique:restaurants', 'string', 'max:11','min:11'],
-            // Controllare che indirizzo immagine sia text o altro
+            'piva' => ['required','unique:restaurants', 'int', 'max:11','min:11'],
             'image' => ['image', 'max:120'],
             'slug' => ['required','string','max:150', 'unique:restaurants'],
+            'types' => ['required','exists:types,id'],
         ];
     }
 }
