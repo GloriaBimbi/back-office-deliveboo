@@ -5,11 +5,12 @@
 @section('content')
     <section data-bs-theme="dark">
         <div class="container my-5">
-            <form action="{{ route('admin.restaurants.store') }}" method="POST">
+            <form enctype="multipart/form-data" action="{{ route('admin.restaurants.store') }}" method="POST" >
                 @csrf
                 <h1 class="mb-4">Add your Restaurant</h1>
                 <div class="row g-2">
                     <div class="col-6">
+                        {{-- input nome ristorante  --}}
                         <div class="card p-3 mb-2">
                             <div class="input-group">
                                 <span for="name" class="input-group-text">Name</span>
@@ -22,97 +23,133 @@
                                 @enderror
                             </div>
                         </div>
-                    </div>
-                    <div class="card p-3 mb-2">
 
-                        <div class="input-group">
-                            <span for="piva" class="input-group-text">PIVA</span>
-                            <input type="number" class="form-control @error('piva') is-invalid @enderror" name="piva"
-                                id="piva" value={{ old('piva', $restaurant->piva) }}>
-                                @error('piva')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="card p-3 mb-2">
-                        <div class="input-group">
-                            <span for="owner" class="input-group-text">Owner</span>
-                            <input type="text" class="form-control @error('user->name') is-invalid @enderror"
-                                name="owner" id="owner" value={{ old('user->name', $user->name) }}>
-                                @error('user->name')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="card p-3">
-                        <div class="input-group">
-                            <span for="image" class="input-group-text">Image</span>
-                            <input type="url" class="form-control @error('image') is-invalid @enderror" name="image"
-                                id="image" value={{ old('image', $restaurant->image) }}>
-                                @error('image')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6">
-                    <div class="card p-3">
-                        <div class="input-group mb-4">
-                            <span for="address_street" class="input-group-text">Street Address</span>
-                            <input type="text" class="form-control" name="address_street" id="address_street">
-                        </div>
-                        <div class="input-group mb-4">
-                            <span for="address_civic" class="input-group-text">Civic</span>
-                            <input type="text" class="form-control" name="address_civic" id="address_civic">
-                        </div>
-                        <div class="input-group mb-4">
-                            <span for="address_postal_code" class="input-group-text">Zip Code</span>
-                            <input type="text" class="form-control" name="address_postal_code" id="address_postal_code">
-                        </div>
-                        <div class="input-group mb-3">
-                            <span for="address_city" class="input-group-text">City</span>
-                            <input type="text" class="form-control" name="address_city" id="address_city">
-                        </div>
-                        <div class="input-group">
-                            <span for="address_country" class="input-group-text">Country</span>
-                            <input type="text" class="form-control" name="address_country" id="address_country">
-                        </div>
-
-                    </div>
-                </div>
-                <div class="form-floating mb-2">
-                    <textarea class="form-control @error('description') is-invalid @enderror" type="text-area"
-                        placeholder="Create a description" name="description" id="description" style="height: 100px">{{ old('description', $restaurant->description) }}</textarea>
-                        @error('description')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                    @enderror
-                    <label for="floatingTextarea2">Description</label>
-                </div>
-
-                <div class="card p-2">
-                    <label for="">Type</label>
-                    <div class="d-flex flex-row justify-content-between flex-wrap">
-                        @foreach ($types as $type)
-                            <div class="col-6 form-check">
-                                <input type="checkbox" id="type-{{ $type->id }}" value="{{ $type->id }}"
-                                    name="types[]"
-                                    {{ in_array($type->id, old('types', $restaurant->types->pluck('id')->toArray() ?? [])) ? 'checked' : '' }}>
-                                <label for="type-{{ $type->id }}"
-                                    class="form-check-label ">{{ $type->name }}</label>
-                                </div>
-                                @endforeach
-                                @error('types[]')
-                                <div class="invalid-feedback">{{$message}}</div>
+                        {{-- input piva  --}}
+                        <div class="card p-3 mb-2">
+                            <div class="input-group">
+                                <span for="piva" class="input-group-text">PIVA</span>
+                                <input type="number" class="form-control @error('piva') is-invalid @enderror" name="piva"
+                                    id="piva" value={{ old('piva', $restaurant->piva) }}>
+                                    @error('piva')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
                                 @enderror
                             </div>
+                        </div>
+
+                        {{-- input proprietario  --}}
+                        <div class="card p-3 mb-2">
+                            <div class="input-group">
+                                <span for="owner" class="input-group-text">Owner</span>
+                                <input type="text" class="form-control @error('user->name') is-invalid @enderror"
+                                    name="owner" id="owner" value={{ old('user->name', $user->name) }}>
+                                    @error('user->name')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                        </div>
+
+                        {{-- input immagine  --}}
+                        <div class="card p-3">
+                            <div class="input-group">
+                                <span for="image" class="input-group-text">Image</span>
+                                <input type="file" class="form-control " name="image"
+                                    id="image" >
+                                    @error('image')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                            </div>
+                        </div>
+                    </div>
+                    {{-- input indirizzo  --}}
+                    <div class="col-6">
+                        <div class="card p-3">
+                            <div class="input-group mb-4">
+                                <span for="address_street" class="input-group-text">Street Address</span>
+                                <input type="text" class="form-control @error('address_street') is-invalid @enderror" name="address_street" id="address_street" value={{ old('address_street') }} >
+                                @error('address_street')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                            </div>
+                            <div class="input-group mb-4">
+                                <span for="address_civic" class="input-group-text">Civic</span>
+                                <input type="text" class="form-control @error('address_civic') is-invalid @enderror" name="address_civic" id="address_civic" value={{ old('address_civic') }}>
+                            @error('address_civic')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                            </div>
+                            <div class="input-group mb-4">
+                                <span for="address_postal_code" class="input-group-text">Zip Code</span>
+                                <input type="text" class="form-control @error('address_postal_code') is-invalid @enderror" name="address_postal_code" id="address_postal_code" value={{ old('address_postal_code') }}>
+                            @error('address_postal_code')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                            </div>
+                            <div class="input-group mb-3">
+                                <span for="address_city" class="input-group-text">City</span>
+                                <input type="text" class="form-control @error('address_city') is-invalid @enderror" name="address_city" id="address_city" value={{ old('address_city') }}>
+                            @error('address_city')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                            </div>
+                            <div class="input-group">
+                                <span for="address_country" class="input-group-text">Country</span>
+                                <input type="text" class="form-control @error('address_country') is-invalid @enderror" name="address_country" id="address_country" value={{ old('address_country') }}>
+                            @error('address_country')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                            </div>
+
+                        </div>
+                    </div>
+                    {{-- input descrizione  --}}
+                    <div class="col-6">
+                        <div class="card p-3">
+
+                            <div class="form-floating mb-2">
+                                <textarea class="form-control @error('description') is-invalid @enderror" type="text-area"
+                                placeholder="Create a description" name="description" id="description" style="height: 276px">{{ old('description', $restaurant->description) }}</textarea>
+                                <label class="form-label" for="floatingTextarea2">Description</label>
+                                @error('description')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+
+                <div class="col-6">
+                    <div class="card p-3 h-100">
+                        <label for="">tipi</label>
+                        <div class="d-flex flex-row justify-content-between flex-wrap">
+                            @foreach($types as $type)
+                                <div class="col-6 form-check @error('types') is-invalid @enderror">
+                                    <input type="checkbox" id="types-{{$type->id}}"  value="{{ $type->id }}" name="types[]" class="form-check-input @error('types') is-invalid @enderror"
+                                    {{ in_array($type->id, old('types', $restaurant->types->pluck('id')->toArray() ?? [])) ? 'checked' : '' }}>
+                                    <label  for="types-{{$type->id}}" class="form-check-label  @error('types') is-invalid @enderror">{{$type->name}}</label>
+                                </div>
+                            @endforeach
+                            @error("types")
+                            <div class="invalid-feedback">{{$message}}</div>
+                            @enderror
+                        </div>
+                    </div>
                 </div>
 
                 <div class="col-6">

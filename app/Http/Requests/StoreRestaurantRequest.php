@@ -26,9 +26,15 @@ class StoreRestaurantRequest extends FormRequest
         return [
             'description' => ['string','max:1000'],
             'name' => ['required','string', 'max:75'],
-            'address' => ['required','string','max:255'],
-            'piva' => ['required','unique:restaurants', 'int', 'max:11','min:11'],
-            'image' => ['image', 'max:120'],
+
+            'address_street' => ['required','string','max:255'],
+            'address_civic' => ['required','string','max:10'],
+            'address_postal_code' => ['required','string','max:5' , 'min:5'],
+            'address_city' => ['required','string','max:100'],
+            'address_country' => ['required','string','max:100'],
+
+            'piva' => ['required','unique:restaurants', 'string', 'max:11','min:11'],
+            'image' => ['image', 'nullable'],
             'slug' => ['required','string','max:150', 'unique:restaurants'],
             'types' => ['required','exists:types,id'],
         ];
