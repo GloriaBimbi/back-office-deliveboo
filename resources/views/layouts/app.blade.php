@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="dark">
+<html lang="en"  data-bs-theme="dark">
 
   <head>
     <meta charset="UTF-8">
@@ -13,12 +13,12 @@
     @yield('css')
   </head>
 
-  <body>
-    <div class="wrapper">
+  <body >
+    <div class="wrapper" data-bs-theme="dark">
       @include('layouts.partials.header')
 
       <main>
-        @yield('content')
+      @yield('content')
       </main>
 
       @include('layouts.partials.footer')

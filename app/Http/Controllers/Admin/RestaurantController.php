@@ -49,7 +49,7 @@ class RestaurantController extends Controller
     public function store(StoreRestaurantRequest $request)
     {
         // Controllare metodo validated
-        $request->validated();
+        $validated = $request->validated();
         $data = $request->all();
         // dd($data);
         $restaurant = new Restaurant;

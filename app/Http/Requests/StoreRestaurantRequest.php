@@ -24,14 +24,14 @@ class StoreRestaurantRequest extends FormRequest
     public function rules()
     {
         return [
-            'description' => ['text','max:1000'],
+            'description' => ['string','max:1000'],
             'name' => ['required','string', 'max:75'],
             'address' => ['required','string','max:255'],
             // Da sistemare max e min
-            'piva' => ['required','unique', 'string', 'max:11','mix:11'],
+            'piva' => ['required','unique:restaurants', 'string', 'max:11','min:11'],
             // Controllare che indirizzo immagine sia text o altro
-            'image' => ['text'],
-            'slug' => ['required','string','max:150', 'unique'],
+            'image' => ['image', 'max:120'],
+            'slug' => ['required','string','max:150', 'unique:restaurants'],
         ];
     }
 }
