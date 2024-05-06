@@ -1,9 +1,10 @@
 <header data-bs-theme="dark">
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid mx-5">
-            <img src="{{asset('storage/'.'Deliveboo.png')}}" alt="" style="width: 15%" href="#">
+            <img src="{{ asset('storage/' . 'Deliveboo.png') }}" alt="" style="width: 15%" href="#">
             <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
-                class="navbar-toggler" data-bs-target="#navbarSupportedContent" data-bs-toggle="collapse" type="button">
+                class="navbar-toggler" data-bs-target="#navbarSupportedContent" data-bs-toggle="collapse"
+                type="button">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -19,6 +20,13 @@
                             ]) aria-current="page"
                                 href="{{ route('admin.restaurants.index') }}">Restaurants</a>
                         </li>
+                        <li class="nav-item">
+                            <a @class([
+                                'nav-link',
+                                'active' => Route::currentRouteName() == 'admin.dishes.index',
+                            ]) aria-current="page"
+                                href="{{ route('admin.dishes.index') }}">Dishes</a>
+                        </li>
                     @endauth
                     @guest
                         <li class="nav-item">
@@ -29,11 +37,11 @@
                                 <a class="nav-link" href="{{ route('register') }}">Register</a>
                             </li>
                         @endif
-                    </div>
-                    @else
                 </div>
-                <div class="text-end">
-                    <ul class="list-group list-group-flush">
+            @else
+            </div>
+            <div class="text-end">
+                <ul class="list-group list-group-flush">
                     <li class="nav-item dropdown text-end list-group-item">
                         <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle"
                             data-bs-toggle="dropdown" href="#" id="navbarDropdown" role="button" v-pre>
@@ -53,7 +61,7 @@
                         </div>
                     </li>
                 </ul>
-                </div>
-                @endguest
+            </div>
+        @endguest
     </nav>
 </header>
