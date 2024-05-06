@@ -7,7 +7,12 @@
         <div class="container my-5">
             <form enctype="multipart/form-data" action="{{ route('admin.restaurants.store') }}" method="POST" >
                 @csrf
-                <h1 class="mb-4">Add your Restaurant</h1>
+                <div class="text-center w-100">
+                    <div class="text-center mt-5">
+                        <img src="{{ asset('storage/' . 'restaurantadd.png') }}" alt="" class="img-fluid" style="width: 10%">
+                    </div>
+                    <img src="{{ asset('storage/' . 'addrestaurant.png') }}" alt="" class="img-fluid" style="width: 60%">
+                </div>
                 <div class="row g-2">
                     <div class="col-6">
                         {{-- restaurant name input  --}}

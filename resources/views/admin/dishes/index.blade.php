@@ -5,7 +5,12 @@
 @section('content')
     <section data-bs-theme="dark">
         <div class="container my-5">
-            <h1 class="text-info">Dishes' List</h1>
+            <div class="text-center w-100">
+                <div class="text-center">
+                    <img src="{{ asset('storage/' . 'main-dish.png') }}" alt="" class="img-fluid" style="width: 10%">
+                </div>
+                <img src="{{ asset('storage/' . 'Dishes.png') }}" alt="" class="img-fluid" style="width: 60%">
+            </div>
             <table class="table">
                 <thead>
                     <tr>

@@ -6,7 +6,12 @@
 
     <section>
         <div class="container">
-            <h1>{{ (empty($dish->id) ? 'Add New' : 'Edit') . ' dish' }}</h1>
+            <div class="text-center w-100">
+                <div class="text-center mt-5">
+                    <img src="{{ asset('storage/' . 'plate.png') }}" alt="" class="img-fluid" style="width: 10%">
+                </div>
+                <img src="{{ asset('storage/' . 'add-dishes.png') }}" alt="" class="img-fluid" style="width: 60%">
+            </div>
             <div class="text-center">
                 <a href="{{ route('admin.dishes.index') }}" class="btn btn-primary mb-3">Return to the list</a>
             </div>
