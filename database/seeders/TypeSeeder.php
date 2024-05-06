@@ -17,12 +17,23 @@ class TypeSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        for($i = 0; $i < 20; $i++){
+        $types=config('types');
+        foreach($types as $current_type){
             $type = new Type;
-            $type->name = 'Restaurant from ' . $faker->state();
-            $type->logo = $faker->imageUrl(360, 360, 'foods', true);
+            $type->name = $current_type['name'] ;
+            $type->logo = $current_type['logo'];
             $type->color = $faker->hexColor();
             $type->save();
         }
+
+
+
+        // for($i = 0; $i < 20; $i++){
+        //     $type = new Type;
+        //     $type->name = 'Restaurant from ' . $faker->state();
+        //     $type->logo = $faker->imageUrl(360, 360, 'foods', true);
+        //     $type->color = $faker->hexColor();
+        //     $type->save();
+        // }
     }
 }
