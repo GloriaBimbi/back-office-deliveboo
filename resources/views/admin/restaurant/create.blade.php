@@ -9,9 +9,9 @@
                 @csrf
                 <div class="text-center w-100">
                     <div class="text-center mt-5">
-                        <img src="{{ asset('storage/' . 'restaurantadd.png') }}" alt="" class="img-fluid" style="width: 10%">
+                        <img src="{{ asset('storage/' . 'restaurantadd.png') }}" alt="page-logo-create-restaurant" class="img-fluid" style="width: 10%">
                     </div>
-                    <img src="{{ asset('storage/' . 'addrestaurant.png') }}" alt="" class="img-fluid" style="width: 60%">
+                    <img src="{{ asset('storage/' . 'addrestaurant.png') }}" alt="page-title-create-restaurant" class="img-fluid" style="width: 60%">
                 </div>
                 <div class="row g-2">
                     <div class="col-6">
@@ -126,10 +126,11 @@
                     <div class="col-6">
                         <div class="card p-3">
 
-                            <div class="form-floating mb-2">
-                                <textarea class="form-control @error('description') is-invalid @enderror" type="text-area"
-                                placeholder="Create a description" name="description" id="description" style="height: 276px">{{ old('description', $restaurant->description) }}</textarea>
-                                <label class="form-label" for="floatingTextarea2">Description</label>
+                            <div class=" mb-2">
+                                <label class="form-label" for="description">Description</label>
+
+                                <textarea class="form-control @error('description') is-invalid @enderror"
+                                 name="description" id="description" style="height: 276px" placeholder="Write here your description...">{{ old('description', $restaurant->description) }}</textarea>
                                 @error('description')
                                 <div class="invalid-feedback">
                                     {{ $message }}

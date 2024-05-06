@@ -12,8 +12,8 @@
                 </h2>
             </div>
             <div class="card-body">
-                <div class="row">
-                    <div class="col-6">
+                <div class="row ">
+                    <div class="col-6 ">
                         <ul class="list-group list-group-flush">
                         <li class="list-group-item"><span class="text-info fw-medium">Address: </span> {{$restaurant->address}}</li>
                         <li class="list-group-item"><span class="text-info fw-medium">P.IVA: </span> {{$restaurant->piva}}</li>
@@ -30,7 +30,12 @@
                         <p class="card-text text-center pb-4">{{$restaurant->description}}</p>
                     </div>
                     </div>
-                    <div class="col-6"><img src="{{ $restaurant->getImage() }}" alt="restaurant image" class="img-fluid"></div>
+                    <div class="col-6 img_col ">
+                        <div class="img-wrapper">
+
+                            <img src="{{ $restaurant->getImage() }}" alt="restaurant image" class="img-restaurant">
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="card-footer">
@@ -83,4 +88,18 @@
 
 @section('css')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<style lang="scss" scoped>
+.img_col{
+    height: 100%;
+}
+.img_wrapper {
+    height: 100%;
+    
+}
+.img-restaurant{
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+    }
+</style>
 @endsection

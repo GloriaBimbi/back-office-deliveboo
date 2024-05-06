@@ -8,9 +8,9 @@
         <div class="container">
             <div class="text-center w-100">
                 <div class="text-center mt-5">
-                    <img src="{{ asset('storage/' . 'plate.png') }}" alt="" class="img-fluid" style="width: 10%">
+                    <img src="{{ asset('storage/' . 'plate.png') }}" alt="page-logo-dish-form" class="img-fluid" style="width: 10%">
                 </div>
-                <img src="{{ asset('storage/' . 'add-dishes.png') }}" alt="" class="img-fluid" style="width: 60%">
+                <img src="{{ asset('storage/' . 'add-dishes.png') }}" alt="page-title-dish-form" class="img-fluid" style="width: 60%">
             </div>
             <div class="text-center">
                 <a href="{{ route('admin.dishes.index') }}" class="btn btn-primary mb-3">Return to the list</a>
@@ -23,6 +23,8 @@
                     @method('PATCH')
                 @endif
                 <div class="row g-2">
+
+                    {{-- name input  --}}
                     <div class="col-4">
                         <label class="form-label" for="title">Name</label>
                         <input @class(['form-control', 'is-invalid' => $errors->has('name')]) value="{{ old('name', $dish->name) }}" type="text"
@@ -32,6 +34,7 @@
                         @enderror
                     </div>
 
+                    {{-- image input --}}
                     <div class="col-4">
                         <label for="image" class="form-label">Image</label>
                         <input @class(['form-control', 'is-invalid' => $errors->has('image')]) type="file" id="image" name="image">
@@ -40,35 +43,38 @@
                         @enderror
                     </div>
 
+                    {{-- ingredient list input  --}}
                     <div class="col-6">
                         <label class="form-label" for="ingredients_list">Ingredients List</label>
                         <textarea @class([
                             'form-control',
                             'is-invalid' => $errors->has('ingredients_list'),
-                        ]) name="ingredients_list" rows="5" id="ingredients_list">{{ old('ingredients_list') ?? $dish->description }}</textarea>
+                        ]) name="ingredients_list" rows="5" id="ingredients_list" placeholder="Write here your ingredients...">{{ old('ingredients_list') ?? $dish->description }}</textarea>
                         @error('ingredients_list')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
 
+                    {{-- description input   --}}
                     <div class="col-6">
                         <label class="form-label" for="description">Description</label>
-                        <textarea @class(['form-control', 'is-invalid' => $errors->has('description')]) name="description" rows="5" id="description">{{ old('description') ?? $dish->description }}</textarea>
+                        <textarea @class(['form-control', 'is-invalid' => $errors->has('description')]) name="description" rows="5" id="description" placeholder="Write here your description...">{{ old('description') ?? $dish->description }}</textarea>
                         @error('description')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
 
+                    {{-- price input   --}}
                     <div class="col-2">
                         <div class="input-group mb-3">
                             <span class="input-group-text" id="basic-addon1">$</span>
                             <input type="text" @class(['form-control', 'is-invalid' => $errors->has('price')]) placeholder="price" aria-label="Price"
                                 aria-describedby="basic-addon1" id="price" name="price"
                                 value="{{ old('price', $dish->price) }}">
+                                @error('price')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                         </div>
-                        @error('price')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
                     </div>
 
                 </div>

@@ -60,11 +60,11 @@ class RestaurantController extends Controller
 
             'address_street' => 'required|string|max:255',
             'address_civic' => 'required|string|max:10',
-            'address_postal_code' => 'required|string|max:5' , 'min:5',
+            'address_postal_code' => 'required|string|max:5|min:5',
             'address_city' => 'required|string|max:100',
             'address_country' => 'required|string|max:100',
 
-            'piva' => 'required|unique:restaurants', 'string', 'max:11|min:11',
+            'piva' => 'required|unique:restaurants|string|max:11|min:11',
             'image' => 'image|required',
             'types' => 'required|exists:types,id',
         ]);
