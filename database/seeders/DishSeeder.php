@@ -24,6 +24,21 @@ class DishSeeder extends Seeder
 
         $restaurants=Restaurant::all()->pluck('id');
 
+        $dishes=config('dishes');
+
+        foreach($dishes as $current_dish){
+            $dish = new Dish;
+            $dish->restaurant_id = $faker->randomElement($restaurants);
+            $dish->name = $current_dish['name'];
+            $dish->image = $current_dish['image'];
+            $dish->visible = true;
+            $dish->description = $current_dish['description'];
+            $dish->ingredients_list = $current_dish['ingredients_list'];
+            $dish->price = $current_dish['price'];
+            $dish->slug = Str::slug($current_dish['name']);
+            $dish->save();
+        }
+
         // $dish = new Dish;
         // $dish->restaurant_id = $faker->randomElement($restaurants);
         // $dish->name = 'Pizza Margherita';
@@ -46,20 +61,20 @@ class DishSeeder extends Seeder
         // $dish->ingredients_list = 'riso erbolario, prezzemolo, gambero, olio evo, burro';
         // $dish->save();
 
-        for($i = 0; $i < 15; $i++){
-            $restaurant_id_value = $faker->randomElement($restaurants);
-            // var_dump($restaurants);
+        // for($i = 0; $i < 15; $i++){
+        //     $restaurant_id_value = $faker->randomElement($restaurants);
+        //     // var_dump($restaurants);
 
-            $dish = new Dish;
-            $dish->restaurant_id = $restaurant_id_value;
-            $dish->name = $faker->catchPhrase();
-            $dish->image = $faker->imageUrl(null, 360, 360, 'foods', true);
-            $dish->description = $faker->paragraph();
-            $dish->price = $faker->randomFloat(2, 0, 100);
-            $dish->visible = true;
-            $dish->slug = Str::slug($dish->name);
-            $dish->ingredients_list = $faker->words(7, true);
-            $dish->save();
-        }
+        //     $dish = new Dish;
+        //     $dish->restaurant_id = $restaurant_id_value;
+        //     $dish->name = $faker->catchPhrase();
+        //     $dish->image = $faker->imageUrl(null, 360, 360, 'foods', true);
+        //     $dish->description = $faker->paragraph();
+        //     $dish->price = $faker->randomFloat(2, 0, 100);
+        //     $dish->visible = true;
+        //     $dish->slug = Str::slug($dish->name);
+        //     $dish->ingredients_list = $faker->words(7, true);
+        //     $dish->save();
+        // }
     }
 }
