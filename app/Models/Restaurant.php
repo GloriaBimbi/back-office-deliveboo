@@ -26,9 +26,18 @@ class Restaurant extends Model
     }
 
     // fillable for data $request
-    protected $fillable=['description','name','piva','image', 'user->name'];
+    protected $fillable=['description','name','piva', 'user->name'];
 
     public function getTypeText(){
         return $this->types->implode(',',$this->types->pluck('name')->toArray());
+    }
+    public function getImage(){
+        if(!str_starts_with($this->image,'https')) {
+            return asset('storage/' . $this->image);
+
+        } else {
+            return $this->image;
+
+        }
     }
 }

@@ -10,7 +10,7 @@
                 <h1 class="mb-4">Add your Restaurant</h1>
                 <div class="row g-2">
                     <div class="col-6">
-                        {{-- input nome ristorante  --}}
+                        {{-- restaurant name input  --}}
                         <div class="card p-3 mb-2">
                             <div class="input-group">
                                 <span for="name" class="input-group-text">Name</span>
@@ -24,7 +24,7 @@
                             </div>
                         </div>
 
-                        {{-- input piva  --}}
+                        {{--  piva input  --}}
                         <div class="card p-3 mb-2">
                             <div class="input-group">
                                 <span for="piva" class="input-group-text">PIVA</span>
@@ -38,7 +38,7 @@
                             </div>
                         </div>
 
-                        {{-- input proprietario  --}}
+                        {{-- owner input  --}}
                         <div class="card p-3 mb-2">
                             <div class="input-group">
                                 <span for="owner" class="input-group-text">Owner</span>
@@ -52,11 +52,11 @@
                             </div>
                         </div>
 
-                        {{-- input immagine  --}}
+                        {{-- image input  --}}
                         <div class="card p-3">
                             <div class="input-group">
                                 <span for="image" class="input-group-text">Image</span>
-                                <input type="file" class="form-control " name="image"
+                                <input type="file" class="form-control @error ('image') is-invalid @enderror" name="image"
                                     id="image" >
                                     @error('image')
                                         <div class="invalid-feedback">
@@ -66,7 +66,7 @@
                             </div>
                         </div>
                     </div>
-                    {{-- input indirizzo  --}}
+                    {{-- address input  --}}
                     <div class="col-6">
                         <div class="card p-3">
                             <div class="input-group mb-4">
@@ -117,7 +117,7 @@
 
                         </div>
                     </div>
-                    {{-- input descrizione  --}}
+                    {{-- description input  --}}
                     <div class="col-6">
                         <div class="card p-3">
 
@@ -133,10 +133,10 @@
                             </div>
                         </div>
                     </div>
-
+                {{-- types input --}}
                 <div class="col-6">
                     <div class="card p-3 h-100">
-                        <label for="">tipi</label>
+                        <label for="">Types:</label>
                         <div class="d-flex flex-row justify-content-between flex-wrap">
                             @foreach($types as $type)
                                 <div class="col-6 form-check @error('types') is-invalid @enderror">

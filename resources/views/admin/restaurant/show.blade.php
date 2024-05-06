@@ -30,7 +30,7 @@
                         <p class="card-text text-center pb-4">{{$restaurant->description}}</p>
                     </div>
                     </div>
-                    <div class="col-6"><img src="{{$restaurant->image}}" alt="restaurant image" class="img-fluid"></div>
+                    <div class="col-6"><img src="{{ $restaurant->getImage() }}" alt="restaurant image" class="img-fluid"></div>
                 </div>
             </div>
             <div class="card-footer">

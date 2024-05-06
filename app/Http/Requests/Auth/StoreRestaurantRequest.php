@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Auth;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -34,7 +34,7 @@ class StoreRestaurantRequest extends FormRequest
             'address_country' => ['required','string','max:100'],
 
             'piva' => ['required','unique:restaurants', 'string', 'max:11','min:11'],
-            'image' => ['image', 'nullable'],
+            'image' => ['image', 'required'],
             'slug' => ['required','string','max:150', 'unique:restaurants'],
             'types' => ['required','exists:types,id'],
         ];

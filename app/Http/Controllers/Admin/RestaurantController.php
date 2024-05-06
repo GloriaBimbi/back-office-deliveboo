@@ -12,7 +12,8 @@ use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 // Store restaurant request
 use Illuminate\Support\Facades\Storage;
-use App\Http\Requests\StoreRestaurantRequest;
+// use App\Http\Requests\Auth\StoreRestaurantRequest;
+
 
 
 
@@ -49,23 +50,40 @@ class RestaurantController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreRestaurantRequest $request)
+    public function store(Request $request)
     {
+        // dd($request->all());
         // Controllare metodo validated
-        $validated = $request->validated();
+        $request->validate([
+            'description' => 'string|max:1000',
+            'name' => 'required|string|max:75',
+
+            'address_street' => 'required|string|max:255',
+            'address_civic' => 'required|string|max:10',
+            'address_postal_code' => 'required|string|max:5' , 'min:5',
+            'address_city' => 'required|string|max:100',
+            'address_country' => 'required|string|max:100',
+
+            'piva' => 'required|unique:restaurants', 'string', 'max:11|min:11',
+            'image' => 'image|required',
+            'types' => 'required|exists:types,id',
+        ]);
+   
         $data = $request->all();
         // dd($data);
+
         $restaurant = new Restaurant;
         $restaurant->fill($data);
 
-        // if(Arr::exists($data,'image')){
-        //     $img_path=Storage::put('uploads\restaurant', $data['image']);
-        // }
-        $img_path=Storage::disk('public')->put('uploads\restaurant', $data['image']);
-        $restaurant->image=$img_path;
-        $restaurant->user_id=Auth::id();
-        $restaurant->slug=Str::slug($restaurant->name);
-        $restaurant->address=$data['address_street'].', '.$data['address_civic'].', '.$data['address_postal_code'].' '.$data['address_city'].' ('.$data['address_country'].')';
+        if(Arr::exists($data,'image')){
+            $img_path=Storage::put('uploads\restaurant', $data['image']);
+            $restaurant->image = $img_path;
+        }
+        // $img_path=Storage::disk('public')->put('uploads\restaurant', $data['image']);
+
+        $restaurant->user_id = Auth::id();
+        $restaurant->slug = Str::slug($restaurant->name);
+        $restaurant->address = $data['address_street'].', '.$data['address_civic'].', '.$data['address_postal_code'].' '.$data['address_city'].' ('.$data['address_country'].')';
         $restaurant->save();
         
         $restaurant->types()->attach($data['types']);

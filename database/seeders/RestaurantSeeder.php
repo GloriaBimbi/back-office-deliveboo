@@ -22,20 +22,34 @@ class RestaurantSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        $users_id=User::all()->pluck('id');
+        // $users_id=User::all()->pluck('id');
 
-
-        foreach($users_id as $user_id){
+        $restaurants = config('restaurants');
+        foreach($restaurants as $current_restaurant){
             $restaurant = new Restaurant;
-            $restaurant->user_id = $user_id;
-            $restaurant->description = $faker->paragraph();
-            $restaurant->name = $faker->catchPhrase();
-            $restaurant->address =  $faker->address();
-            $restaurant->piva = $faker->randomNumber(5,true).$faker->randomNumber(6,true);
-            $restaurant->image = $faker->imageUrl(null, 360, 360, 'restaurant', true);
+            $restaurant->user_id = $current_restaurant['user_id'];
+            $restaurant->name = $current_restaurant['name'];
+            $restaurant->address = $current_restaurant['address'];
+            $restaurant->piva = $current_restaurant['piva'];
+            $restaurant->image = $current_restaurant['image'];
+            $restaurant->description = $current_restaurant['description'];
             $restaurant->slug = Str::slug($restaurant->name);
             $restaurant->save();
         }
+
+
+
+        // foreach($users_id as $user_id){
+        //     $restaurant = new Restaurant;
+        //     $restaurant->user_id = $user_id;
+        //     $restaurant->description = $faker->paragraph();
+        //     $restaurant->name = $faker->catchPhrase();
+        //     $restaurant->address =  $faker->address();
+        //     $restaurant->piva = $faker->randomNumber(5,true).$faker->randomNumber(6,true);
+        //     $restaurant->image = $faker->imageUrl(null, 360, 360, 'restaurant', true);
+        //     $restaurant->slug = Str::slug($restaurant->name);
+        //     $restaurant->save();
+        // }
 
 
 
