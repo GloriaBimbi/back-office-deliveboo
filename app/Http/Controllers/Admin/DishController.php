@@ -117,6 +117,7 @@ class DishController extends Controller
      */
     public function destroy(Dish $dish)
     {
-        //
+        $dish->delete();  // delete
+        return redirect()->route('admin.dishes.index');
     }
 }
