@@ -1,46 +1,45 @@
 <!DOCTYPE html>
-<html lang="en"  data-bs-theme="dark">
+<html lang="en" data-bs-theme="dark">
 
-  <head>
+<head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="ie=edge" http-equiv="X-UA-Compatible">
     <meta content="{{ csrf_token() }}" name="csrf-token">
-    <title>{{ env('APP_NAME', 'Laravel project') }} - @yield('title', 'My page') </title>
+    <title>{{ env('APP_NAME', 'Deliveboo') }} - @yield('title', 'My page') </title>
 
     @vite('resources/js/app.js')
 
     @yield('css')
-  </head>
+</head>
 
-  <body >
+<body>
     <div class="wrapper" data-bs-theme="dark">
-      @include('layouts.partials.header')
+        @include('layouts.partials.header')
 
-      <main>
-      @yield('content')
-      </main>
+        <main>
+            @yield('content')
+        </main>
 
-      @include('layouts.partials.footer')
+        @include('layouts.partials.footer')
     </div>
 
     @auth
-      <script>
-        const logoutLink = document.getElementById('logout-link');
-        const logoutForm = document.getElementById('logout-form');
+        <script>
+            const logoutLink = document.getElementById('logout-link');
+            const logoutForm = document.getElementById('logout-form');
 
-        logoutLink.addEventListener('click', (e) => {
-          e.preventDefault();
-          logoutForm.submit();
-        });
-      </script>
+            logoutLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                logoutForm.submit();
+            });
+        </script>
     @endauth
 
     @yield('delete_modal')
 
     @yield('js')
-      
-    
-  </body>
+
+</body>
 
 </html>
