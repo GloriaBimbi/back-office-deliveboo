@@ -8,18 +8,18 @@
             <div class="card">
                 <div class="card-header">
                     <h2 class="text-success-emphasis my-4 text-capitalize card-title">
-                        {{ $dish->name }}
+                        {{ $dish->name }} ({{ $dish->restaurant->name }})
                     </h2>
                 </div>
                 <div class="card-body">
                     <div class="row">
                         <div class="col-6">
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item"><span class="text-info fw-medium">Slug </span>
+                                <li class="list-group-item"><span class="text-info fw-medium">Slug: </span>
                                     {{ $dish->slug }}</li>
-                                <li class="list-group-item"><span class="text-info fw-medium">Price </span>
+                                <li class="list-group-item"><span class="text-info fw-medium">Price: </span>
                                     ${{ $dish->price }}</li>
-                                <li class="list-group-item"><span class="text-info fw-medium">Ingredients List</span>
+                                <li class="list-group-item"><span class="text-info fw-medium">Ingredients List: </span>
                                     {{ $dish->ingredients_list }}</li>
                             </ul>
                             <div class="card mt-5">
@@ -61,7 +61,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body text-start">
-                    Are you sure? {{ $dish->name }}?
+                    Are you sure you want to delete '{{ $dish->name }}'?
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Go Back</button>

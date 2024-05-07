@@ -7,9 +7,11 @@
         <div class="container my-5">
             <div class="text-center w-100">
                 <div class="text-center">
-                    <img src="{{ asset('storage/' . 'main-dish.png') }}" alt="page-logo-dish-index" class="img-fluid" style="width: 10%">
+                    <img src="{{ asset('storage/' . 'main-dish.png') }}" alt="page-logo-dish-index" class="img-fluid"
+                        style="width: 10%">
                 </div>
-                <img src="{{ asset('storage/' . 'Dishes.png') }}" alt="page-title-dish-index" class="img-fluid" style="width: 60%">
+                <img src="{{ asset('storage/' . 'Dishes.png') }}" alt="page-title-dish-index" class="img-fluid"
+                    style="width: 60%">
             </div>
             <table class="table">
                 <thead>
@@ -73,7 +75,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body text-start">
-                        Are you sure? {{ $dish->name }}?
+                        Are you sure you want to delete '{{ $dish->name }}'?
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Go Back</button>
