@@ -3,7 +3,7 @@
 @section('title', 'Dishes')
 
 @section('content')
-    <section data-bs-theme="dark">
+    <section>
         <div class="container my-5">
             <div class="text-center w-100">
                 <div class="text-center">
