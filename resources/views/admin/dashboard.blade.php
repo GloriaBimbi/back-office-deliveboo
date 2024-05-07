@@ -1,8 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-@if(empty($restaurant))
 
+@if(empty($restaurant))
+<a href="{{ route('admin.restaurants.create') }}" class="btn btn-secondary w-100">crea un ristorante</a>
   {{-- ristorante dell'utente  --}}
   @elseif(!empty($restaurant))
   <section data-bs-theme="dark" id="restaurant-show" class="mb-3">
@@ -86,6 +87,7 @@
   
 @endsection
 
+@if(!empty($restaurant))
 @section('delete_modal')
     <div class="modal fade" id="delete-restaurant-{{ $restaurant->id }}" tabindex="-1"
         aria-labelledby="delete-restaurant-{{ $restaurant->id }}-label" aria-hidden="true">
@@ -119,6 +121,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 @endsection
+@endif
 
 @section('js')  
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

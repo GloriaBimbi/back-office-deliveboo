@@ -13,8 +13,14 @@ class DashboardController extends Controller
   public function index()
   {
     $restaurant=Restaurant::where('user_id',auth()->user()->id)->first();
-    $dishes=Dish::where('restaurant_id',$restaurant->id)->get();
-    $types=Type::where('restaurant_id',$restaurant->id);
-    return view('admin.dashboard', compact('restaurant', 'dishes','types'));
+    if($restaurant){
+
+      $dishes=Dish::where('restaurant_id',$restaurant->id)->get();
+      $types=Type::where('restaurant_id',$restaurant->id);
+      return view('admin.dashboard', compact('restaurant', 'dishes','types'));
+    } else{
+      return view('admin.dashboard', compact('restaurant'));
+
+    }
   }
 }
