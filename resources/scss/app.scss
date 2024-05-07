@@ -20,9 +20,13 @@ body {
 }
 
 .bordered {
-    background-color: #b9d6f2;
+    background-color: #0353A4;
     border: 0 solid transparent;
-    color: #006daa;
+    color: #ffffff;
+}
+
+.bordered:hover{
+    color: #B9D6F2;
 }
 
 .homecard {
@@ -32,4 +36,14 @@ body {
 .hometitle,
 .homephara {
     color: rgb(255, 255, 255);
+}
+
+
+.homedropdown{
+    background-color: #0353A4;
+    color: #ffffff;
+}
+
+.hovered:hover{
+    background-color: #B9D6F2;
 }
