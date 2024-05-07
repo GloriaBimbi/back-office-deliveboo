@@ -1,5 +1,41 @@
 @import "~bootstrap/dist/css/bootstrap.min.css";
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
+.bg-app {
+    background-color: #003559;
+}
+
+.bordered {
+    background-color: #0353a4;
+    border: 0 solid transparent;
+    color: #ffffff;
+}
+
+.bordered:hover {
+    color: #b9d6f2;
+}
+
+.homecard {
+    background-color: #003559;
+}
+
+.hometitle,
+.homephara {
+    color: rgb(255, 255, 255);
+}
+
+.homedropdown {
+    background-color: #0353a4;
+    color: #ffffff;
+}
+
+.hovered:hover {
+    background-color: #b9d6f2;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+}
 .wrapper {
     display: flex;
     flex-direction: column;
@@ -19,7 +55,7 @@
             position: absolute;
             bottom: 0;
             right: 1rem;
-            background-color: rgba(0, 0, 0, 0.835);
+            background-color: #003559dc;
             width: 50%;
             height: 80%;
             padding: 2rem;
