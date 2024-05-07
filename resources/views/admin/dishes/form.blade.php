@@ -25,9 +25,10 @@
 
                     {{-- name input  --}}
                     <div class="col-4">
-                        <label class="form-label" for="title">Name</label>
-                        <input @class(['form-control', 'is-invalid' => $errors->has('name')]) value="{{ old('name', $dish->name) }}" type="text"
-                            name="name" id="name" />
+                        <label class="form-label" for="title">Name*</label>
+                        <input required @class(['form-control', 'is-invalid' => $errors->has('name')]) value="{{ old('name', $dish->name) }}" type="text"
+                            name="name" id="name" pattern="[A-Za-zÀ-ÿ\s]+"
+                            title=":deve contenere solo caratteri di tipo testo" />
                         @error('name')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -35,8 +36,8 @@
 
                     {{-- image input --}}
                     <div class="col-4">
-                        <label for="image" class="form-label">Image</label>
-                        <input @class(['form-control', 'is-invalid' => $errors->has('image')]) type="file" id="image" name="image">
+                        <label for="image" class="form-label">Image*</label>
+                        <input required @class(['form-control', 'is-invalid' => $errors->has('image')]) type="file" id="image" name="image">
                         @error('image')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -44,8 +45,8 @@
 
                     {{-- ingredient list input  --}}
                     <div class="col-6">
-                        <label class="form-label" for="ingredients_list">Ingredients List</label>
-                        <textarea @class([
+                        <label class="form-label" for="ingredients_list">Ingredients List*</label>
+                        <textarea required @class([
                             'form-control',
                             'is-invalid' => $errors->has('ingredients_list'),
                         ]) name="ingredients_list" rows="5" id="ingredients_list"
@@ -57,8 +58,8 @@
 
                     {{-- description input   --}}
                     <div class="col-6">
-                        <label class="form-label" for="description">Description</label>
-                        <textarea @class(['form-control', 'is-invalid' => $errors->has('description')]) name="description" rows="5" id="description"
+                        <label class="form-label" for="description">Description*</label>
+                        <textarea required @class(['form-control', 'is-invalid' => $errors->has('description')]) name="description" rows="5" id="description"
                             placeholder="Write here your description...">{{ old('description') ?? $dish->description }}</textarea>
                         @error('description')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -68,10 +69,11 @@
                     {{-- price input   --}}
                     <div class="col-2">
                         <div class="input-group mb-3">
-                            <span class="input-group-text" id="basic-addon1">$</span>
-                            <input type="text" @class(['form-control', 'is-invalid' => $errors->has('price')]) placeholder="price" aria-label="Price"
-                                aria-describedby="basic-addon1" id="price" name="price"
-                                value="{{ old('price', $dish->price) }}">
+                            <span class="input-group-text" id="basic-addon1">Price* $</span>
+                            <input required type="text" @class(['form-control', 'is-invalid' => $errors->has('price')]) placeholder="price"
+                                aria-label="Price" aria-describedby="basic-addon1" id="price" name="price"
+                                value="{{ old('price', $dish->price) }}" pattern="^\d+(\.\d{1,2})?$"
+                                title="il formato deve essere maggiore di 0.">
                             @error('price')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -86,6 +88,10 @@
                 </div>
             </form>
         </div>
+    </section>
+
+    <section>
+
     </section>
 
 @endsection
