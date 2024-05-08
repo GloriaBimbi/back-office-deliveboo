@@ -117,9 +117,13 @@ class DishController extends Controller
      */
     public function destroy(Dish $dish)
     {
+
         $dish->delete();  // delete
+
         return redirect()->route('admin.dishes.index');
+
     }
+
     public function updateVisible(Dish $dish, Request $request)
     {
         // dd($request);
@@ -128,4 +132,5 @@ class DishController extends Controller
         $dish->save();
         return redirect()->route('admin.dashboard');
     }
+
 }
