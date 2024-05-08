@@ -1,20 +1,22 @@
 <header class="border-bottom">
-    <nav class="navbar navbar-expand-lg">
+    <nav class="navbar navbar-expand-lg d-flex align-items-center">
         <div class="container-fluid mx-5">
-            <img src="{{ asset('storage/' . 'Delivebootitle.png') }}" alt="" style="width: 10%" href="#">
+            <div class="nav-logo-wrapper">
+                <img src="{{ asset('storage/' . 'Delivebootitle.png') }}" alt="" style="width: 10%" href="#">
+            </div>
             <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
                 class="navbar-toggler" data-bs-target="#navbarSupportedContent" data-bs-toggle="collapse"
                 type="button">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item mx-5">
+                <ul class="navbar-nav my-2 mb-lg-0 d-flex gap-2">
+                    <li class="nav-item">
                         <a class="nav-link badge bordered p-3" @class(['nav-link', 'active' => Route::currentRouteName() == 'home']) aria-current="page" href="{{ route('home') }}">Home</a>
                     </li>
                     @auth
                         <li class="nav-item">
-                            <a class="nav-link badge bordered p-3 me-5" @class([
+                            <a class="nav-link badge bordered p-3 " @class([
                                 'nav-link',
                                 'active' => Route::currentRouteName() == 'admin.restaurants.index',
                             ]) aria-current="page"
@@ -44,13 +46,13 @@
             </div>
             <div class="text-end">
                 <ul class="list-group list-group-flush">
-                    <li class="nav-item dropdown text-end list-group-item homedropdown">
+                    <li class="nav-item dropdown text-end list-group-item homedropdown dropdown-button">
                         <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle homedropdown"
-                            data-bs-toggle="dropdown" href="#" id="navbarDropdown" role="button" v-pre>
+                            data-bs-toggle="dropdown" href="#" id="navbarDropdown" role="button" >
                             {{ Auth::user()->name }}
                         </a>
 
-                        <div aria-labelledby="navbarDropdown" class="dropdown-menu dropdown-menu-right homedropdown">
+                        <div aria-labelledby="navbarDropdown" class="dropdown-menu dropdown-menu-end  homedropdown">
                             <a class="dropdown-item homedropdown hovered" href="{{ route('admin.dashboard') }}"> Dashboard</a>
                             <a class="dropdown-item homedropdown hovered" href="{{ url('profile') }}"> Profile</a>
                             <a class="dropdown-item homedropdown hovered" href="{{ route('logout') }}" id="logout-link">
@@ -67,3 +69,12 @@
         @endguest
     </nav>
 </header>
+
+@section('css')
+<style>
+
+/* .dropdown-menu{
+    right:0 !important;
+} */
+</style>
+@endsection

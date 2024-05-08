@@ -28,8 +28,8 @@
             <div class="row row-cols-4">
               @foreach ($restaurant->types as $type)
               <div class="col">
-                <div class="card">
-                  <img src="{{$type->getImage()}}" class="card-img-top" alt="...">
+                <div class="card h-100">
+                  <img src="{{$type->getImage()}}" class="card-img-top"  alt="...">
                   <div class="card-body">
                     <h5 class="card-title text-capitalize">{{$type->name}}</h5>
                   </div>
@@ -56,7 +56,7 @@
   {{-- piatti del ristorante  --}}
     <section>
       <div class="container-fluid" id="restaurant-dishes">
-        <div class="row row-cols-4 h-100">
+        <div class="row row-cols-4 h-100 g-2">
           <div class="col">
             
             <a class="card add-dish-card" href="{{ route('admin.dishes.create') }}">
@@ -70,7 +70,7 @@
             <div class="card" >
               <a href="{{route('admin.dishes.show',$dish)}}">
   
-                <img src="{{$dish->getImage()}}" class="card-img-top" alt="...">
+                <img src="{{$dish->getImage()}}"  @class([$dish->visible ?'':'non-visible','card-img-top']) alt="...">
                 <div class="card-body">
                   <h5 class="card-title">{{$dish->name}}</h5>
                   <p class="card-text">${{$dish->price}}</p>
@@ -123,6 +123,3 @@
 @endsection
 @endif
 
-@section('js')  
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-@endsection
