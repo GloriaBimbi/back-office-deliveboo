@@ -3,6 +3,9 @@
 @section('title', 'Restaurants')
 
 @section('content')
+<div class="container mt-4">
+    <a href="{{route('home')}}" class="back-button"><i class="fa-solid fa-arrow-rotate-left"></i> Torna alla Home</a>
+</div>
     <section>
         <div class="container my-5">
             <div class="text-center">
@@ -13,14 +16,14 @@
                 <img src="{{ asset('storage/' . 'Restaurantlist.png') }}" alt="page-title-restaurant-index" class="img-fluid"
                     style="width: 60%">
             </div>
-            <table class="table">
+            <table class="table table-hover">
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
                         <th scope="col">Name</th>
                         <th scope="col">Address</th>
                         <th scope="col">Owner</th>
-                        <th scope="col">...</th>
+                        <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -34,11 +37,10 @@
                                 <a class="btn btn-primary" href="{{ route('admin.restaurants.show', $restaurant) }}"><i
                                         class="fa-solid fa-eye"></i></a>
 
-                                {{-- # bottone che dovrebbe attivare la modale  --}}
-                                <button type="submit" class="btn btn-danger" data-bs-toggle="modal"
+                                {{-- <button type="submit" class="btn btn-danger" data-bs-toggle="modal"
                                     data-bs-target="#delete-restaurant-{{ $restaurant->id }}">
                                     <i class="fa-solid fa-trash-can"></i>
-                                </button>
+                                </button> --}}
                             </td>
                         </tr>
                     @endforeach
@@ -47,7 +49,9 @@
             <div class="row">
                 <div class="col"><a href="{{ route('admin.restaurants.create') }}" class="btn btn-success"><i
                             class="fa-solid fa-plus"></i> Add Restaurant </a></div>
-                <div class="col">{{ $restaurants->links() }}</div>
+                <div class="col w-100 text-end">
+                    <div class="w-100"> {{ $restaurants->links() }}</div>
+                </div>
             </div>
 
         </div>

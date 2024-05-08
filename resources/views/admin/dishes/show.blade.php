@@ -19,6 +19,7 @@
                                     ${{ $dish->price }}</li>
                                     <li class="list-group-item"><span class="text-info fw-medium">Lista ingredienti: </span>
                                     {{ $dish->ingredients_list }}</li>
+                                    @if(Auth::user()->id == $dish->restaurant->user->id)
                                         <li class="list-group-item d-flex align-items-center ">
                                             <span class="text-info fw-medium">Visibile: </span>
                                             <form action="{{route('admin.dishes.update-visible',$dish)}}" method="POST">
@@ -29,9 +30,9 @@
                                                     name="visible">
                                                     <span class="slider"></span>
                                                 </label>
-        
                                             </form>
                                         </li>
+                                        @endif
                             </ul>
                             <div class="card mt-5">
                                 <p class="text-info fw-medium card-title text-center pt-3 fs-5">Descrizione Piatto:</p>
@@ -43,21 +44,19 @@
                     </div>
                 </div>
                 <div class="card-footer">
-                    <div class="row">
+                    <div class="row d-flex align-items-center">
                         <div class="col">
                             <a class="btn btn-warning" href="{{ route('admin.dashboard') }}">
                                 {{ __('Torna alla Dashboard') }}
                             </a>
                         </div>
-                        <div class="col">
-                            <a class="text-danger text-decoration-underline text-end" data-bs-toggle="modal"
-                            data-bs-target="#delete-dish-{{ $dish->id }}">Elimina piatto</a>
 
-                            {{-- <button type="submit" class="btn btn-danger" data-bs-toggle="modal"
-                                data-bs-target="#delete-dish-{{ $dish->id }}">
-                                <i class="fa-solid fa-trash-can"></i>
-                            </button> --}}
+                        @if(Auth::user()->id == $dish->restaurant->user->id)
+                        <div class="col text-end">
+                            <a class="w-100 text-danger text-decoration-underline " data-bs-toggle="modal"
+                            data-bs-target="#delete-dish-{{ $dish->id }}">Elimina piatto</a>
                         </div>
+                        @endif
                     </div>
                 </div>
             </div>

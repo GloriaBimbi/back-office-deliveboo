@@ -5,14 +5,43 @@
     background-color: #003559;
 }
 
-.bordered {
+.bordered,
+.login-btn,
+.dashboard-btn,
+.dropdown-btn,
+.home-btn {
+    padding: 1rem 2rem;
+    text-align: center;
     background-color: #0353a4;
     border: 0 solid transparent;
     color: #ffffff;
+    border-radius: 3px;
+
+    &.active {
+        background-color: #b9d6f2;
+    }
 }
 
-.bordered:hover {
-    color: #b9d6f2;
+.register-btn,
+.list-btn {
+    padding: 1rem 2rem;
+    text-align: center;
+    background-color: #ededed;
+    border: 0 solid transparent;
+    color: #1c1c1c;
+    border-radius: 3px;
+}
+.register-btn:hover,
+.list-btn:hover {
+    background-color: #b9d6f2;
+}
+
+.bordered:hover,
+.login-btn:hover,
+.dashboard-btn:hover,
+.dropdown-btn:hover,
+.home-btn {
+    filter: brightness(1.1);
 }
 
 .homecard {
@@ -25,12 +54,8 @@
 }
 
 .homedropdown {
-    background-color: #0353a4;
     color: #ffffff;
-}
-
-.hovered:hover {
-    background-color: #b9d6f2;
+    z-index: 2;
 }
 
 body {
@@ -45,11 +70,51 @@ body {
     }
 }
 
-// header
+.back-button {
+    padding: 1rem 2rem;
+    background-color: rgba(255, 255, 255, 0.807);
+    font-weight: 600;
+    border-radius: 3px;
 
-// .dropdown-menu {
-//     right: 0 !important;
-// }
+    opacity: 0.5;
+    &.from-dashboard {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    &:hover {
+        opacity: 1;
+        transition: opacity linear 0.1s;
+    }
+}
+
+// header
+.navbar {
+    background-color: #002238;
+    .navbar-toggler {
+        filter: invert(1);
+    }
+}
+
+footer {
+    background-color: #002238;
+}
+
+.dropdown-menu {
+    background-color: #0353a4;
+
+    border-radius: 3px;
+}
+
+.jumbotron {
+    .img-wrapper {
+        height: 100%;
+        img {
+            object-fit: cover;
+            object-position: center;
+        }
+    }
+}
 
 // dashboard ristoranti
 #restaurant-show {
@@ -62,13 +127,14 @@ body {
         .restaurant-details {
             position: absolute;
             bottom: 0;
-            right: 1rem;
+            right: 0;
             background-color: #003559dc;
             width: 50%;
             height: 80%;
             padding: 2rem;
             border-bottom-left-radius: 0;
             border-bottom-right-radius: 0;
+            border-top-right-radius: 0;
             overflow: auto;
             h1 {
                 color: white;

@@ -3,6 +3,9 @@
 @section('title', 'Dishes')
 
 @section('content')
+<div class="container mt-4">
+    <a href="{{route('home')}}" class="back-button"><i class="fa-solid fa-arrow-rotate-left"></i> Torna alla Home</a>
+</div>
     <section>
         <div class="container my-5">
             <div class="text-center w-100">
@@ -13,7 +16,7 @@
                 <img src="{{ asset('storage/' . 'Dishes.png') }}" alt="page-title-dish-index" class="img-fluid"
                     style="width: 60%">
             </div>
-            <table class="table">
+            <table class="table table-hover">
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
@@ -21,7 +24,7 @@
                         <th scope="col">Restaurant</th>
                         <th scope="col">Price</th>
                         <th scope="col">Description</th>
-                        <th scope="col">...</th>
+                        <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -35,27 +38,30 @@
                             <td>
                                 <a class="btn btn-primary" href="{{ route('admin.dishes.show', $dish) }}"><i
                                         class="fa-solid fa-eye"></i></a>
-
+{{-- 
                                 <a class="btn btn-warning" href="{{ route('admin.dishes.edit', $dish) }}"><i
-                                        class="fa-solid fa-pencil"></i></a>
+                                        class="fa-solid fa-pencil"></i></a> --}}
 
-                                {{-- # bottone che dovrebbe attivare la modale  --}}
-                                <button type="submit" class="btn btn-danger" data-bs-toggle="modal"
+                                {{-- <button type="submit" class="btn btn-danger" data-bs-toggle="modal"
                                     data-bs-target="#delete-dish-{{ $dish->id }}">
                                     <i class="fa-solid fa-trash-can"></i>
-                                </button>
+                                </button> --}}
                             </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
             <div class="row">
-                <div class="col">
+                {{-- <div class="col">
                     <a href="{{ route('admin.dishes.create') }}" class="btn btn-success"><i class="fa-solid fa-plus"></i>
                         Add
                         dish </a>
+                </div> --}}
+                <div class="col ">
+                    <div >
+                        {{ $dishes->links() }}
+                    </div>
                 </div>
-                <div class="col">{{ $dishes->links() }}</div>
             </div>
 
         </div>
