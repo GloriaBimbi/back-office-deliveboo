@@ -31,11 +31,19 @@ class Dish extends Model
         }
     }
 
-    public function getAbstract($n_chars=30){
-        return (strlen($this->description)>$n_chars)
-        ? substr($this->description,0,$n_chars).'...'
-        :$this->description;
+    public function getAbstract($n_chars = 30)
+    {
+        return (strlen($this->description) > $n_chars)
+            ? substr($this->description, 0, $n_chars) . '...'
+            : $this->description;
     }
 
     protected $fillable = ['name', 'slug', 'price', 'ingredients_list', 'description', 'image'];
+
+
+    // transform id dish in url
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 }

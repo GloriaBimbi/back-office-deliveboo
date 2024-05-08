@@ -56,4 +56,10 @@ class Restaurant extends Model
     {
         return strtoupper($word);
     }
+
+    // transform id restaurant in url
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 }
