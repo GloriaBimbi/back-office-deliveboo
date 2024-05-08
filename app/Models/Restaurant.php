@@ -9,6 +9,8 @@ use Illuminate\Support\Str;
 
 class Restaurant extends Model
 {
+    use HasFactory;
+
     // relationship many to many 
     public function types()
     {

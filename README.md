@@ -17,3 +17,15 @@ DAY THREE: finish CRUD
 -   validation restaurants and dishes
 -   starting Layout
 -   config file for Restaurants, Dishes, Types
+
+DAY FOUR:
+
+-   hashing of password in UserSeeder
+-   feat front-end validation
+-   create dashboard
+-   fix layout
+-   fix registration form
+
+DAY FIVE:
+
+-   include soft-deletes for dishes

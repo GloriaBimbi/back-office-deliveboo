@@ -22,6 +22,7 @@ return new class extends Migration
             $table->boolean('visible')->required();
             $table->string('slug', 150)->required()->unique();
             $table->text('ingredients_list');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
