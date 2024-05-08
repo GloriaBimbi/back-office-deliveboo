@@ -11,4 +11,14 @@ class Type extends Model
     {
         return $this->belongsToMany(Restaurant::class);
     }
+
+    public function getImage(){
+        if(!str_starts_with($this->logo,'https')) {
+            return asset('storage/' . $this->logo);
+
+        } else {
+            return $this->image;
+
+        }
+    }
 }
