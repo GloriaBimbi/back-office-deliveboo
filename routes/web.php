@@ -30,6 +30,7 @@ Route::middleware('auth')
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])
       ->name('dashboard');
 
+    Route::patch('dishes/{dish}/update-visible', [DishController::class, 'updateVisible'])->name('dishes.update-visible');
     Route::resource('restaurants', RestaurantController::class);
     Route::resource('dishes', DishController::class);
   });

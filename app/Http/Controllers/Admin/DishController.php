@@ -120,4 +120,12 @@ class DishController extends Controller
         $dish->delete();  // delete
         return redirect()->route('admin.dishes.index');
     }
+    public function updateVisible(Dish $dish, Request $request)
+    {
+        // dd($request);
+        $data=$request->all();
+        $dish->visible=Arr::exists($data,'visible')?true:false;
+        $dish->save();
+        return redirect()->route('admin.dashboard');
+    }
 }

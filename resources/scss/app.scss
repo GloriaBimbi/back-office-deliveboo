@@ -45,6 +45,13 @@ body {
     }
 }
 
+// header
+
+// .dropdown-menu {
+//     right: 0 !important;
+// }
+
+// dashboard ristoranti
 #restaurant-show {
     .img-wrapper {
         width: 100%;
@@ -98,6 +105,9 @@ body {
                     height: 100%;
                     object-fit: cover;
                     object-position: center;
+                    &.non-visible {
+                        filter: grayscale(100%);
+                    }
                 }
             }
             .card-body {
