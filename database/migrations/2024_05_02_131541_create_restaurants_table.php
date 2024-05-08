@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('piva', 11)->required()->unique();
             $table->text('image');
             $table->string('slug', 150)->required()->unique();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
