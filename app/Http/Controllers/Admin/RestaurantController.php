@@ -38,10 +38,19 @@ class RestaurantController extends Controller
      */
     public function create()
     {
-        $types = Type::all();
-        $user = Auth::user();
-        $restaurant = new Restaurant();
-        return view('admin.restaurant.create', compact('types', 'restaurant', 'user'));
+        $userId = Auth::user()->id;
+        $userRestaurant = Restaurant::where('user_id', $userId)->exists();
+
+        // dd($userRestaurant);
+        if (!$userRestaurant) {
+
+            $types = Type::all();
+            $user = Auth::user();
+            $restaurant = new Restaurant();
+            return view('admin.restaurant.create', compact('types', 'restaurant', 'user'));
+        } else {
+            return redirect()->route('admin.dashboard')->withErrors(['user_id' => 'L\'utente ha già un ristorante.']);
+        }
     }
 
     /**
@@ -94,7 +103,7 @@ class RestaurantController extends Controller
         $restaurant->types()->attach($data['types']);
         // if(Arr::exists($data, 'types')){
 
-        return redirect()->route('admin.restaurants.show', compact('restaurant'));
+        return redirect()->route('admin.dashboard', compact('restaurant'));
     }
 
     /**
@@ -105,7 +114,7 @@ class RestaurantController extends Controller
      */
     public function show(Restaurant $restaurant)
     {
-        return view('admin.restaurant.show', compact('restaurant'));
+        return view('admin.dashboard', compact('restaurant'));
     }
 
     /**

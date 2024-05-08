@@ -3,7 +3,7 @@
 @section('title', 'Dish Details')
 
 @section('content')
-    <section data-bs-theme="dark">
+    <section>
         <div class="container my-5">
             <div class="card">
                 <div class="card-header">
@@ -34,7 +34,7 @@
                 <div class="card-footer">
                     <div class="row">
                         <div class="col">
-                            <a class="btn btn-warning" href="{{ route('admin.dishes.index') }}">
+                            <a class="btn btn-warning" href="{{ route('admin.dashboard') }}">
                                 {{ __('Go Back to List') }}
                             </a>
                         </div>
