@@ -28,4 +28,4 @@ DAY FOUR:
 
 DAY FIVE:
 
--   include soft-deletes
+-   include soft-deletes for dishes

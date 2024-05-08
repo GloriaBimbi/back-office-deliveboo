@@ -5,9 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Dish extends Model
 {
+    // SoftDeletes facade for soft-deletes
+    use HasFactory, SoftDeletes;
+
     public function orders()
     {
         return $this->BelongsToMany(Order::class)->withPivot('total_price');
