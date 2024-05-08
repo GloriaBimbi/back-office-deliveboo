@@ -7,40 +7,40 @@
   {{-- ristorante dell'utente  --}}
   @elseif(!empty($restaurant))
   <section data-bs-theme="dark" id="restaurant-show" class="mb-3">
+<div class="container-fluid ">
 
-        <div class="img-wrapper">
-          <img src="{{$restaurant->getImage()}}" alt="restaurant-image">
-          <div class="card restaurant-details">
-            <div class="restaurant-detail-wrapper">
+  <div class="img-wrapper">
+    <img src="{{$restaurant->getImage()}}" alt="restaurant-image">
+    <div class="card restaurant-details">
+      <div class="restaurant-detail-wrapper">
 
-              <h1>{{$restaurant->name}}</h1>
-              <p>di <strong>{{$restaurant->user->name}}</strong></p>
-            <div class="row">
-              <div class="col-6"><p>Località - <strong>{{$restaurant->address}}</strong></p></div>
-              <div class="col-6 text-end"><p>P.iva - <strong>{{$restaurant->piva}}</strong></p></div>
+        <h1>{{$restaurant->name}}</h1>
+        <p>di <strong>{{$restaurant->user->name}}</strong></p>
+      <div class="row">
+        <div class="col-6"><p>Località - <strong>{{$restaurant->address}}</strong></p></div>
+        <div class="col-6 text-end"><p>P.iva - <strong>{{$restaurant->piva}}</strong></p></div>
+      </div>
+      <hr>
+      <cite class="h3 ">
+        '{{$restaurant->description}}'
+      </cite>
+      <hr>
+      <h3>Tipologia</h3>
+      <div class="row row-cols-4">
+        @foreach ($restaurant->types as $type)
+        <div class="col">
+          <div class="card h-100">
+            <img src="{{$type->getImage()}}" class="card-img-top"  alt="...">
+            <div class="card-body">
+              <h5 class="card-title text-capitalize">{{$type->name}}</h5>
             </div>
-            <hr>
-            <cite class="h3 ">
-              '{{$restaurant->description}}'
-            </cite>
-            <hr>
-            <h3>Tipologia</h3>
-            <div class="row row-cols-4">
-              @foreach ($restaurant->types as $type)
-              <div class="col">
-                <div class="card h-100">
-                  <img src="{{$type->getImage()}}" class="card-img-top"  alt="...">
-                  <div class="card-body">
-                    <h5 class="card-title text-capitalize">{{$type->name}}</h5>
-                  </div>
-                </div>
-              </div>
-              @endforeach
-            </div>
-          </div>
           </div>
         </div>
+        @endforeach
       </div>
+    </div>
+  </div>
+</div>
     </div>
     <div class="container-fluid">
         @if (session()->has('errors'))

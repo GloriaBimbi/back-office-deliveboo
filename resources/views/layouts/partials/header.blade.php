@@ -1,6 +1,6 @@
 <header class="border-bottom">
-    <nav class="navbar navbar-expand-lg d-flex align-items-center">
-        <div class="container-fluid mx-5">
+    <nav class="navbar navbar-expand-lg ">
+        <div class="container-fluid d-flex justify-content-between align-items-center">
             <div class="nav-logo-wrapper">
                 <img src="{{ asset('storage/' . 'Delivebootitle.png') }}" alt="" style="width: 10%" href="#">
             </div>
@@ -9,6 +9,8 @@
                 type="button">
                 <span class="navbar-toggler-icon"></span>
             </button>
+            
+            <div class="nav-right">
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav my-2 mb-lg-0 d-flex gap-2">
                     <li class="nav-item">
@@ -41,24 +43,25 @@
                                 <a class="nav-link badge bordered p-3 me-3" href="{{ route('register') }}">Register</a>
                             </li>
                         @endif
-                </div>
-            @else
+                </ul>
             </div>
-            <div class="text-end">
-                <ul class="list-group list-group-flush">
-                    <li class="nav-item dropdown text-end list-group-item homedropdown dropdown-button">
-                        <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle homedropdown"
-                            data-bs-toggle="dropdown" href="#" id="navbarDropdown" role="button" >
-                            {{ Auth::user()->name }}
-                        </a>
+            @else
 
-                        <div aria-labelledby="navbarDropdown" class="dropdown-menu dropdown-menu-end  homedropdown">
-                            <a class="dropdown-item homedropdown hovered" href="{{ route('admin.dashboard') }}"> Dashboard</a>
-                            <a class="dropdown-item homedropdown hovered" href="{{ url('profile') }}"> Profile</a>
-                            <a class="dropdown-item homedropdown hovered" href="{{ route('logout') }}" id="logout-link">
+                <ul class="list-group list-group-flush">
+                    {{-- tasto dropdown  --}}
+                    <li class="ms-2 nav-item dropdown text-end list-group-item homedropdown dropdown-button">
+                        <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle homedropdown"
+                        data-bs-toggle="dropdown" href="#" id="navbarDropdown" role="button" >
+                        {{ Auth::user()->name }}
+                    </a>
+                    {{-- dropdown  --}}
+                    <div aria-labelledby="navbarDropdown" class="dropdown-menu dropdown-menu-end  homedropdown">
+                        <a class="dropdown-item homedropdown hovered" href="{{ route('admin.dashboard') }}"> Dashboard</a>
+                        <a class="dropdown-item homedropdown hovered" href="{{ url('profile') }}"> Profile</a>
+                        <a class="dropdown-item homedropdown hovered" href="{{ route('logout') }}" id="logout-link">
                                 Logout
                             </a>
-
+                            
                             <form action="{{ route('logout') }}" class="d-none" id="logout-form" method="POST">
                                 @csrf
                             </form>
@@ -66,7 +69,8 @@
                     </li>
                 </ul>
             </div>
-        @endguest
+            @endguest
+        </div>
     </nav>
 </header>
 
