@@ -57,7 +57,8 @@
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                                {{-- <input id="show-password-checkbox" type="checkbox"> Show password --}}
                             </div>
                         </div>
 
@@ -75,3 +76,30 @@
     </div>
 </div>
 @endsection
+
+{{-- @section('js')
+<script>
+    const passwordInput = document.getElementById("password");
+    const showPasswordCheckbox = document.getElementById("show-password-checkbox");
+
+    showPasswordCheckbox.addEventListener("change", function() {
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            console.log(passwordInput.type);
+        } else {
+            passwordInput.type = "password";
+            console.log(passwordInput.type);
+        }
+    });
+</script>
+@endsection
+
+@section('css')
+<style>
+    /* sovrascrivi lo stile predefinito dell'input di tipo password */
+    input[type="password"] {
+        -webkit-text-security: none; /* per browser WebKit come Chrome e Safari */
+        text-security: none; /* per browser che supportano questa proprietà */
+    }
+</style>
+@endsection --}}
