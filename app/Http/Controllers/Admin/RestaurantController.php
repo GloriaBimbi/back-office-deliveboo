@@ -26,7 +26,7 @@ class RestaurantController extends Controller
      */
     public function index()
     {
-        $restaurants = Restaurant::orderBy('id','DESC')->paginate(10);
+        $restaurants = Restaurant::orderBy('id', 'DESC')->paginate(10);
         // $types= Type::all();
         return view('admin.restaurant.index', compact('restaurants'));
     }
@@ -41,7 +41,7 @@ class RestaurantController extends Controller
         $types = Type::all();
         $user = Auth::user();
         $restaurant = new Restaurant();
-        return view('admin.restaurant.create', compact('types','restaurant','user'));
+        return view('admin.restaurant.create', compact('types', 'restaurant', 'user'));
     }
 
     /**
@@ -68,24 +68,29 @@ class RestaurantController extends Controller
             'image' => 'image|required',
             'types' => 'required|exists:types,id',
         ]);
-   
+
         $data = $request->all();
         // dd($data);
+
+        // Trasforma l'indirizzo in camel case
+        $data['address_street'] = Restaurant::camelCase($data['address_street']);
+        $data['address_city'] = Restaurant::camelCase($data['address_city']);
+        $data['address_country'] = Restaurant::upperCase($data['address_country']);
 
         $restaurant = new Restaurant;
         $restaurant->fill($data);
 
-        if(Arr::exists($data,'image')){
-            $img_path=Storage::put('uploads\restaurant', $data['image']);
+        if (Arr::exists($data, 'image')) {
+            $img_path = Storage::put('uploads\restaurant', $data['image']);
             $restaurant->image = $img_path;
         }
         // $img_path=Storage::disk('public')->put('uploads\restaurant', $data['image']);
 
         $restaurant->user_id = Auth::id();
         $restaurant->slug = Str::slug($restaurant->name);
-        $restaurant->address = $data['address_street'].', '.$data['address_civic'].', '.$data['address_postal_code'].' '.$data['address_city'].' ('.$data['address_country'].')';
+        $restaurant->address = $data['address_street'] . ', ' . $data['address_civic'] . ', ' . $data['address_postal_code'] . ' ' . $data['address_city'] . ' (' . $data['address_country'] . ')';
         $restaurant->save();
-        
+
         $restaurant->types()->attach($data['types']);
         // if(Arr::exists($data, 'types')){
 
