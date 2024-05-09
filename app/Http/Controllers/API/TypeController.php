@@ -15,7 +15,7 @@ class TypeController extends Controller
      */
     public function index()
     {
-        $types = Type::select(['id', 'name', 'logo', 'color']);
+        $types = Type::select(['id', 'name', 'logo', 'color'])->all();
 
 
         foreach ($types as $type) {
