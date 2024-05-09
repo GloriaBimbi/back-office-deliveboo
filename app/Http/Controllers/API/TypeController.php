@@ -42,4 +42,5 @@ class TypeController extends Controller
 
     }
 
+
 }
