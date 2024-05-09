@@ -6,11 +6,12 @@
     <section>
         <div class="container my-5">
             @if (Auth::user()->id == $dish->restaurant->user->id)
-            <a href="{{ route('admin.dashboard') }}" class="back-button"><i class="fa-solid fa-arrow-rotate-left"></i> Go Back</a>
+                <a href="{{ route('admin.dashboard') }}" class="back-button"><i class="fa-solid fa-arrow-rotate-left"></i> Go
+                    Back</a>
             @else
-            <a href="{{ url()->previous() }}" class="back-button"><i class="fa-solid fa-arrow-rotate-left"></i> Go Back</a>
+                <a href="{{ url()->previous() }}" class="back-button"><i class="fa-solid fa-arrow-rotate-left"></i> Go Back</a>
             @endif
-                <div class="card mt-4">
+            <div class="card mt-4">
                 <div class="card-header">
                     <h2 class="text-success-emphasis my-4 text-capitalize card-title">
                         {{ $dish->name }} ({{ $dish->restaurant->name }})
@@ -55,21 +56,18 @@
                         <div class="col">
 
                             @if (Auth::user()->id == $dish->restaurant->user->id)
-                            <a class="btn btn-dark" href="{{ route('admin.dishes.edit', $dish) }}">
-                                {{ __('Edit dish') }}
+                                <a class="btn btn-dark" href="{{ route('admin.dishes.edit', $dish) }}">
+                                    {{ __('Edit dish') }}
 
-
-                            </a>
+                                </a>
                         </div>
 
-                            <div class="col text-end">
+                        <div class="col text-end">
 
+                            <a class="text-danger text-decoration-underline" data-bs-toggle="modal"
+                                data-bs-target="#delete-dish-{{ $dish->id }}">Delete Dish</a>
 
-                                <a class="text-danger text-decoration-underline" data-bs-toggle="modal"
-                                    data-bs-target="#delete-dish-{{ $dish->id }}">Delete Dish</a>
-
-
-                            </div>
+                        </div>
                         @endif
                     </div>
                 </div>

@@ -126,8 +126,7 @@
 @section('css')
     <style>
         /* sovrascrivi lo stile predefinito dell'input di tipo password */
-        /* input[type="password"] {
-                                                                                                    -webkit-text-security: none; */
+        /* input[type="password"] {                                                                               -webkit-text-security: none; */
         /* per browser WebKit come Chrome e Safari */
         /* text-security: none; */
         /* per browser che supportano questa proprietà */
