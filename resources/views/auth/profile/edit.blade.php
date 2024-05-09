@@ -1,16 +1,16 @@
 @extends('layouts.app')
 @section('content')
     <div class="container">
-        <h2 class="fs-4 text-secondary my-4">
+        <h2 class="fs-4 text-white my-4">
             {{ __('Profile') }}
         </h2>
-        <div class="card p-4 mb-4 bg-white shadow rounded-lg">
+        <div class="card p-4 mb-4 shadow rounded-lg text-white bg-edit">
 
             @include('auth.profile.partials.update-profile-information-form')
 
         </div>
 
-        <div class="card p-4 mb-4 bg-white shadow rounded-lg">
+        <div class="card p-4 mb-4 shadow rounded-lg text-white bg-edit">
 
             @include('auth.profile.partials.update-password-form')
 

@@ -1,10 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container mt-4">
+    <div class="container mt-5">
+        <a href="{{ route('home') }}" class="back-button"><i class="fa-solid fa-arrow-rotate-left"></i> Torna alla Home</a>
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <div class="card">
+                <div class="card bd-card-register">
                     <div class="card-header">{{ __('Register') }}</div>
 
                     <div class="card-body">

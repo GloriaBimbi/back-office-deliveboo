@@ -13,7 +13,7 @@
                 </div>
                 <div class="card-body">
                     <div class="row ">
-                        <div class="col-6 ">
+                        <div class="col-6">
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item"><span class="text-info fw-medium">Address: </span>
                                     {{ $restaurant->address }}</li>
@@ -105,5 +105,6 @@
                 object-fit: cover;
                 object-position: center;
             }
+            
         </style>
     @endsection

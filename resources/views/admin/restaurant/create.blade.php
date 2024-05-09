@@ -18,8 +18,8 @@
                 <div class="row g-2">
                     <div class="col-6">
                         {{-- restaurant name input  --}}
-                        <div class="card p-3 mb-2">
-                            <div class="input-group">
+                        <div class="card bg-res p-3 mb-2">
+                            <div class="input-group ">
                                 <span for="name" class="input-group-text">Name*</span>
                                 <input required type="text" class="form-control @error('name') is-invalid @enderror"
                                     name="name" id="name" value="{{ old('name', $restaurant->name) }}"
@@ -33,7 +33,7 @@
                         </div>
 
                         {{--  piva input  --}}
-                        <div class="card p-3 mb-2">
+                        <div class="card bg-res p-3 mb-2">
                             <div class="input-group">
                                 <span for="piva" class="input-group-text">PIVA*</span>
                                 <input required pattern="[0-9]{11}$" title="Inserisci un valore valido (11 numeri)"
@@ -62,7 +62,7 @@
                         </div> --}}
 
                         {{-- image input  --}}
-                        <div class="card p-3">
+                        <div class="card bg-res p-3">
                             <div class="input-group">
                                 <span for="image" class="input-group-text">Image*</span>
                                 <input required type="file" class="form-control @error('image') is-invalid @enderror"
@@ -77,7 +77,7 @@
                     </div>
                     {{-- address input  --}}
                     <div class="col-6">
-                        <div class="card p-3">
+                        <div class="card bg-res p-3">
                             <div class="input-group mb-4">
                                 <span for="address_street" class="input-group-text">Street Address*</span>
                                 <input required pattern="^[a-zA-Z0-9\s,'.-]+$ \d{255}"
@@ -142,7 +142,7 @@
                     </div>
                     {{-- description input  --}}
                     <div class="col-6">
-                        <div class="card p-3">
+                        <div class="card bg-res p-3">
 
                             <div class=" mb-2">
                                 <label class="form-label" for="description">Description*</label>
@@ -159,7 +159,7 @@
                     </div>
                     {{-- types input --}}
                     <div class="col-6">
-                        <div class="card p-3 h-100">
+                        <div class="card bg-res p-3 h-100">
                             <label for="">Types*</label>
                             <div class="d-flex flex-row justify-content-between flex-wrap">
                                 @php $atLeastOneChecked = false; @endphp
@@ -170,7 +170,7 @@
                                             class="form-check-input @error('types') is-invalid @enderror"
                                             {{ in_array($type->id, old('types', $restaurant->types->pluck('id')->toArray() ?? [])) ? 'checked' : '' }}>
                                         <label for="types-{{ $type->id }}"
-                                            class="form-check-label  @error('types') is-invalid @enderror">{{ $type->name }}</label>
+                                            class="form-check-label bg-res  @error('types') is-invalid @enderror">{{ $type->name }}</label>
                                         @php
                                             // Verifica se almeno una checkbox è stata selezionata
                                             if (
@@ -198,11 +198,9 @@
                     </div>
                 </div>
 
-                <div class="col-6">
-                    <button class="btn btn-primary w-100" type="submit" id="submit-button">Submit</button>
-                </div>
-                <div class="col-6">
-                    <button class="btn btn-warning w-100" type="reset">Reset</button>
+                <div class="d-flex gap-3 mt-3">
+                    <button class="btn btn-primary w-50" type="submit" id="submit-button">Submit</button>
+                    <button class="btn btn-warning w-50" type="reset">Reset</button>
                 </div>
         </div>
         </form>

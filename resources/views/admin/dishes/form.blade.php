@@ -25,7 +25,7 @@
                     <div class="col-6">
                         {{-- name input  --}}
                         <div class="col">
-                            <label class="form-label" for="title">Name*</label>
+                            <label class="form-label text-white" for="title">Name*</label>
                             <input required @class(['form-control', 'is-invalid' => $errors->has('name')]) value="{{ old('name', $dish->name) }}"
                                 type="text" name="name" id="name" pattern="^[\p{L}\d\s-]+$"
                                 title=":deve contenere caratteri di tipo testo o numerici" />
@@ -36,7 +36,7 @@
 
                         {{-- ingredient list input  --}}
                         <div class="col">
-                            <label class="form-label" for="ingredients_list">Ingredients List*</label>
+                            <label class="form-label text-white" for="ingredients_list">Ingredients List*</label>
                             <textarea @class([
                                 'form-control',
                                 'is-invalid' => $errors->has('ingredients_list'),
@@ -50,7 +50,7 @@
                         {{-- description input   --}}
 
                         <div class="col">
-                            <label class="form-label" for="description">Description*</label>
+                            <label class="form-label text-white" for="description">Description*</label>
                             <textarea @class(['form-control', 'is-invalid' => $errors->has('description')]) name="description" rows="5" id="description"
                                 placeholder="Write here your description...">{{ old('description') ?? $dish->description }}</textarea>
                             @error('description')
@@ -60,7 +60,7 @@
 
                         {{-- price input   --}}
                         <div class="col">
-                            <label class="form-label" for="price">Price*</label>
+                            <label class="form-label text-white" for="price">Price*</label>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1">$</span>
                                 <input required type="text" @class(['form-control', 'is-invalid' => $errors->has('price')]) placeholder="price"
@@ -76,7 +76,7 @@
                     <div class="col-6">
                         {{-- image input --}}
                         <div class="col">
-                            <label for="image" class="form-label">Image*</label>
+                            <label for="image" class="form-label text-white">Image*</label>
                             <input @if (empty($dish->image)) required @endif @class(['form-control', 'is-invalid' => $errors->has('image')])
                                 type="file" id="image" name="image">
                             @error('image')

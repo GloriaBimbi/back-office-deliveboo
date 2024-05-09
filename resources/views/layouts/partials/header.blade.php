@@ -1,8 +1,8 @@
 <header class="border-bottom">
     <nav class="navbar navbar-expand-lg ">
         <div class="container-fluid d-flex justify-content-between align-items-center">
-            <div class="nav-logo-wrapper">
-                <img src="{{ asset('storage/' . 'Delivebootitle.png') }}" alt="" style="width: 10%" href="#">
+            <div class="nav-logo-wrapper mx-5">
+                <img src="{{ asset('storage/' . 'Delivebootitle.png') }}" alt="" style="width: 20%" href="#" >
             </div>
 
             <div class="nav-right">

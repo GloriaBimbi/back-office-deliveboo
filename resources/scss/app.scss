@@ -8,11 +8,21 @@ a {
 .bg-app {
     background-color: #003559;
 }
-
+.bg-card-create,
+.bg-car,
+.bg-edit,
+.bd-card-register,.bg-res,
+.bg-login {
+    background-color: rgba(0, 153, 255, 0.1);
+    color: #ffffff;
+}
 .bordered,
 .login-btn,
 .dashboard-btn,
 .dropdown-btn,
+.btn-secondary,
+.btn-outline-dark,
+.btn-primary,
 .home-btn {
     padding: 1rem 2rem;
     text-align: center;
@@ -36,7 +46,10 @@ a {
     border-radius: 3px;
 }
 .register-btn:hover,
-.list-btn:hover {
+.list-btn:hover,
+.btn-secondary:hover,
+.btn-outline-dark:hover,
+.btn-primary:hover {
     background-color: #b9d6f2;
 }
 
