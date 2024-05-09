@@ -11,6 +11,28 @@ class Restaurant extends Model
 {
     use HasFactory;
 
+    // generate unique slug 
+    public static function generateUniqueSlug($text, $ignore_id = null)
+    {
+      $base_slug = Str::slug($text);
+  
+      $slug_already_exists = Restaurant::where('slug', $base_slug)->where('id', '<>', $ignore_id)->count() ? true : false;
+  
+      if (!$slug_already_exists)
+        return $base_slug;
+  
+      $counter = 1;
+      do {
+        $slug = $base_slug . '-' . $counter;
+        $slug_already_exists = Restaurant::where('slug', $slug)->count() ? true : false;
+  
+        if (!$slug_already_exists)
+          return $slug;
+  
+        $counter++;
+      } while ($slug_already_exists);
+    }
+
     // relationship many to many 
     public function types()
     {

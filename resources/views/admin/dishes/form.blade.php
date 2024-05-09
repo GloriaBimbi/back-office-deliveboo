@@ -21,7 +21,7 @@
                 @if (!empty($dish->id))
                     @method('PATCH')
                 @endif
-                <div class="row g-2">
+                <div class="row">
                     <div class="col-6">
                         {{-- name input  --}}
                         <div class="col">
@@ -34,11 +34,10 @@
                             @enderror
                         </div>
 
-
                         {{-- ingredient list input  --}}
                         <div class="col">
                             <label class="form-label" for="ingredients_list">Ingredients List*</label>
-                            <textarea required @class([
+                            <textarea @class([
                                 'form-control',
                                 'is-invalid' => $errors->has('ingredients_list'),
                             ]) name="ingredients_list" rows="5" id="ingredients_list"
@@ -49,9 +48,10 @@
                         </div>
 
                         {{-- description input   --}}
+
                         <div class="col">
                             <label class="form-label" for="description">Description*</label>
-                            <textarea required @class(['form-control', 'is-invalid' => $errors->has('description')]) name="description" rows="5" id="description"
+                            <textarea @class(['form-control', 'is-invalid' => $errors->has('description')]) name="description" rows="5" id="description"
                                 placeholder="Write here your description...">{{ old('description') ?? $dish->description }}</textarea>
                             @error('description')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -77,7 +77,8 @@
                         {{-- image input --}}
                         <div class="col">
                             <label for="image" class="form-label">Image*</label>
-                            <input required @class(['form-control', 'is-invalid' => $errors->has('image')]) type="file" id="image" name="image">
+                            <input @if (empty($dish->image)) required @endif @class(['form-control', 'is-invalid' => $errors->has('image')])
+                                type="file" id="image" name="image">
                             @error('image')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -93,7 +94,7 @@
 
                 </div>
 
-                <div class="d-flex align-items-center gap-2">
+                <div class="d-flex align-items-center gap-2 py-3">
                     <button class="btn btn-success">{{ (empty($dish->id) ? 'Save' : 'Edit') . ' dish' }}</button>
                     <a href="{{ route('admin.dishes.index') }}" class="btn btn-warning">Return to the list</a>
                 </div>
@@ -101,8 +102,6 @@
 
         </div>
     </section>
-
-
 
 @endsection
 

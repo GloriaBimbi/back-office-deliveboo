@@ -4,20 +4,23 @@
             <div class="nav-logo-wrapper">
                 <img src="{{ asset('storage/' . 'Delivebootitle.png') }}" alt="" style="width: 10%" href="#">
             </div>
-            <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
-                class="navbar-toggler " data-bs-target="#navbarSupportedContent" data-bs-toggle="collapse"
-                type="button">
-                <span class="navbar-toggler-icon text-white"></span>
-            </button>
-            
+
             <div class="nav-right">
+                <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+                    class="navbar-toggler " data-bs-target="#navbarSupportedContent" data-bs-toggle="collapse"
+                    type="button">
+                    <span class="navbar-toggler-icon text-white"></span>
+                </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
                     <ul class="navbar-nav my-2 mb-lg-0  d-flex gap-2 align-items-center">
-                        {{-- tasto home ristoranti piatti --}}
-                        <li class="nav-item">
-                            <a class=" home-btn" @class(['nav-link', 'active' => Route::currentRouteName() == 'home']) aria-current="page" href="{{ route('home') }}">Home</a>
-                        </li>
+                        {{-- key home restaurants dishes --}}
+                        @auth
+                            <li class="nav-item">
+                                <a class=" home-btn" @class(['nav-link', 'active' => Route::currentRouteName() == 'home']) aria-current="page"
+                                    href="{{ route('home') }}">Home</a>
+                            </li>
+                        @endauth
                         {{-- @auth
                             <li class="nav-item">
                                 <a class="nav-link badge bordered p-3 " @class([
@@ -34,9 +37,9 @@
                                     href="{{ route('admin.dishes.index') }}">Dishes</a>
                             </li>
                         @endauth --}}
-                    @guest
-                    {{-- tasto login e register  --}}
-                                {{-- <li class="nav-item">
+                        @guest
+                            {{-- tasto login e register  --}}
+                            {{-- <li class="nav-item">
                                     <a class="nav-link badge bordered p-3 " href="{{ route('login') }}">Login</a>
                                 </li>
                                 @if (Route::has('register'))
@@ -46,23 +49,25 @@
                                 @endif --}}
                         </ul>
                     @else
-                        {{-- dropdown list autenticato  --}}
+                        {{-- dropdown list validated  --}}
                         <ul class="list-group list-group-flush">
-                            {{-- tasto dropdown  --}}
+                            {{-- dropdown text --}}
                             <li class="ms-2  dropdown text-end list-group-item homedropdown dropdown-button dropdown-btn">
                                 <a aria-expanded="false" aria-haspopup="true" class=" dropdown-toggle "
-                                data-bs-toggle="dropdown" href="#" id="navbarDropdown" role="button" >
-                                <i class="fa-solid fa-user me-2 text-white"></i>
-                                {{ Auth::user()->name }}
-                            </a>
-                            {{-- dropdown  --}}
-                            <div aria-labelledby="navbarDropdown" class="dropdown-menu dropdown-menu-end  homedropdown">
-                                <a class="dropdown-item homedropdown hovered" href="{{ route('admin.dashboard') }}"> Dashboard</a>
-                                <a class="dropdown-item homedropdown hovered" href="{{ url('profile') }}"> Profile</a>
-                                <a class="dropdown-item homedropdown hovered" href="{{ route('logout') }}" id="logout-link">
-                                    Logout
+                                    data-bs-toggle="dropdown" href="#" id="navbarDropdown" role="button">
+                                    <i class="fa-solid fa-user me-2 text-white"></i>
+                                    {{ Auth::user()->name }}
+                                </a>
+                                {{-- dropdown  --}}
+                                <div aria-labelledby="navbarDropdown" class="dropdown-menu dropdown-menu-end  homedropdown">
+                                    <a class="dropdown-item homedropdown hovered" href="{{ route('admin.dashboard') }}">
+                                        Dashboard</a>
+                                    <a class="dropdown-item homedropdown hovered" href="{{ url('profile') }}"> Profile</a>
+                                    <a class="dropdown-item homedropdown hovered" href="{{ route('logout') }}"
+                                        id="logout-link">
+                                        Logout
                                     </a>
-                                    
+
                                     <form action="{{ route('logout') }}" class="d-none" id="logout-form" method="POST">
                                         @csrf
                                     </form>

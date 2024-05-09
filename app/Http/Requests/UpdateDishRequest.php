@@ -26,7 +26,7 @@ class UpdateDishRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'max:100'],
             'description' => ['string', 'max:1000'],
-            'image' => ['image', 'required'],
+            'image' => ['image'],
             'ingredient_list' => ['string'],
             'price' => ['numeric', 'required', 'min:0']
         ];

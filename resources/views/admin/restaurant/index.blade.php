@@ -3,9 +3,9 @@
 @section('title', 'Restaurants')
 
 @section('content')
-<div class="container mt-4">
-    <a href="{{route('home')}}" class="back-button"><i class="fa-solid fa-arrow-rotate-left"></i> Torna alla Home</a>
-</div>
+    <div class="container mt-4">
+        <a href="{{ route('home') }}" class="back-button"><i class="fa-solid fa-arrow-rotate-left"></i> Torna alla Home</a>
+    </div>
     <section>
         <div class="container my-5">
             <div class="text-center">
@@ -13,8 +13,8 @@
                     <img src="{{ asset('storage/' . 'restaurant.png') }}" alt="page-logo-restaurant-index" class="img-fluid"
                         style="width: 10%">
                 </div>
-                <img src="{{ asset('storage/' . 'Restaurantlist.png') }}" alt="page-title-restaurant-index" class="img-fluid"
-                    style="width: 60%">
+                <img src="{{ asset('storage/' . 'Restaurantlist.png') }}" alt="page-title-restaurant-index"
+                    class="img-fluid" style="width: 60%">
             </div>
             <table class="table table-hover">
                 <thead>
@@ -47,8 +47,6 @@
                 </tbody>
             </table>
             <div class="row">
-                <div class="col"><a href="{{ route('admin.restaurants.create') }}" class="btn btn-success"><i
-                            class="fa-solid fa-plus"></i> Add Restaurant </a></div>
                 <div class="col w-100 text-end">
                     <div class="w-100"> {{ $restaurants->links() }}</div>
                 </div>
