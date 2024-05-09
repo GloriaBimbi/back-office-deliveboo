@@ -43,7 +43,7 @@ class RestaurantController extends Controller
     {
         $filters = $request->all();
 
-        $restaurants = $restaurants = Restaurant::select(['id', 'user_id', 'name', 'description', 'address', 'image', 'slug'])->get();
+        $restaurants = $restaurants = Restaurant::select(['id', 'user_id', 'name', 'description', 'address', 'image', 'slug']);
         if (Arr::exists($filters, 'types')) {
             foreach ($filters['types'] as $type_id) {
                 $restaurants->whereHas('types', function (Builder $query) use ($type_id) {
@@ -52,11 +52,11 @@ class RestaurantController extends Controller
             }
         }
         $restaurants = $restaurants->with((['user:id,name,email', 'dishes:id,restaurant_id,name,image,description,price,ingredients_list,slug', 'types:id,name,logo,color']))->get();
+        
         foreach ($restaurants as $restaurant) {
             if (!str_starts_with($restaurant->image, 'https')) {
-
                 $restaurant->image = !empty($restaurant->image)
-                    ? $restaurant->getImage()
+                    ? asset('/storage/' . $restaurant->image)
                     : null;
             }
         }
