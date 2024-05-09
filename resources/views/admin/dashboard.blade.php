@@ -33,7 +33,7 @@
                             </cite>
                             <hr>
                             <h3>Type</h3>
-                            <div class="row row-cols-4">
+                            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-2">
                                 @foreach ($restaurant->types as $type)
                                     <div class="col">
                                         <div class="card h-100">
