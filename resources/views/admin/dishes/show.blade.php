@@ -10,27 +10,27 @@
             @else
             <a href="{{ url()->previous() }}" class="back-button"><i class="fa-solid fa-arrow-rotate-left"></i> Go Back</a>
             @endif
-                <div class="card mt-4">
+                <div class="card dish-card mt-4">
                 <div class="card-header">
-                    <h2 class="text-success-emphasis my-4 text-capitalize card-title">
+                    <h2 class="text-info my-4 text-capitalize card-title">
                         {{ $dish->name }} ({{ $dish->restaurant->name }})
                     </h2>
                 </div>
-                <div class="card-body">
+                <div class="card-body dish-card">
                     <div class="row">
                         <div class="col-6">
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item"><span class="text-info fw-medium">Price: </span>
+                            <ul class="list-group  list-group-flush">
+                                <li class="list-group-item dish-card"><span class="text-info fw-medium">Price: </span>
                                     ${{ $dish->price }}</li>
-                                <li class="list-group-item"><span class="text-info fw-medium">Ingredients list: </span>
+                                <li class="list-group-item dish-card"><span class="text-info fw-medium">Ingredients list: </span>
                                     {{ $dish->ingredients_list }}</li>
                                 @if (Auth::user()->id == $dish->restaurant->user->id)
-                                    <li class="list-group-item d-flex align-items-center ">
-                                        <span class="text-info fw-medium">Visible: </span>
+                                    <li class="list-group-item d-flex align-items-center dish-card ">
+                                        <span class="text-info fw-medium dish-card">Visible: </span>
                                         <form action="{{ route('admin.dishes.update-visible', $dish) }}" method="POST">
                                             @csrf
                                             @method('PATCH')
-                                            <label class="switch">
+                                            <label class="switch dish-card">
                                                 <input type="checkbox" id="visible" @checked($dish->visible)
                                                     name="visible">
                                                 <span class="slider"></span>
@@ -40,9 +40,9 @@
                                 @endif
                             </ul>
                             @if ($dish->description)
-                                <div class="card mt-5">
+                                <div class="card dish-card mt-5">
                                     <p class="text-info fw-medium card-title text-center pt-3 fs-5">Dish description:</p>
-                                    <p class="card-text text-center pb-4">{{ $dish->description }}</p>
+                                    <p class="card-text text-center  pb-4">{{ $dish->description }}</p>
                                 </div>
                             @endif
                         </div>
