@@ -96,7 +96,8 @@ class RestaurantController extends Controller
         // $img_path=Storage::disk('public')->put('uploads\restaurant', $data['image']);
 
         $restaurant->user_id = Auth::id();
-        $restaurant->slug = Str::slug($restaurant->name);
+        $restaurant->slug = Restaurant::generateUniqueSlug($restaurant->name);
+
         $restaurant->address = $data['address_street'] . ', ' . $data['address_civic'] . ', ' . $data['address_postal_code'] . ' ' . $data['address_city'] . ' (' . $data['address_country'] . ')';
         $restaurant->save();
 

@@ -5,8 +5,12 @@
 @section('content')
     <section>
         <div class="container my-5">
-                <a href="{{ url()->previous() }}" class="back-button"><i class="fa-solid fa-arrow-rotate-left"></i> Go Back</a>
-            <div class="card mt-4">
+            @if (Auth::user()->id == $dish->restaurant->user->id)
+            <a href="{{ route('admin.dashboard') }}" class="back-button"><i class="fa-solid fa-arrow-rotate-left"></i> Go Back</a>
+            @else
+            <a href="{{ url()->previous() }}" class="back-button"><i class="fa-solid fa-arrow-rotate-left"></i> Go Back</a>
+            @endif
+                <div class="card mt-4">
                 <div class="card-header">
                     <h2 class="text-success-emphasis my-4 text-capitalize card-title">
                         {{ $dish->name }} ({{ $dish->restaurant->name }})
@@ -50,6 +54,7 @@
                     <div class="row d-flex align-items-center">
                         <div class="col">
 
+                            @if (Auth::user()->id == $dish->restaurant->user->id)
                             <a class="btn btn-dark" href="{{ route('admin.dishes.edit', $dish) }}">
                                 {{ __('Edit dish') }}
 
@@ -57,7 +62,6 @@
                             </a>
                         </div>
 
-                        @if (Auth::user()->id == $dish->restaurant->user->id)
                             <div class="col text-end">
 
 
