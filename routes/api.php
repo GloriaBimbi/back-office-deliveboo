@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::apiResource('restaurants', RestaurantController::class);
+Route::apiResource('restaurants', RestaurantController::class)->only(['index', 'show']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
