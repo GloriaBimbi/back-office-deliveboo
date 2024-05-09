@@ -55,6 +55,7 @@ class DishController extends Controller
         $current_user = Auth::id();
         $restaurant = Restaurant::where('user_id', $current_user)->first();
         $dish->slug = Str::slug($dish->name);
+        $dish->slug = Dish::generateUniqueSlug($dish->name);
         $restaurant_id = $restaurant->id;
         $dish->restaurant_id = $restaurant_id;
         $dish->visible = true;
