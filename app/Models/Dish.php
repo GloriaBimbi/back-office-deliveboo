@@ -6,12 +6,33 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Str;
 
 class Dish extends Model
 {
     // SoftDeletes facade for soft-deletes
     use HasFactory, SoftDeletes;
 
+    public static function generateUniqueSlug($text, $ignore_id = null)
+  {
+    $base_slug = Str::slug($text);
+
+    $slug_already_exists = Dish::where('slug', $base_slug)->where('id', '<>', $ignore_id)->count() ? true : false;
+
+    if (!$slug_already_exists)
+      return $base_slug;
+
+    $counter = 1;
+    do {
+      $slug = $base_slug . '-' . $counter;
+      $slug_already_exists = Dish::where('slug', $slug)->count() ? true : false;
+
+      if (!$slug_already_exists)
+        return $slug;
+
+      $counter++;
+    } while ($slug_already_exists);
+  }
     public function orders()
     {
         return $this->BelongsToMany(Order::class)->withPivot('total_price');

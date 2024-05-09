@@ -5,7 +5,8 @@
 @section('content')
     <section>
         <div class="container my-5">
-            <div class="card">
+                <a href="{{ url()->previous() }}" class="back-button"><i class="fa-solid fa-arrow-rotate-left"></i> Go Back</a>
+            <div class="card mt-4">
                 <div class="card-header">
                     <h2 class="text-success-emphasis my-4 text-capitalize card-title">
                         {{ $dish->name }} ({{ $dish->restaurant->name }})
@@ -48,18 +49,22 @@
                 <div class="card-footer">
                     <div class="row d-flex align-items-center">
                         <div class="col">
-                            <a class="btn btn-warning" href="{{ route('admin.dashboard') }}">
-                                {{ __('Back to Dashboard') }}
+
+                            <a class="btn btn-dark" href="{{ route('admin.dishes.edit', $dish) }}">
+                                {{ __('Modifica piatto') }}
+
+
                             </a>
                         </div>
 
                         @if (Auth::user()->id == $dish->restaurant->user->id)
                             <div class="col text-end">
-                                <a class="btn btn-dark" href="{{ route('admin.dishes.edit', $dish) }}">
-                                    {{ __('Edit dish') }}
-                                </a>
-                                <a class="btn btn-danger" data-bs-toggle="modal"
+
+
+                                <a class="text-danger text-decoration-underline" data-bs-toggle="modal"
                                     data-bs-target="#delete-dish-{{ $dish->id }}">Delete Dish</a>
+
+
                             </div>
                         @endif
                     </div>
