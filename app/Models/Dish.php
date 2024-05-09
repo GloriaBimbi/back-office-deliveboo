@@ -13,6 +13,7 @@ class Dish extends Model
     // SoftDeletes facade for soft-deletes
     use HasFactory, SoftDeletes;
 
+    // generate unique slug 
     public static function generateUniqueSlug($text, $ignore_id = null)
   {
     $base_slug = Str::slug($text);
