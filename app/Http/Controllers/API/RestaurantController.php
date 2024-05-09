@@ -20,19 +20,10 @@ class RestaurantController extends Controller
         $restaurants = Restaurant::select(['id', 'user_id', 'name', 'description', 'address', 'image', 'slug'])
             ->with(['user:id,name,email', 'dishes:id,restaurant_id,name,image,description,price,ingredients_list,slug', 'types:id,name,logo,color'])
             ->paginate(10);
-        $restaurants = Restaurant::select(['id', 'user_id', 'name', 'description', 'address', 'image', 'slug'])
-            ->with(['user:id,name,email', 'dishes:id,restaurant_id,name,image,description,price,ingredients_list,slug', 'types:id,name,logo,color'])
-            ->paginate(10);
 
         foreach ($restaurants as $restaurant) {
             if (!str_starts_with($restaurant->image, 'https')) {
-        foreach ($restaurants as $restaurant) {
-            if (!str_starts_with($restaurant->image, 'https')) {
 
-                $restaurant->image = !empty($restaurant->image)
-                    ? $restaurant->getImage()
-                    : null;
-            }
                 $restaurant->image = !empty($restaurant->image)
                     ? $restaurant->getImage()
                     : null;
@@ -73,8 +64,8 @@ class RestaurantController extends Controller
             'success' => true,
         ]);
     }
-}
-// }
+
+
 
 
 
@@ -87,8 +78,8 @@ class RestaurantController extends Controller
     public function show($slug)
     {
         $restaurant = Restaurant::select(['id', 'user_id', 'name', 'description', 'address', 'image', 'slug'])
-            ->where('slug', $slug)
             ->with(['user:id,name,email', 'dishes:id,restaurant_id,name,image,description,price,ingredients_list,slug', 'types:id,name,logo,color'])
+            ->where('slug', $slug)
             ->paginate(10);
         if (!$restaurant) {
             return response()->json([
