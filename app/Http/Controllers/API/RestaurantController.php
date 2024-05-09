@@ -31,7 +31,6 @@ class RestaurantController extends Controller
         }
 
         return response()->json($restaurants);
-
     }
     /**
      * Display the specified resource applying advanced filters
@@ -65,27 +64,28 @@ class RestaurantController extends Controller
             'success' => true,
         ]);
     }
+
+
+
+
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     
+     */
+    public function show($slug)
+    {
+        $restaurant = Restaurant::select(['id', 'user_id', 'name', 'description', 'address', 'image', 'slug'])
+            ->with(['user:id,name,email', 'dishes:id,restaurant_id,name,image,description,price,ingredients_list,slug', 'types:id,name,logo,color'])
+            ->where('slug', $slug)
+            ->paginate(10);
+        if (!$restaurant) {
+            return response()->json([
+                'message' => 'Restaurant not found'
+            ], 404);
+        }
+        return response()->json($restaurant);
+    }
 }
-// }
-
-
-
-/**
- * Display the specified resource.
- *
- * @param  int  $id
- 
- */
-// public function show($slug)
-// { {
-//         $restaurant = Restaurant::with('type', 'user', 'dishes')->where('slug', $slug);
-//         if (!$restaurant) {
-//             return response()->json([
-//                 'message' => 'Restaurant not found'
-//             ], 404);
-//         }
-//         return response()->json($restaurant);
-//     }
-// }
-
-// }
