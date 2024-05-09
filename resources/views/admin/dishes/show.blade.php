@@ -17,27 +17,29 @@
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item"><span class="text-info fw-medium">Prezzo: </span>
                                     ${{ $dish->price }}</li>
-                                    <li class="list-group-item"><span class="text-info fw-medium">Lista ingredienti: </span>
+                                <li class="list-group-item"><span class="text-info fw-medium">Lista ingredienti: </span>
                                     {{ $dish->ingredients_list }}</li>
-                                    @if(Auth::user()->id == $dish->restaurant->user->id)
-                                        <li class="list-group-item d-flex align-items-center ">
-                                            <span class="text-info fw-medium">Visibile: </span>
-                                            <form action="{{route('admin.dishes.update-visible',$dish)}}" method="POST">
-                                                @csrf
-                                                @method('PATCH')
-                                                <label class="switch">
-                                                    <input type="checkbox" id="visible" @checked($dish->visible) 
+                                @if (Auth::user()->id == $dish->restaurant->user->id)
+                                    <li class="list-group-item d-flex align-items-center ">
+                                        <span class="text-info fw-medium">Visibile: </span>
+                                        <form action="{{ route('admin.dishes.update-visible', $dish) }}" method="POST">
+                                            @csrf
+                                            @method('PATCH')
+                                            <label class="switch">
+                                                <input type="checkbox" id="visible" @checked($dish->visible)
                                                     name="visible">
-                                                    <span class="slider"></span>
-                                                </label>
-                                            </form>
-                                        </li>
-                                        @endif
+                                                <span class="slider"></span>
+                                            </label>
+                                        </form>
+                                    </li>
+                                @endif
                             </ul>
-                            <div class="card mt-5">
-                                <p class="text-info fw-medium card-title text-center pt-3 fs-5">Descrizione Piatto:</p>
-                                <p class="card-text text-center pb-4">{{ $dish->description }}</p>
-                            </div>
+                            @if ($dish->description)
+                                <div class="card mt-5">
+                                    <p class="text-info fw-medium card-title text-center pt-3 fs-5">Descrizione Piatto:</p>
+                                    <p class="card-text text-center pb-4">{{ $dish->description }}</p>
+                                </div>
+                            @endif
                         </div>
                         <div class="col-6"><img src="{{ $dish->getImage() }}" alt="dish image" class="img-fluid">
                         </div>
@@ -51,11 +53,14 @@
                             </a>
                         </div>
 
-                        @if(Auth::user()->id == $dish->restaurant->user->id)
-                        <div class="col text-end">
-                            <a class="w-100 text-danger text-decoration-underline " data-bs-toggle="modal"
-                            data-bs-target="#delete-dish-{{ $dish->id }}">Elimina piatto</a>
-                        </div>
+                        @if (Auth::user()->id == $dish->restaurant->user->id)
+                            <div class="col text-end">
+                                <a class="btn btn-dark" href="{{ route('admin.dishes.edit', $dish) }}">
+                                    {{ __('Modifica piatto') }}
+                                </a>
+                                <a class="btn btn-danger" data-bs-toggle="modal"
+                                    data-bs-target="#delete-dish-{{ $dish->id }}">Elimina piatto</a>
+                            </div>
                         @endif
                     </div>
                 </div>
@@ -95,73 +100,72 @@
             integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
             crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-            <style>
-                /* The switch - the box around the slider */
-.switch {
-  font-size: 17px;
-  position: relative;
-  display: inline-block;
-  width: 3.5em;
-  height: 2em;
-}
+        <style>
+            /* The switch - the box around the slider */
+            .switch {
+                font-size: 17px;
+                position: relative;
+                display: inline-block;
+                width: 3.5em;
+                height: 2em;
+            }
 
-/* Hide default HTML checkbox */
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
+            /* Hide default HTML checkbox */
+            .switch input {
+                opacity: 0;
+                width: 0;
+                height: 0;
+            }
 
-/* The slider */
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #fff;
-  border: 1px solid #adb5bd;
-  transition: .4s;
-  border-radius: 30px;
-  transform: scale(0.7);
-}
+            /* The slider */
+            .slider {
+                position: absolute;
+                cursor: pointer;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: #fff;
+                border: 1px solid #adb5bd;
+                transition: .4s;
+                border-radius: 30px;
+                transform: scale(0.7);
+            }
 
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 1.4em;
-  width: 1.4em;
-  border-radius: 20px;
-  left: 0.27em;
-  bottom: 0.25em;
-  background-color: #adb5bd;
-  transition: .4s;
-}
+            .slider:before {
+                position: absolute;
+                content: "";
+                height: 1.4em;
+                width: 1.4em;
+                border-radius: 20px;
+                left: 0.27em;
+                bottom: 0.25em;
+                background-color: #adb5bd;
+                transition: .4s;
+            }
 
-input:checked + .slider {
-  background-color: #007bff;
-  border: 1px solid #007bff;
-}
+            input:checked+.slider {
+                background-color: #007bff;
+                border: 1px solid #007bff;
+            }
 
-input:focus + .slider {
-  box-shadow: 0 0 1px #007bff;
-}
+            input:focus+.slider {
+                box-shadow: 0 0 1px #007bff;
+            }
 
-input:checked + .slider:before {
-  transform: translateX(1.4em);
-  background-color: #fff;
-}
-
-            </style>
+            input:checked+.slider:before {
+                transform: translateX(1.4em);
+                background-color: #fff;
+            }
+        </style>
     @endsection
 
     @section('js')
-    <script>
-        const checkbox = document.getElementById('visible');
-        checkbox.addEventListener('change', () => {
-            const form = checkbox.closest('form');
-            form.submit();
-        });
-    </script>
+        <script>
+            const checkbox = document.getElementById('visible');
+            checkbox.addEventListener('change', () => {
+                const form = checkbox.closest('form');
+                form.submit();
+            });
+        </script>
     @endsection
