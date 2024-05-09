@@ -51,7 +51,7 @@
                         <div class="col">
 
                             <a class="btn btn-dark" href="{{ route('admin.dishes.edit', $dish) }}">
-                                {{ __('Modifica piatto') }}
+                                {{ __('Edit dish') }}
 
 
                             </a>
