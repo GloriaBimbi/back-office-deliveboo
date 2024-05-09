@@ -14,7 +14,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
                     <ul class="navbar-nav my-2 mb-lg-0  d-flex gap-2 align-items-center">
-                        {{-- tasto home ristoranti piatti --}}
+                        {{-- key home restaurants dishes --}}
                         @auth
                             <li class="nav-item">
                                 <a class=" home-btn" @class(['nav-link', 'active' => Route::currentRouteName() == 'home']) aria-current="page"
@@ -49,9 +49,9 @@
                                 @endif --}}
                         </ul>
                     @else
-                        {{-- dropdown list autenticato  --}}
+                        {{-- dropdown list validated  --}}
                         <ul class="list-group list-group-flush">
-                            {{-- tasto dropdown  --}}
+                            {{-- dropdown text --}}
                             <li class="ms-2  dropdown text-end list-group-item homedropdown dropdown-button dropdown-btn">
                                 <a aria-expanded="false" aria-haspopup="true" class=" dropdown-toggle "
                                     data-bs-toggle="dropdown" href="#" id="navbarDropdown" role="button">

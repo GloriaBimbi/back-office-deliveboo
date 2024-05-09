@@ -15,21 +15,21 @@
                     <div class="row ">
                         <div class="col-6 ">
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item"><span class="text-info fw-medium">Indirizzo: </span>
+                                <li class="list-group-item"><span class="text-info fw-medium">Address: </span>
                                     {{ $restaurant->address }}</li>
                                 <li class="list-group-item"><span class="text-info fw-medium">P.IVA: </span>
                                     {{ $restaurant->piva }}</li>
-                                <li class="list-group-item"><span class="text-info fw-medium">Proprietario: </span>
+                                <li class="list-group-item"><span class="text-info fw-medium">Owner: </span>
                                     {{ $restaurant->user->name }}</li>
                             </ul>
                             <ul class="list-group list-group-flush mt-5">
-                                <p class="fw-medium text-info fw-medium m-0 list-group-item">Tipi:</p>
+                                <p class="fw-medium text-info fw-medium m-0 list-group-item">Types:</p>
                                 @foreach ($restaurant->types as $type)
                                     <li class="list-group-item">{{ $type->name }}</li>
                                 @endforeach
                             </ul>
                             <div class="card mt-5">
-                                <p class="text-info fw-medium card-title text-center pt-3 fs-5">Descrizione:</p>
+                                <p class="text-info fw-medium card-title text-center pt-3 fs-5">Description:</p>
                                 <p class="card-text text-center pb-4">{{ $restaurant->description }}</p>
                             </div>
                         </div>

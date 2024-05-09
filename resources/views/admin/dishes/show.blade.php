@@ -15,13 +15,13 @@
                     <div class="row">
                         <div class="col-6">
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item"><span class="text-info fw-medium">Prezzo: </span>
+                                <li class="list-group-item"><span class="text-info fw-medium">Price: </span>
                                     ${{ $dish->price }}</li>
-                                <li class="list-group-item"><span class="text-info fw-medium">Lista ingredienti: </span>
+                                <li class="list-group-item"><span class="text-info fw-medium">Ingredients list: </span>
                                     {{ $dish->ingredients_list }}</li>
                                 @if (Auth::user()->id == $dish->restaurant->user->id)
                                     <li class="list-group-item d-flex align-items-center ">
-                                        <span class="text-info fw-medium">Visibile: </span>
+                                        <span class="text-info fw-medium">Visible: </span>
                                         <form action="{{ route('admin.dishes.update-visible', $dish) }}" method="POST">
                                             @csrf
                                             @method('PATCH')
@@ -36,7 +36,7 @@
                             </ul>
                             @if ($dish->description)
                                 <div class="card mt-5">
-                                    <p class="text-info fw-medium card-title text-center pt-3 fs-5">Descrizione Piatto:</p>
+                                    <p class="text-info fw-medium card-title text-center pt-3 fs-5">Dish description:</p>
                                     <p class="card-text text-center pb-4">{{ $dish->description }}</p>
                                 </div>
                             @endif
@@ -49,17 +49,17 @@
                     <div class="row d-flex align-items-center">
                         <div class="col">
                             <a class="btn btn-warning" href="{{ route('admin.dashboard') }}">
-                                {{ __('Torna alla Dashboard') }}
+                                {{ __('Back to Dashboard') }}
                             </a>
                         </div>
 
                         @if (Auth::user()->id == $dish->restaurant->user->id)
                             <div class="col text-end">
                                 <a class="btn btn-dark" href="{{ route('admin.dishes.edit', $dish) }}">
-                                    {{ __('Modifica piatto') }}
+                                    {{ __('Edit dish') }}
                                 </a>
                                 <a class="btn btn-danger" data-bs-toggle="modal"
-                                    data-bs-target="#delete-dish-{{ $dish->id }}">Elimina piatto</a>
+                                    data-bs-target="#delete-dish-{{ $dish->id }}">Delete Dish</a>
                             </div>
                         @endif
                     </div>

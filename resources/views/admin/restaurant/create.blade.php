@@ -191,7 +191,7 @@
                             @error('types')
                                 {{-- Messaggio di errore aggiuntivo se nessuna checkbox è stata selezionata --}}
                                 @if (!$atLeastOneChecked)
-                                    <div class="invalid-feedback">Seleziona almeno una delle opzioni.</div>
+                                    <div class="invalid-feedback">Please select at least one of the options</div>
                                 @endif
                             @enderror
                         </div>
