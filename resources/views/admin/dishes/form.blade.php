@@ -27,8 +27,8 @@
                         <div class="col">
                             <label class="form-label" for="title">Name*</label>
                             <input required @class(['form-control', 'is-invalid' => $errors->has('name')]) value="{{ old('name', $dish->name) }}"
-                                type="text" name="name" id="name" pattern="[A-Za-zÀ-ÿ\s]+"
-                                title=":deve contenere solo caratteri di tipo testo" />
+                                type="text" name="name" id="name" pattern="^[\p{L}\d\s-]+$"
+                                title=":deve contenere caratteri di tipo testo o numerici" />
                             @error('name')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
