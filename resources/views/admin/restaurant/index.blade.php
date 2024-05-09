@@ -16,7 +16,7 @@
                 <img src="{{ asset('storage/' . 'Restaurantlist.png') }}" alt="page-title-restaurant-index"
                     class="img-fluid" style="width: 60%">
             </div>
-            <table class="table table-hover">
+            <table class="table table-hover bg-card">
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
@@ -90,4 +90,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
         integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <style>
+            .bg-card{
+                background-color: #003559;
+            }
+        </style>
 @endsection
