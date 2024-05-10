@@ -49,7 +49,7 @@ class RestaurantController extends Controller
             $restaurant = new Restaurant();
             return view('admin.restaurant.create', compact('types', 'restaurant', 'user'));
         } else {
-            return redirect()->route('admin.dashboard')->withErrors(['user_id' => 'L\'utente ha già un ristorante.']);
+            return redirect()->route('admin.dashboard')->withErrors(['user_id' => 'User already has a restaurant.']);
         }
     }
 
