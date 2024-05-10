@@ -22,6 +22,7 @@
                     @method('PATCH')
                 @endif
                 <div class="row">
+                    <div class="mb-1 fs-6">* fields are required</div>
                     <div class="rounded d-flex bg-dish">
                         {{-- name input  --}}
                         <div class="col-6 p-3">
@@ -78,12 +79,18 @@
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
-                            {{-- preview image --}}
-                            @if (!empty($dish->image))
+                            {{-- preview image in create form --}}
+                            @if (empty($dish->image))
                                 <div class="preview-image-container col mt-3">
-                                    <img alt="" class="img-fluid mt-3"
+                                    <img alt="" id="image-preview" class="img-fluid mt-3"
                                         src="{{ asset('storage/' . $dish->image) }}">
                                 </div>
+                            @else
+                            {{-- preview image in edit form --}}
+                            <div class="preview-image-container col mt-3">
+                                <img alt="" class="img-fluid mt-3"
+                                    src="{{ asset('storage/' . $dish->image) }}">
+                            </div>
                             @endif
 
                         </div>
@@ -100,5 +107,18 @@
 @endsection
 
 @section('js')
+{{-- function to show image preview in create form --}}
+<script>
+    document.getElementById('image').addEventListener('change', function() {
+        var file = this.files[0];
+        var img = document.getElementById('image-preview');
+        img.style.display = 'block';
 
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            img.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+    });
+</script>
 @endsection

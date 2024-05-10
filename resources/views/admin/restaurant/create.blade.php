@@ -16,6 +16,7 @@
                         class="img-fluid" style="width: 60%">
                 </div>
                 <div class="row g-2">
+                <div class="fs-6">* fields are required</div>
                     <div class="col-6">
                         {{-- restaurant name input  --}}
                         <div class="card bg-res p-3 mb-2">
