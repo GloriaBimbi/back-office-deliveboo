@@ -147,8 +147,8 @@
                             <div class=" mb-2">
                                 <label class="form-label" for="description">Description*</label>
 
-                                <textarea class="form-control @error('description') is-invalid @enderror" name="description" id="description"
-                                    style="height: 276px" placeholder="Write here your description...">{{ old('description', $restaurant->description) }}</textarea>
+                                <textarea required class="form-control @error('description') is-invalid @enderror" name="description"
+                                    id="description" style="height: 276px" placeholder="Write here your description...">{{ old('description', $restaurant->description) }}</textarea>
                                 @error('description')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -162,7 +162,6 @@
                         <div class="card bg-res p-3 h-100">
                             <label for="">Types*</label>
                             <div class="d-flex flex-row justify-content-between flex-wrap">
-                                @php $atLeastOneChecked = false; @endphp
                                 @foreach ($types as $type)
                                     <div class="col-6 form-check @error('types') is-invalid @enderror">
                                         <input type="checkbox" id="types-{{ $type->id }}"
@@ -171,29 +170,13 @@
                                             {{ in_array($type->id, old('types', $restaurant->types->pluck('id')->toArray() ?? [])) ? 'checked' : '' }}>
                                         <label for="types-{{ $type->id }}"
                                             class="form-check-label   @error('types') is-invalid @enderror">{{ $type->name }}</label>
-                                        @php
-                                            // Verifica se almeno una checkbox è stata selezionata
-                                            if (
-                                                in_array(
-                                                    $type->id,
-                                                    old('types', $restaurant->types->pluck('id')->toArray() ?? []),
-                                                )
-                                            ) {
-                                                $atLeastOneChecked = true;
-                                            }
-                                        @endphp
                                     </div>
                                 @endforeach
+                                <div class="invalid-feedback" id="checkbox-error"></div>
                                 @error('types')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
-                            @error('types')
-                                {{-- Messaggio di errore aggiuntivo se nessuna checkbox è stata selezionata --}}
-                                @if (!$atLeastOneChecked)
-                                    <div class="invalid-feedback">Please select at least one of the options</div>
-                                @endif
-                            @enderror
                         </div>
                     </div>
                 </div>
@@ -202,8 +185,7 @@
                     <button class="btn btn-primary w-50" type="submit" id="submit-button">Submit</button>
                     <button class="btn btn-warning w-50" type="reset">Reset</button>
                 </div>
-        </div>
-        </form>
+            </form>
         </div>
     </section>
 @endsection
@@ -212,4 +194,24 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
         integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+@endsection
+
+@section('js')
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById("submit-button").addEventListener("click", function(event) {
+                const checkboxes = document.querySelectorAll('input[name="types[]"]:checked');
+                const errorElement = document.getElementById("checkbox-error");
+
+                if (checkboxes.length === 0) {
+                    errorElement.innerHTML = "Please select at least one of the options";
+                    errorElement.style.display = 'block';
+                    event.preventDefault(); // Impedisce l'invio del modulo
+                } else {
+                    errorElement.style.display = 'none';
+                    document.getElementById("restaurantForm").submit(); // Invia il modulo
+                }
+            });
+        });
+    </script>
 @endsection
