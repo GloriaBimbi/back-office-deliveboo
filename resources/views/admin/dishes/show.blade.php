@@ -27,11 +27,11 @@
                                     {{ $dish->ingredients_list }}</li>
                                 @if (Auth::user()->id == $dish->restaurant->user->id)
                                     <li class="list-group-item d-flex align-items-center dish-card ">
-                                        <span class="text-info fw-medium dish-card">Visible: </span>
+                                        <span class="text-info fw-medium ">Visible: </span>
                                         <form action="{{ route('admin.dishes.update-visible', $dish) }}" method="POST">
                                             @csrf
                                             @method('PATCH')
-                                            <label class="switch dish-card">
+                                            <label class="switch ">
                                                 <input type="checkbox" id="visible" @checked($dish->visible)
                                                     name="visible">
                                                 <span class="slider"></span>
