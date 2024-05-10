@@ -11,11 +11,7 @@
             @else
                 <a href="{{ url()->previous() }}" class="back-button"><i class="fa-solid fa-arrow-rotate-left"></i> Go Back</a>
             @endif
-<<<<<<< HEAD
-                <div class="card dish-card mt-4">
-=======
-            <div class="card mt-4">
->>>>>>> 61ef8b527af9bc0a75b0aeb4074786130c60c804
+            <div class="card dish-card mt-4">
                 <div class="card-header">
                     <h2 class="text-info my-4 text-capitalize card-title">
                         {{ $dish->name }} ({{ $dish->restaurant->name }})
@@ -55,11 +51,12 @@
                         </div>
                     </div>
                 </div>
+                @if (Auth::user()->id == $dish->restaurant->user->id)
                 <div class="card-footer">
                     <div class="row d-flex align-items-center">
                         <div class="col">
 
-                            @if (Auth::user()->id == $dish->restaurant->user->id)
+                         
                                 <a class="btn btn-dark" href="{{ route('admin.dishes.edit', $dish) }}">
                                     {{ __('Edit dish') }}
 
