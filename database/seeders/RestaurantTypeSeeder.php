@@ -17,10 +17,19 @@ class RestaurantTypeSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        $restaurants = Restaurant::all();
-        $types = Type::all()->pluck('id')->toArray();
-        foreach ($restaurants as $restaurant) {
-            $restaurant->types()->sync($faker->randomElements($types, rand(1, 3)));
+        $restaurantTypes = config('restaurantType');
+        // dd($restaurantTypes);
+        foreach($restaurantTypes as $current_restaurantType){
+            $restaurant=Restaurant::find($current_restaurantType['restaurant_id']);
+            $restaurant->types()->attach($current_restaurantType['type_id']);
+
+ 
         }
+
+        // $restaurants = Restaurant::all();
+        // $types = Type::all()->pluck('id')->toArray();
+        // foreach ($restaurants as $restaurant) {
+        //     $restaurant->types()->sync($faker->randomElements($types, rand(1, 3)));
+        // }
     }
 }
