@@ -2,7 +2,7 @@
     <nav class="navbar navbar-expand-lg ">
         <div class="container-fluid d-flex justify-content-between align-items-center">
             <div class="nav-logo-wrapper mx-5">
-                <img src="{{ asset('storage/' . 'Delivebootitle.png') }}" alt="" style="width: 20%" href="#" >
+                <img src="{{ asset('storage/' . 'Delivebootitle.png') }}" alt="" style="width: 20%" href="#">
             </div>
 
             <div class="nav-right">
@@ -21,6 +21,11 @@
                                     href="{{ route('home') }}">Home</a>
                             </li>
                         @endauth
+                        <li class="nav-item">
+                            <a class="home-btn" class="nav-link" href="http://localhost:5173/">Order</a>
+                        </li>
+                        @guest
+                        @endguest
                         {{-- @auth
                             <li class="nav-item">
                                 <a class="nav-link badge bordered p-3 " @class([
