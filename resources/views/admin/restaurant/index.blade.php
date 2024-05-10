@@ -19,8 +19,7 @@
             <table class="table table-hover bg-card">
                 <thead>
                     <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Name</th>
+                        <th class="ps-4" scope="col">Name</th>
                         <th scope="col">Address</th>
                         <th scope="col">Owner</th>
                         <th scope="col"></th>
@@ -29,8 +28,7 @@
                 <tbody>
                     @foreach ($restaurants as $restaurant)
                         <tr>
-                            <td>{{ $restaurant->id }}</td>
-                            <td>{{ $restaurant->name }}</td>
+                            <td class="ps-4">{{ $restaurant->name }}</td>
                             <td>{{ $restaurant->address }}</td>
                             <td>{{ $restaurant->user->name }}</td>
                             <td>

@@ -15,19 +15,19 @@
         </div>
 
 
-        {{-- ristorante dell'utente  --}}
+        {{-- user's restaurant  --}}
     @elseif(!empty($restaurant))
         <section data-bs-theme="dark" id="restaurant-show" class="mb-3">
             <div class="container-fluid ">
 
                 <div class="img-wrapper">
-                    {{-- torna alla home  --}}
+                    {{-- go back to homepage  --}}
                     <a href="{{ route('home') }}" class="back-button from-dashboard"><i
                             class="fa-solid fa-arrow-rotate-left"></i> Back to Home</a>
                     <img src="{{ $restaurant->getImage() }}" alt="restaurant-image">
                     <div class="card restaurant-details">
                         <div class="restaurant-detail-wrapper">
-
+                            {{-- restaurant details --}}
                             <h1>{{ $restaurant->name }}</h1>
                             <p>By <strong>{{ $restaurant->user->name }}</strong></p>
                             <div class="row">
@@ -71,12 +71,12 @@
             </div>
         </section>
 
-        {{-- piatti del ristorante  --}}
+        {{-- restaurant's dishes --}}
         <section>
             <div class="container-fluid " id="restaurant-dishes">
                 <div class="row row-cols-4 h-100 g-2 my-3">
 
-                    {{-- colonna per aggiungere piatti  --}}
+                    {{-- add dishes --}}
                     @if (Auth::user()->id == $restaurant->user->id)
                         <div class="col">
                             <a class="card add-dish-card" href="{{ route('admin.dishes.create') }}">
@@ -85,6 +85,7 @@
                             </a>
                         </div>
                     @endif
+                    {{-- dishes cards --}}
                     @if (!empty($restaurant->dishes))
                         @foreach ($restaurant->dishes as $dish)
                             <div class="col">
@@ -93,8 +94,13 @@
 
                                         <img src="{{ $dish->getImage() }}" @class([$dish->visible ? '' : 'non-visible', 'card-img-top']) alt="...">
                                         <div class="card-body">
-                                            <h5 class="card-title">{{ $dish->name }}</h5>
-                                            <p class="card-text">${{ $dish->price }}</p>
+                                            <div class="info">
+                                                <h5 class="card-title">{{ $dish->name }}</h5>
+                                                <p class="card-text">${{ $dish->price }}</p>
+                                            </div>
+                                            @if($dish->visible == false)
+                                                <div class="not-avaiable">Not Avaiable</div>
+                                            @endif
                                         </div>
                                     </a>
                                 </div>

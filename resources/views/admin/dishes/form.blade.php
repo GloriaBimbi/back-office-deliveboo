@@ -77,13 +77,30 @@
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
-                        
-                        
-                            {{-- preview image --}}
-                            @if (!empty($dish->image))
+
+                            {{-- ingredient list input  --}}
+                            <div class="col mt-3">
+                                <label class="form-label text-white" for="ingredients_list">Ingredients List*</label>
+                                <textarea @class([
+                                    'form-control',
+                                    'is-invalid' => $errors->has('ingredients_list'),
+                                ]) name="ingredients_list" rows="5" id="ingredients_list"
+                                    placeholder="Write here your ingredients...">{{ old('ingredients_list') ?? $dish->description }}</textarea>
+                                @error('ingredients_list')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            {{-- preview image in create form --}}
+                            @if (empty($dish->image))
+                                <div class="preview-image-container col mt-3">
+                                    <img alt="" id="image-preview" class="img-fluid mt-3"
+                                        src="{{ asset('storage/' . $dish->image) }}">
+                                </div>
+                            @else
+                            {{-- preview image in edit form --}}
                             <div class="preview-image-container col mt-3">
                                 <img alt="" class="img-fluid mt-3"
-                                src="{{ asset('storage/' . $dish->image) }}">
+                                    src="{{ asset('storage/' . $dish->image) }}">
                             </div>
                             @endif
                         </div>
@@ -137,5 +154,18 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
 @endsection
 
 @section('js')
+{{-- function to show image preview in create form --}}
+<script>
+    document.getElementById('image').addEventListener('change', function() {
+        var file = this.files[0];
+        var img = document.getElementById('image-preview');
+        img.style.display = 'block';
 
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            img.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+    });
+</script>
 @endsection
