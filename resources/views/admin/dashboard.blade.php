@@ -73,7 +73,7 @@
 
         {{-- piatti del ristorante  --}}
         <section>
-            <div class="container-fluid" id="restaurant-dishes">
+            <div class="container-fluid " id="restaurant-dishes">
                 <div class="row row-cols-4 h-100 g-2 my-3">
 
                     {{-- colonna per aggiungere piatti  --}}
@@ -88,7 +88,7 @@
                     @if (!empty($restaurant->dishes))
                         @foreach ($restaurant->dishes as $dish)
                             <div class="col">
-                                <div class="card">
+                                <div class="card bg-card-dish">
                                     <a href="{{ route('admin.dishes.show', $dish) }}">
 
                                         <img src="{{ $dish->getImage() }}" @class([$dish->visible ? '' : 'non-visible', 'card-img-top']) alt="...">
