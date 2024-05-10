@@ -99,7 +99,7 @@
                                                 <p class="card-text">${{ $dish->price }}</p>
                                             </div>
                                             @if($dish->visible == false)
-                                                <div class="not-avaiable">Not Avaiable</div>
+                                                <div class="not-available">Not Available</div>
                                             @endif
                                         </div>
                                     </a>
