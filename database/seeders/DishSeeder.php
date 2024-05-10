@@ -28,7 +28,7 @@ class DishSeeder extends Seeder
 
         foreach($dishes as $current_dish){
             $dish = new Dish;
-            $dish->restaurant_id = $faker->randomElement($restaurants);
+            $dish->restaurant_id = $current_dish['restaurant_id'];
             $dish->name = $current_dish['name'];
             $dish->image = $current_dish['image'];
             $dish->visible = true;
