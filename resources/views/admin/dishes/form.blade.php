@@ -78,18 +78,6 @@
                                 @enderror
                             </div>
 
-                            {{-- ingredient list input  --}}
-                            <div class="col mt-3">
-                                <label class="form-label text-white" for="ingredients_list">Ingredients List*</label>
-                                <textarea @class([
-                                    'form-control',
-                                    'is-invalid' => $errors->has('ingredients_list'),
-                                ]) name="ingredients_list" rows="5" id="ingredients_list"
-                                    placeholder="Write here your ingredients...">{{ old('ingredients_list') ?? $dish->description }}</textarea>
-                                @error('ingredients_list')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
                             {{-- preview image in create form --}}
                             @if (empty($dish->image))
                                 <div class="preview-image-container col mt-3">
