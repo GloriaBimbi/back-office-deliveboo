@@ -31,8 +31,17 @@ class DishController extends Controller
      */
     public function create()
     {
-        $dish = new Dish;
-        return view('admin.dishes.form', compact('dish'));
+        $userId = Auth::user()->id;
+        $userRestaurant = Restaurant::where('user_id', $userId)->exists();
+        // dd($userRestaurantDish);
+
+        if(!$userRestaurant){
+
+            return redirect()->route('admin.dashboard')->withErrors(['user_id' => 'User has to create a restaurant first.']);
+        }else{
+            $dish = new Dish;
+            return view('admin.dishes.form', compact('dish'));
+        }
     }
 
     /**
@@ -81,7 +90,16 @@ class DishController extends Controller
      */
     public function edit(Dish $dish)
     {
-        return view('admin.dishes.form', compact('dish'));
+        $userId = Auth::user()->id;
+        $userRestaurantId = Restaurant::where('user_id', $userId)->first();
+
+        // dd($userRestaurant->id);
+
+        if(!$dish->restaurant_id==$userRestaurantId){
+            return view('admin.dishes.form', compact('dish'));
+        }else{
+            return redirect()->route('admin.dashboard')->withErrors(['user_id' => 'User cannot edit other restaurant dishes.']);
+        }
     }
 
     /**

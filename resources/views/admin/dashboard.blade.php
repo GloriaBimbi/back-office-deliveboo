@@ -3,6 +3,15 @@
 @section('content')
 
     @if (empty($restaurant))
+    <div class="container-fluid mt-2">
+        @if (session()->has('errors'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>{{ session()->get('errors')->first('user_id') }}</strong>
+                <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close">
+                </button>
+            </div>
+        @endif
+    </div>
         <div class="d-flex justify-content-center mt-5">
             <div class="card roundeder col-6 bg-card-create">
                 <div class="text-center">
@@ -60,7 +69,7 @@
                     </div>
                 </div>
             </div>
-            <div class="container-fluid">
+            <div class="container-fluid mt-2">
                 @if (session()->has('errors'))
                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
                         <strong>{{ session()->get('errors')->first('user_id') }}</strong>
