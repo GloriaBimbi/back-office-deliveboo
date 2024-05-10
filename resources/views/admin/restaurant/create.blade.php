@@ -167,10 +167,10 @@
                                     <div class="col-6 form-check @error('types') is-invalid @enderror">
                                         <input type="checkbox" id="types-{{ $type->id }}"
                                             value="{{ $type->id }}" name="types[]"
-                                            class="form-check-input @error('types') is-invalid @enderror"
+                                            class="form-check-input bg-res @error('types') is-invalid @enderror"
                                             {{ in_array($type->id, old('types', $restaurant->types->pluck('id')->toArray() ?? [])) ? 'checked' : '' }}>
                                         <label for="types-{{ $type->id }}"
-                                            class="form-check-label bg-res  @error('types') is-invalid @enderror">{{ $type->name }}</label>
+                                            class="form-check-label   @error('types') is-invalid @enderror">{{ $type->name }}</label>
                                         @php
                                             // Verifica se almeno una checkbox è stata selezionata
                                             if (
