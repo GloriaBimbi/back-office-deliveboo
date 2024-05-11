@@ -22,59 +22,26 @@ class DishSeeder extends Seeder
     public function run(Faker $faker)
     {
 
-        $restaurants=Restaurant::all()->pluck('id');
+        $restaurants = Restaurant::all()->pluck('id');
 
-        $dishes=config('dishes');
+        $file = fopen(__DIR__ . '/../csv/dishes.csv', 'r');
+        $first_line = true;
+        while (!feof($file)) {
+            $dish_data = fgetcsv($file);
 
-        foreach($dishes as $current_dish){
-            $dish = new Dish;
-            $dish->restaurant_id = $current_dish['restaurant_id'];
-            $dish->name = $current_dish['name'];
-            $dish->image = $current_dish['image'];
-            $dish->visible = true;
-            $dish->description = $current_dish['description'];
-            $dish->ingredients_list = $current_dish['ingredients_list'];
-            $dish->price = $current_dish['price'];
-            $dish->slug = Str::slug($current_dish['name']);
-            $dish->save();
+            if (!$first_line) {
+                $dish = new Dish;
+                $dish->restaurant_id = $dish_data[0];
+                $dish->name = $dish_data[1];
+                $dish->image = $dish_data[2];
+                $dish->description = $dish_data[3];
+                $dish->price = $dish_data[4];
+                $dish->visible = true;
+                $dish->ingredients_list = $dish_data[6];
+                $dish->slug = Str::slug($dish->name);
+                $dish->save();
+            }
+            $first_line = false;
         }
-
-        // $dish = new Dish;
-        // $dish->restaurant_id = $faker->randomElement($restaurants);
-        // $dish->name = 'Pizza Margherita';
-        // $dish->image = 'https://www.google.com/imgres?q=pizza&imgurl=https%3A%2F%2Fimages.ctfassets.net%2Fnw5k25xfqsik%2F64VwvKFqxMWQORE10Tn8pY%2F200c0538099dc4d1cf62fd07ce59c2af%2F20220211142754-margherita-9920.jpg%3Fw%3D1024&imgrefurl=https%3A%2F%2Fit.ooni.com%2Fblogs%2Frecipes%2Fmargherita-pizza&docid=dBUWQMjeEXS6_M&tbnid=1CS_cBw0YUoXKM&vet=12ahUKEwiz-LLojO-FAxU6V0EAHXKRDWgQM3oECGYQAA..i&w=1024&h=780&hcb=2&ved=2ahUKEwiz-LLojO-FAxU6V0EAHXKRDWgQM3oECGYQAA';
-        // $dish->description = 'pizza classica, buonissima!!';
-        // $dish->price = 6.50;
-        // $dish->visible = true;
-        // $dish->slug = Str::slug($dish->name);
-        // $dish->ingredients_list = 'pomodoro, mozzarella, basilico, farina, lievito, olio evo';
-        // $dish->save();
-
-        // $dish = new Dish;
-        // $dish->restaurant_id = $faker->randomElement($restaurants);
-        // $dish->name = 'Risotto ai Gamberi';
-        // $dish->image = 'https://www.google.com/imgres?q=risotto%20ai%20gamberi&imgurl=https%3A%2F%2Fblog.giallozafferano.it%2Fadryincucina%2Fwp-content%2Fuploads%2F2017%2F09%2Frisotto-ai-gamberoni.jpg&imgrefurl=https%3A%2F%2Fblog.giallozafferano.it%2Fadryincucina%2Frisotto-ai-gamberi%2F&docid=rAA2tkuTmb1JmM&tbnid=HkbSWRwyUPuB1M&vet=12ahUKEwiH1dfvje-FAxUG6gIHHR-SC4cQM3oECE4QAA..i&w=3834&h=2187&hcb=2&ved=2ahUKEwiH1dfvje-FAxUG6gIHHR-SC4cQM3oECE4QAA';
-        // $dish->description = 'risotto squisito, ve lo consiglio!!';
-        // $dish->price = 22.50;
-        // $dish->visible = true;
-        // $dish->slug = Str::slug($dish->name);
-        // $dish->ingredients_list = 'riso erbolario, prezzemolo, gambero, olio evo, burro';
-        // $dish->save();
-
-        // for($i = 0; $i < 15; $i++){
-        //     $restaurant_id_value = $faker->randomElement($restaurants);
-        //     // var_dump($restaurants);
-
-        //     $dish = new Dish;
-        //     $dish->restaurant_id = $restaurant_id_value;
-        //     $dish->name = $faker->catchPhrase();
-        //     $dish->image = $faker->imageUrl(null, 360, 360, 'foods', true);
-        //     $dish->description = $faker->paragraph();
-        //     $dish->price = $faker->randomFloat(2, 0, 100);
-        //     $dish->visible = true;
-        //     $dish->slug = Str::slug($dish->name);
-        //     $dish->ingredients_list = $faker->words(7, true);
-        //     $dish->save();
-        // }
     }
 }

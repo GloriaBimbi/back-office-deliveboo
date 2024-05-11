@@ -6,7 +6,6 @@ use App\Models\Restaurant;
 use App\Models\Type;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Faker\Generator as Faker;
 
 class RestaurantTypeSeeder extends Seeder
 {
@@ -15,21 +14,19 @@ class RestaurantTypeSeeder extends Seeder
      *
      * @return void
      */
-    public function run(Faker $faker)
+    public function run()
     {
-        $restaurantTypes = config('restaurantType');
-        // dd($restaurantTypes);
-        foreach($restaurantTypes as $current_restaurantType){
-            $restaurant=Restaurant::find($current_restaurantType['restaurant_id']);
-            $restaurant->types()->attach($current_restaurantType['type_id']);
 
- 
+        $file = fopen(__DIR__ . '/../csv/restaurantType.csv', 'r');
+        $first_line = true;
+        while (!feof($file)) {
+            $restaurant_type_data = fgetcsv($file);
+
+            if (!$first_line) {
+                $restaurant = Restaurant::find($restaurant_type_data[0]);
+                $restaurant->types()->attach($restaurant_type_data[1]);
+            }
+            $first_line = false;
         }
-
-        // $restaurants = Restaurant::all();
-        // $types = Type::all()->pluck('id')->toArray();
-        // foreach ($restaurants as $restaurant) {
-        //     $restaurant->types()->sync($faker->randomElements($types, rand(1, 3)));
-        // }
     }
 }

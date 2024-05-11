@@ -17,15 +17,14 @@ class TypeSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        $types=config('types');
-        foreach($types as $current_type){
+        $types = config('types');
+        foreach ($types as $current_type) {
             $type = new Type;
-            $type->name = $current_type['name'] ;
+            $type->name = $current_type['name'];
             $type->logo = $current_type['logo'];
             $type->color = $faker->hexColor();
             $type->save();
         }
-
 
 
         // for($i = 0; $i < 20; $i++){
