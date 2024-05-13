@@ -50,7 +50,8 @@ class RestaurantController extends Controller
                 });
             }
         }
-        $restaurants = $restaurants->with((['user:id,name,email', 'dishes:id,restaurant_id,name,image,description,price,ingredients_list,slug', 'types:id,name,logo,color']))->get();
+        $restaurants = $restaurants->with((['user:id,name,email', 'dishes:id,restaurant_id,name,image,description,price,ingredients_list,slug', 'types:id,name,logo,color']))
+        ->paginate(12);
         
         foreach ($restaurants as $restaurant) {
             if (!str_starts_with($restaurant->image, 'https')) {
