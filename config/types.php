@@ -11,7 +11,7 @@ return[
         // 'color' => $faker->hexColor(),
     ],
     [
-        'name' => 'giapponese',
+        'name' => 'japanese',
         'logo' => 'types/giapponese.jpg',
         // 'color' => $faker->hexColor(),
     ],
@@ -21,8 +21,8 @@ return[
         // 'color' => $faker->hexColor(),
     ],
     [
-        'name' => 'halal',
-        'logo' => 'types/halal.jpg',
+        'name' => 'fish',
+        'logo' => 'types/fish.jpg',
         // 'color' => $faker->hexColor(),
     ],
     [
@@ -73,6 +73,21 @@ return[
     [
         'name' => 'vegetarian',
         'logo' => 'types/vegetariana.jpg',
+        // 'color' => $faker->hexColor(),
+    ],
+    [
+        'name' => 'meat',
+        'logo' => 'types/meat.jpg',
+        // 'color' => $faker->hexColor(),
+    ],
+    [
+        'name' => 'french',
+        'logo' => 'types/french.jpg',
+        // 'color' => $faker->hexColor(),
+    ],
+    [
+        'name' => 'thai',
+        'logo' => 'types/thai.jpg',
         // 'color' => $faker->hexColor(),
     ],
 ];
