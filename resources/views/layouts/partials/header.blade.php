@@ -21,11 +21,7 @@
                                     href="{{ route('home') }}">Home</a>
                             </li>
                         @endauth
-                        @guest
-                        <li class="nav-item">
-                            <a class="home-btn" class="nav-link" href="http://localhost:5173/">Order</a>
-                        </li>
-                        @endguest
+
                         {{-- @auth
                             <li class="nav-item">
                                 <a class="nav-link badge bordered p-3 " @class([
