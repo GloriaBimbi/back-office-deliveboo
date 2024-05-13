@@ -1,12 +1,12 @@
 <?php
 return[
     [
-        'name' => 'americana',
+        'name' => 'american',
         'logo' => 'types/americano.jpeg',
         // 'color' => $faker->hexColor(),
     ],
     [
-        'name' => 'cinese',
+        'name' => 'chinese',
         'logo' => 'types/cinese.jpg',
         // 'color' => $faker->hexColor(),
     ],
@@ -16,7 +16,7 @@ return[
         // 'color' => $faker->hexColor(),
     ],
     [
-        'name' => 'greca',
+        'name' => 'greek',
         'logo' => 'types/greca.jpg',
         // 'color' => $faker->hexColor(),
     ],
@@ -26,22 +26,22 @@ return[
         // 'color' => $faker->hexColor(),
     ],
     [
-        'name' => 'indiana',
+        'name' => 'indian',
         'logo' => 'types/indiana.jpg',
         // 'color' => $faker->hexColor(),
     ],
     [
-        'name' => 'italiana',
+        'name' => 'italian',
         'logo' => 'types/italiana.jpg',
         // 'color' => $faker->hexColor(),
     ],
     [
-        'name' => 'libanese',
+        'name' => 'lebanese',
         'logo' => 'types/libanese.jpeg',
         // 'color' => $faker->hexColor(),
     ],
     [
-        'name' => 'messicana',
+        'name' => 'mexican',
         'logo' => 'types/messicana.jpg',
         // 'color' => $faker->hexColor(),
     ],
@@ -71,24 +71,8 @@ return[
         // 'color' => $faker->hexColor(),
     ],
     [
-        'name' => 'vegetariana',
+        'name' => 'vegetarian',
         'logo' => 'types/vegetariana.jpg',
         // 'color' => $faker->hexColor(),
     ],
 ];
-
-// americana
-// cinese
-// giapponese
-// greca
-// halal
-// indiana
-// italiana
-// libanese
-// messicana
-
-// pizza
-// sushi
-// hamburger
-// dessert
-// vegetariana
