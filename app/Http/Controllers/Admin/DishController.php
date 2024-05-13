@@ -93,9 +93,9 @@ class DishController extends Controller
         $userId = Auth::user()->id;
         $userRestaurantId = Restaurant::where('user_id', $userId)->first();
 
-        // dd($userRestaurant->id);
+        // dd($userRestaurantId->id);
 
-        if(!$dish->restaurant_id==$userRestaurantId){
+        if($dish->restaurant_id==$userRestaurantId->id){
             return view('admin.dishes.form', compact('dish'));
         }else{
             return redirect()->route('admin.dashboard')->withErrors(['user_id' => 'User cannot edit other restaurant dishes.']);
