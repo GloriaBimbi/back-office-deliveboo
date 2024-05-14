@@ -1,5 +1,5 @@
 <?php
-return[
+return [
     [
         'name' => 'american',
         'logo' => 'types/americano.jpeg',
@@ -22,7 +22,7 @@ return[
     ],
     [
         'name' => 'fish',
-        'logo' => 'types/fish.jpg',
+        'logo' => 'types/fish.jpeg',
         // 'color' => $faker->hexColor(),
     ],
     [
@@ -77,17 +77,17 @@ return[
     ],
     [
         'name' => 'meat',
-        'logo' => 'types/meat.jpg',
+        'logo' => 'types/meat.jpeg',
         // 'color' => $faker->hexColor(),
     ],
     [
         'name' => 'french',
-        'logo' => 'types/french.jpg',
+        'logo' => 'types/french.jpeg',
         // 'color' => $faker->hexColor(),
     ],
     [
         'name' => 'thai',
-        'logo' => 'types/thai.jpg',
+        'logo' => 'types/thai.jpeg',
         // 'color' => $faker->hexColor(),
     ],
 ];
