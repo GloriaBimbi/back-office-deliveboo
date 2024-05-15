@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\OrderController;
 use App\Http\Controllers\API\PaymentController;
 use App\Http\Controllers\Api\RestaurantController;
 use App\Http\Controllers\Api\TypeController;
@@ -23,7 +24,7 @@ Route::apiResource('types', TypeController::class)->only(['index', 'show']);
 
 // braintree payment
 Route::get('generate-client-token', [PaymentController::class, 'generateClientToken']);
-// Route::get('/generate-client-token', 'PaymentController@generateClientToken');
+Route::post('process-payment', [OrderController::class, 'order']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
