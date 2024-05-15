@@ -3,49 +3,52 @@
 @section('title', 'Dishes')
 
 @section('content')
-<section>
-<div class="container mt-4">
-    <a href="{{route('home')}}" class="back-button"><i class="fa-solid fa-arrow-rotate-left"></i> Torna alla Home</a>
-</div>
-    <div class="container my-5">
-        <div class="text-center w-100">
-            <div class="text-center">
-                <img src="{{ asset('storage/' . 'main-dish.png') }}" alt="page-logo-dish-index" class="img-fluid"
-                    style="width: 10%">
-            </div>
-            <img src="{{ asset('storage/' . 'Dishes.png') }}" alt="page-title-dish-index" class="img-fluid"
-                style="width: 60%">
+    <section>
+        <div class="container mt-4">
+            <a href="{{ route('home') }}" class="back-button"><i class="fa-solid fa-arrow-rotate-left"></i> Torna alla Home</a>
         </div>
-        <div class="card-container">
-            <div class="row g-3">
-                @foreach ($dishes as $dish)
-                <div class="col-4">
-                    <div class="card h-100 dish-card">
-                    <div class="card-top">
-                        <img src="{{ $dish->getImage() }}" class="card-img-top" alt="dish image" />
-                        <div class="restaurant-dish-name">
-                                {{ $dish->restaurant->name }}
+        <div class="container my-5">
+            <div class="text-center w-100">
+                <div class="text-center">
+                    <img src="{{ asset('storage/' . 'main-dish.png') }}" alt="page-logo-dish-index" class="img-fluid"
+                        style="width: 10%">
+                </div>
+                <img src="{{ asset('storage/' . 'Dishes.png') }}" alt="page-title-dish-index" class="img-fluid"
+                    style="width: 60%">
+            </div>
+            <div class="card-container">
+                <div class="row g-3">
+                    @foreach ($dishes as $dish)
+                        <div class="col-4">
+                            <div class="card h-100 dish-card">
+                                <div class="card-top">
+                                    <img src="{{ $dish->getImage() }}" class="card-img-top" alt="dish image" />
+                                    <div class="restaurant-dish-name">
+                                        {{ $dish->restaurant->name }}
+                                    </div>
+                                </div>
+
+                                <div class="card-body">
+                                    <h2>{{ $dish->name }}</h2>
+                                    <p class="card-price">${{ $dish->price }}</p>
+                                    <a href="{{ route('admin.dishes.show', $dish) }}" class="btn btn-success"><i
+                                            class="fa-solid fa-eye"></i></a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="card-body">
-                        <h2>{{ $dish->name }}</h2>
-                        <p class="card-price">${{ $dish->price }}</p>
-                        <a href="{{ route('admin.dishes.show', $dish)}}" class="btn btn-success"><i class="fa-solid fa-eye"></i></a>
-                    </div>
-                    </div>
+                    @endforeach
                 </div>
-                @endforeach
             </div>
         </div>
         {{-- paginate --}}
-        <div class="col ">
-            <div >
-                {{ $dishes->links() }}
+        <div class="container">
+            <div class="col ">
+                <div>
+                    {{ $dishes->links() }}
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
 @endsection
 
