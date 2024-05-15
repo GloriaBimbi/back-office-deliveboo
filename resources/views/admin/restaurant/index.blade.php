@@ -16,40 +16,37 @@
                 <img src="{{ asset('storage/' . 'Restaurantlist.png') }}" alt="page-title-restaurant-index"
                     class="img-fluid" style="width: 60%">
             </div>
-            <table class="table table-hover bg-card">
-                <thead>
-                    <tr>
-                        <th class="ps-4" scope="col">Name</th>
-                        <th scope="col">Address</th>
-                        <th scope="col">Owner</th>
-                        <th scope="col"></th>
-                    </tr>
-                </thead>
-                <tbody>
+            <div class="card-container">
+                <div class="row g-3">
                     @foreach ($restaurants as $restaurant)
-                        <tr>
-                            <td class="ps-4">{{ $restaurant->name }}</td>
-                            <td>{{ $restaurant->address }}</td>
-                            <td>{{ $restaurant->user->name }}</td>
-                            <td>
-                                <a class="btn btn-primary" href="{{ route('admin.restaurants.show', $restaurant) }}"><i
-                                        class="fa-solid fa-eye"></i></a>
-
-                                {{-- <button type="submit" class="btn btn-danger" data-bs-toggle="modal"
-                                    data-bs-target="#delete-restaurant-{{ $restaurant->id }}">
-                                    <i class="fa-solid fa-trash-can"></i>
-                                </button> --}}
-                            </td>
-                        </tr>
+                    <div class="col-4">
+                        <div class="card h-100 restaurant-card">
+                        <div class="card-top">
+                            <img src="{{ $restaurant->getImage() }}" class="card-img-top" alt="restaurant image" />
+                            <div class="badge-container">
+                                @foreach ($restaurant->types as $type)
+                                <div class="badge bg-primary me-1">
+                                    {{ $type->name }}
+                                </div>
+                                @endforeach
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h2>{{ $restaurant->name }}</h2>
+                            <p class="restaurant-address">{{ $restaurant->address }}</p>
+                            <a href="{{ route('admin.restaurants.show', $restaurant)}}" class="btn btn-success"><i class="fa-solid fa-eye"></i></a>
+                        </div>
+                        </div>
+                    </div>
                     @endforeach
-                </tbody>
-            </table>
-            <div class="row">
+                </div>
+            </div>
+            {{-- pagination --}}
+            <div class="row mt-4">
                 <div class="col w-100 text-end">
                     <div class="w-100"> {{ $restaurants->links() }}</div>
                 </div>
             </div>
-
         </div>
     </section>
 

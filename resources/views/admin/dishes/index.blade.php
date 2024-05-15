@@ -3,69 +3,49 @@
 @section('title', 'Dishes')
 
 @section('content')
+<section>
 <div class="container mt-4">
     <a href="{{route('home')}}" class="back-button"><i class="fa-solid fa-arrow-rotate-left"></i> Torna alla Home</a>
 </div>
-    <section>
-        <div class="container my-5">
-            <div class="text-center w-100">
-                <div class="text-center">
-                    <img src="{{ asset('storage/' . 'main-dish.png') }}" alt="page-logo-dish-index" class="img-fluid"
-                        style="width: 10%">
-                </div>
-                <img src="{{ asset('storage/' . 'Dishes.png') }}" alt="page-title-dish-index" class="img-fluid"
-                    style="width: 60%">
+    <div class="container my-5">
+        <div class="text-center w-100">
+            <div class="text-center">
+                <img src="{{ asset('storage/' . 'main-dish.png') }}" alt="page-logo-dish-index" class="img-fluid"
+                    style="width: 10%">
             </div>
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Restaurant</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Description</th>
-                        <th scope="col"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($dishes as $dish)
-                        <tr>
-                            <td>{{ $dish->id }}</td>
-                            <td>{{ $dish->name }}</td>
-                            <td>{{ $dish->restaurant->name }}</td>
-                            <td>${{ $dish->price }}</td>
-                            <td>{{ $dish->getAbstract() }}</td>
-                            <td>
-                                <a class="btn btn-primary" href="{{ route('admin.dishes.show', $dish) }}"><i
-                                        class="fa-solid fa-eye"></i></a>
-{{-- 
-                                <a class="btn btn-warning" href="{{ route('admin.dishes.edit', $dish) }}"><i
-                                        class="fa-solid fa-pencil"></i></a> --}}
-
-                                {{-- <button type="submit" class="btn btn-danger" data-bs-toggle="modal"
-                                    data-bs-target="#delete-dish-{{ $dish->id }}">
-                                    <i class="fa-solid fa-trash-can"></i>
-                                </button> --}}
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-            <div class="row">
-                {{-- <div class="col">
-                    <a href="{{ route('admin.dishes.create') }}" class="btn btn-success"><i class="fa-solid fa-plus"></i>
-                        Add
-                        dish </a>
-                </div> --}}
-                <div class="col ">
-                    <div >
-                        {{ $dishes->links() }}
+            <img src="{{ asset('storage/' . 'Dishes.png') }}" alt="page-title-dish-index" class="img-fluid"
+                style="width: 60%">
+        </div>
+        <div class="card-container">
+            <div class="row g-3">
+                @foreach ($dishes as $dish)
+                <div class="col-4">
+                    <div class="card h-100 dish-card">
+                    <div class="card-top">
+                        <img src="{{ $dish->getImage() }}" class="card-img-top" alt="dish image" />
+                        <div class="restaurant-dish-name">
+                                {{ $dish->restaurant->name }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h2>{{ $dish->name }}</h2>
+                        <p class="card-price">${{ $dish->price }}</p>
+                        <a href="{{ route('admin.dishes.show', $dish)}}" class="btn btn-success"><i class="fa-solid fa-eye"></i></a>
+                    </div>
                     </div>
                 </div>
+                @endforeach
             </div>
-
         </div>
-    </section>
+        {{-- paginate --}}
+        <div class="col ">
+            <div >
+                {{ $dishes->links() }}
+            </div>
+        </div>
+    </div>
+</section>
 
 @endsection
 

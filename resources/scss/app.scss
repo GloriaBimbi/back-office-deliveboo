@@ -175,7 +175,8 @@ footer {
     }
 }
 
-#restaurant-dishes {
+#restaurant-dishes,
+#dishes {
     .col {
         // height: 300px;
         .card {
@@ -224,4 +225,47 @@ a {
 }
 #image-preview {
     display: none;
+}
+
+// restaurants list and dishes list (index)
+.restaurant-address,
+.card-address,
+.card-price {
+    font-size: 15px;
+    color: #000000;
+}
+.restaurant-card,
+.dish-card {
+    border: none;
+    background: rgb(217, 217, 217);
+    background: linear-gradient(
+        0deg,
+        rgba(217, 217, 217, 1) 0%,
+        rgba(255, 255, 255, 1) 100%
+    );
+    border-radius: 2px;
+    color: #0073de;
+    filter: brightness(95%);
+    &:hover {
+        filter: brightness(100%);
+    }
+    .card-top {
+        position: relative;
+        .card-img-top {
+            border-radius: 1px;
+            height: 250px;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .badge-container,
+        .restaurant-dish-name {
+            position: absolute;
+            bottom: 2.5px;
+            left: 5px;
+            display: flex;
+            flex-wrap: wrap-reverse;
+            gap: 2.5px;
+        }
+    }
 }
