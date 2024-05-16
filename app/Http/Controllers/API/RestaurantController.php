@@ -18,7 +18,7 @@ class RestaurantController extends Controller
     public function index()
     {
         $restaurants = Restaurant::select(['id', 'user_id', 'name', 'description', 'address', 'image', 'slug'])
-            ->with(['user:id,name,email', 'dishes:id,restaurant_id,name,image,description,price,ingredients_list,slug', 'types:id,name,logo,color'])
+            ->with(['user:id,name,email', 'dishes:id,restaurant_id,name,image,description,price,ingredients_list,slug,visible', 'types:id,name,logo,color'])
             ->paginate(12);
 
         foreach ($restaurants as $restaurant) {
