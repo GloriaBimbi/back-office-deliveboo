@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
-    public function order(Request $request)
+    public function processPayment(Request $request)
     {
         $formData = $request->all();
 

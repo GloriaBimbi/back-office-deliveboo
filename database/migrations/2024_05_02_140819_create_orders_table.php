@@ -20,12 +20,7 @@ return new class extends Migration
             $table->string('address', 150)->required();
             $table->string('phone', 20)->required();
             $table->string('email', 150)->required();
-            $table->string('card_owner_name', 100)->required();
-            $table->string('card_owner_lastname', 100)->required();
-            $table->string('card', 60)->required();
-            $table->string('expiration')->required();
-            $table->string('cvv', 60)->required();
-            // $table->tinyInteger('quantity', 20)->unsigned()->require();
+            $table->string('card_token', 60)->required();
             $table->unsignedDecimal('total_price')->require();
             $table->timestamps();
         });

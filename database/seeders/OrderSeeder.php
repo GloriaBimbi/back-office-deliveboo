@@ -27,12 +27,7 @@ class OrderSeeder extends Seeder
             $order->address = $faker->streetAddress();
             $order->phone = $faker->phoneNumber();
             $order->email = $faker->email();
-            $order->card_owner_name = $faker->firstName();
-            $order->card_owner_lastname = $faker->lastName();
-            $order->card = Hash::make($faker->creditCardNumber());
-            $order->cvv = Hash::make($faker->randomNumber(3, true));
-            $order->expiration = $faker->creditCardExpirationDateString();
-            // $order->quantity = $faker->randomNumber(1, 20);
+            $order->card_token = $faker->creditCardNumber();
             $order->total_price = $order->dishes->sum('price');
             $order->save();
         }
