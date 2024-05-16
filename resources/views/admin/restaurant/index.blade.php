@@ -10,8 +10,8 @@
         <div class="container my-5">
             <div class="text-center">
                 <div class="text-center">
-                    <img src="{{ asset('storage/' . 'restaurant.png') }}" alt="page-logo-restaurant-index" class="img-fluid"
-                        style="width: 10%">
+                    <img src="{{ asset('storage/' . 'location-search-animate.svg') }}" alt="page-logo-restaurant-index" class="img-fluid"
+                        style="width: 30%">
                 </div>
                 <img src="{{ asset('storage/' . 'Restaurantlist.png') }}" alt="page-title-restaurant-index"
                     class="img-fluid" style="width: 60%">

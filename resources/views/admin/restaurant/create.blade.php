@@ -9,8 +9,8 @@
                 @csrf
                 <div class="text-center w-100">
                     <div class="text-center mt-5">
-                        <img src="{{ asset('storage/' . 'restaurantadd.png') }}" alt="page-logo-create-restaurant"
-                            class="img-fluid" style="width: 10%">
+                        <img src="{{ asset('storage/' . 'building-blocks-animate.svg') }}" alt="page-logo-create-restaurant"
+                            class="img-fluid" style="width: 50%">
                     </div>
                     <img src="{{ asset('storage/' . 'addrestaurant.png') }}" alt="page-title-create-restaurant"
                         class="img-fluid" style="width: 60%">

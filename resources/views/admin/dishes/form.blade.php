@@ -9,8 +9,8 @@
 
             <div class="text-center w-100 mb-4">
                 <div class="text-center">
-                    <img src="{{ asset('storage/' . 'plate.png') }}" alt="page-logo-dish-form" class="img-fluid"
-                        style="width: 10%">
+                    <img src="{{ asset('storage/' . 'healthy-food-animate.svg') }}" alt="page-logo-dish-form" class="img-fluid"
+                        style="width: 50%">
                 </div>
                 <img src="{{ asset('storage/' . 'add-dishes.png') }}" alt="page-title-dish-form" class="img-fluid"
                     style="width: 60%">

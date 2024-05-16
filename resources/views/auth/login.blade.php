@@ -4,7 +4,9 @@
 <div class="container mt-4">
     <a href="{{ route('home') }}" class="back-button"><i class="fa-solid fa-arrow-rotate-left"></i> Torna alla Home</a>
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class=" col-md-6"><img src="{{ asset('storage/' . 'login-animate.svg') }}" alt="" class="img-fluid"></div>
+
+        <div class="col-md-6">
             <div class="card bg-login">
                 <div class="card-header">{{ __('Login') }}</div>
 
@@ -54,7 +56,7 @@
 
                         <div class="mb-4 row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn-login">
                                     {{ __('Login') }}
                                 </button>
 
@@ -71,4 +73,22 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('css')
+
+<style>
+.btn-login{
+    background-color: #00538B !important;
+    color: white !important;
+    border: 1px solid white!important;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+.btn-login:hover{
+    background-color: white !important;
+    color: #00538B !important; 
+}
+</style>
 @endsection
