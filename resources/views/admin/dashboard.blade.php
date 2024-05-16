@@ -15,7 +15,7 @@
         <div class="d-flex justify-content-center mt-5">
             <div class="card roundeder col-6 bg-card-create">
                 <div class="text-center">
-                <img src="{{asset('storage/' . 'cooking.png')}}" alt="" style="width: 25%">
+                <img src="{{asset('storage/' . 'coffee-shop-animate.svg')}}" alt="" style="width: 50%">
             </div>
                 <div class="card-body text-center">
                     <a href="{{ route('admin.restaurants.create') }}" class="btn btn-secondary m-4 fw-medium p-3 w-50">Create a restaurant</a>

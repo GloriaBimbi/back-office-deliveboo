@@ -4,7 +4,8 @@
     <div class="container mt-5">
         <a href="{{ route('home') }}" class="back-button"><i class="fa-solid fa-arrow-rotate-left"></i> Torna alla Home</a>
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-6"><img src="{{ asset('storage/' . 'login-animate.svg') }}" alt="" class="img-fluid"></div>
+            <div class="col-md-6">
                 <div class="card bd-card-register">
                     <div class="card-header">{{ __('Register') }}</div>
 
@@ -76,8 +77,8 @@
                             </div>
 
                             <div class="mb-4 row mb-0">
-                                <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
+                                <div class="col-md-6 offset-md-4 wrapper-register-btn">
+                                    <button type="submit" class="register-btn">
                                         {{ __('Register') }}
                                     </button>
                                 </div>
@@ -131,5 +132,17 @@
         /* text-security: none; */
         /* per browser che supportano questa proprietà */
         /* } */
+        .wrapper-register-btn .register-btn{
+            background-color: #00538B !important;
+            color: white !important;
+            border: 1px solid white!important;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .wrapper-register-btn .register-btn:hover{
+            background-color: white !important;
+            color: #00538B !important; 
+        }
     </style>
 @endsection
