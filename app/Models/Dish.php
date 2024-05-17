@@ -36,7 +36,7 @@ class Dish extends Model
   }
     public function orders()
     {
-        return $this->BelongsToMany(Order::class)->withPivot('total_price');
+        return $this->BelongsToMany(Order::class)->withPivot('quantity');
     }
 
     public function restaurant()
