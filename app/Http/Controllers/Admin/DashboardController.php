@@ -14,10 +14,10 @@ class DashboardController extends Controller
 {
   public function index()
   {
-    $restaurantId = auth()->user()->restaurant->id;
     $restaurant=Restaurant::where('user_id',auth()->user()->id)->first();
     if($restaurant){
-
+      
+      $restaurantId = auth()->user()->restaurant->id;
       $orders = Order::whereHas('dishes', function ($query) use ($restaurantId) {
         $query->where('restaurant_id', $restaurantId);
     })->get();
