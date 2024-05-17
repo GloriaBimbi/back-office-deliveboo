@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Guest\DashboardController as GuestDashboardController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\RestaurantController;
@@ -33,6 +34,7 @@ Route::middleware('auth')
     Route::patch('dishes/{dish}/update-visible', [DishController::class, 'updateVisible'])->name('dishes.update-visible');
     Route::resource('restaurants', RestaurantController::class);
     Route::resource('dishes', DishController::class);
+    Route::get('orders',[ OrderController::class,'index'])->name('orders.index');;
   });
 
 require __DIR__ . '/auth.php';

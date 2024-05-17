@@ -80,6 +80,41 @@
             </div>
         </section>
 
+        <section id="dashboard-controls">
+            <div class="container">
+                <div class="control-wrapper">
+                    <h5>Your dishes</h5>
+                    <div class="bottom-dashboard-controls">
+                        <i class="fa-solid fa-plate-wheat fa-xl"></i>
+                        <strong>{{count($restaurant->dishes)}}</strong>
+                    </div>
+                </div>
+                <a href="{{route('admin.orders.index')}}" class="control-wrapper">
+                    <h5>Orders received</h5>
+                    <div class="bottom-dashboard-controls">
+                        <i class="fa-solid fa-receipt fa-xl"></i>
+                        <strong>{{count($orders)}}</strong>
+                    </div>
+                    
+                </a>
+                <div class="control-wrapper">
+                    <h5>Total revenue</h5>
+                    <div class="bottom-dashboard-controls">
+                        <i class="fa-solid fa-dollar-sign fa-xl"></i>
+                        <strong>100</strong>
+                        {{-- <strong>{{sum($orders->total_price)}}</strong> --}}
+                    </div>
+                </div>
+                <div class="control-wrapper">
+                    <h5>Best seller</h5>
+                    <div class="bottom-dashboard-controls">
+                        <i class="fa-regular fa-circle-up fa-xl"></i>
+                        <strong>Nome piatto</strong>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         {{-- restaurant's dishes --}}
         <section>
             <div class="container-fluid " id="restaurant-dishes">

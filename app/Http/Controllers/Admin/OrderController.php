@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Order;
 use Illuminate\Http\Request;
 
@@ -10,12 +11,28 @@ class OrderController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+    //  * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $restaurantId = auth()->user()->restaurant->id;
+    
+        $sortField = $request->get('sort', 'created_at'); // Campo di default per l'ordinamento
+        $sortDirection = $request->get('direction', 'asc'); // Direzione di default
+    
+        $allowedSortFields = ['id', 'name', 'lastname', 'address', 'email', 'phone', 'created_at', 'total_price'];
+    
+        if (!in_array($sortField, $allowedSortFields)) {
+            $sortField = 'created_at';
+        }
+    
+        $orders = Order::whereHas('dishes', function ($query) use ($restaurantId) {
+            $query->where('restaurant_id', $restaurantId);
+        })->orderBy($sortField, $sortDirection)->paginate(10);
+    
+        return view('admin.orders', compact('orders', 'sortField', 'sortDirection'));
     }
+    
 
     /**
      * Show the form for creating a new resource.
