@@ -176,16 +176,16 @@ footer {
 }
 
 #dashboard-controls {
-    .container {
+    .container-fluid {
         display: flex;
-        justify-content: space-between;
+        justify-content: start;
         align-items: center;
-        gap: 1rem;
+        // width: calc(100% / 2);
         .control-wrapper {
             background-color: #ffffff;
             padding: 15px;
             height: 100px;
-            width: calc(100% / 4);
+            width: calc(100% / 2);
             display: flex;
             flex-direction: column;
 
@@ -194,7 +194,7 @@ footer {
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
-                gap: 5rem;
+                gap: 1px;
             }
         }
     }

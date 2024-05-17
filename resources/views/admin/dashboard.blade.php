@@ -81,7 +81,7 @@
         </section>
 
         <section id="dashboard-controls">
-            <div class="container">
+            <div class="container-fluid gap-2">
                 <div class="control-wrapper">
                     <h5>Your dishes</h5>
                     <div class="bottom-dashboard-controls">
@@ -97,21 +97,21 @@
                     </div>
                     
                 </a>
-                <div class="control-wrapper">
+                {{-- <div class="control-wrapper">
                     <h5>Total revenue</h5>
                     <div class="bottom-dashboard-controls">
                         <i class="fa-solid fa-dollar-sign fa-xl"></i>
                         <strong>100</strong>
                         {{-- <strong>{{sum($orders->total_price)}}</strong> --}}
-                    </div>
-                </div>
-                <div class="control-wrapper">
+                    {{-- </div>
+                </div> --}} 
+                {{-- <div class="control-wrapper">
                     <h5>Best seller</h5>
                     <div class="bottom-dashboard-controls">
                         <i class="fa-regular fa-circle-up fa-xl"></i>
                         <strong>Nome piatto</strong>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </section>
 
