@@ -28,29 +28,34 @@ class PaymentController extends Controller
     {
         $nonceFromTheClient = $request->input('paymentMethodNonce');
         $totalPrice = ltrim($request->input('amount'), '$');
-
+// $validated=$request->all();
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'lastname' => 'required|string|max:255',
+            'formData.name' => 'required|string|max:255',
+            'formData.lastname' => 'required|string|max:255',
 
-            'address_street' => 'required|string|max:255',
-            'address_civic' => 'required|string|max:10',
-            'address_postal_code' => 'required|string|max:5|min:5',
-            'address_city' => 'required|string|max:100',
-            'address_country' => 'required|string|max:100',
+            'formData.addressStreet' => 'required|string|max:255',
+            'formData.addressCivic' => 'required|string|max:10',
+            'formData.addressCap' => 'required|string|max:5|min:5',
+            'formData.addressCity' => 'required|string|max:100',
+            'formData.addressCountry' => 'required|string|max:100',
 
-            'email' => 'required|email|max:255',
-            'phone' => 'required|string|max:10|min:9',
+            'formData.email' => 'required|email|max:255',
+            'formData.phone' => 'required|string|max:10|min:9',
+            'cart' => 'required|array',
+            'cart.*.id' => 'required|integer',
+            'cart.*.quantity' => 'required|integer',
 
         ]);
 
+        var_dump($validated['formData']);
+
         $order = new Order;
-        $order->name = $validated['name'];
-        $order->lastname = $validated['lastname'];
-        $order->address = $validated['addressStreet'] . ', ' . $validated['addressCivic'] . ', ' . $validated['addressCap'] . ' ' . $validated['addressCity'] . '(' . $validated['addressCountry'] . ')';
-        $order->email = $validated['email'];
-        $order->phone = $validated['phone'];
-        $order->card_token = $validated['paymentMethodNonce'];
+        $order->name = $validated['formData']['name'];
+        $order->lastname = $validated['formData']['lastname'];
+        $order->address = $validated['formData']['addressStreet'] . ', ' . $validated['formData']['addressCivic'] . ', ' . $validated['formData']['addressCap'] . ' ' . $validated['formData']['addressCity'] . '(' . $validated['formData']['addressCountry'] . ')';
+        $order->email = $validated['formData']['email'];
+        $order->phone = $validated['formData']['phone'];
+        $order->card_token = $nonceFromTheClient;
         $order->total_price = $totalPrice;
         $order->save();
 
@@ -73,7 +78,7 @@ class PaymentController extends Controller
 
         $result = $gateway->transaction()->sale([
             'amount' => $totalPrice,
-            'paymentMethodNonce' => $validated['paymentMethodNonce'],
+            'paymentMethodNonce' => $nonceFromTheClient,
         ]);
 
         if ($result->success) {
