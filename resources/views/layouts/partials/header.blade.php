@@ -39,15 +39,10 @@
                             </li>
                         @endauth --}}
                         @guest
-                            {{-- tasto login e register  --}}
-                            {{-- <li class="nav-item">
-                                    <a class="nav-link badge bordered p-3 " href="{{ route('login') }}">Login</a>
-                                </li>
-                                @if (Route::has('register'))
-                                    <li class="nav-item ">
-                                        <a class="nav-link badge bordered p-3 " href="{{ route('register') }}">Register</a>
-                                    </li>
-                                @endif --}}
+                            <li class="nav-item">
+                                <a class=" home-btn" class="nav-link" aria-current="page"
+                                    href="http://localhost:5173/">Order</a>
+                            </li>
                         </ul>
                     @else
                         {{-- dropdown list validated  --}}
