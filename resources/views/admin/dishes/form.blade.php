@@ -29,9 +29,9 @@
                 @if (!empty($dish->id))
                     @method('PATCH')
                 @endif
-                <div class="row g-2 d-flex">
+                <div class="row row-cols-1 row-cols-md-2 g-2 d-flex">
                     {{-- name description ingredients input  --}}
-                    <div class="col-6 d-flex flex-column gap-2">
+                    <div class="col d-flex flex-column gap-2">
                         <div class="card bg-dish p-2  ">
 
                             <label class="form-label text-white" for="title">Name*</label>
@@ -44,7 +44,7 @@
                         </div>
 
                         {{-- description and ingredients input   --}}
-                        <div class="card bg-dish p-2 ">
+                        <div class="card h-100 bg-dish p-2 ">
                             {{-- description input   --}}
 
                             <label class="form-label text-white " for="description">Description*</label>
@@ -71,11 +71,11 @@
                         </div>
                     </div>
                     {{-- image input and preview  --}}
-                    <div class="col-6 ">
-                        <div class="card h-100 bg-dish p-2">
+                    <div class="col  ">
+                        <div class="card img-input-card bg-dish h-100 p-2">
 
                             {{-- image input --}}
-                            <div class="col">
+                            <div class=" ">
                                 <label for="image" class="form-label text-white">Image*</label>
                                 <input @if (empty($dish->image)) required @endif @class(['form-control', 'is-invalid' => $errors->has('image')])
                                     type="file" id="image" name="image">
@@ -86,21 +86,26 @@
 
                             {{-- preview image in create form --}}
                             @if (empty($dish->image))
-                                <div class="preview-image-container col mt-3">
-                                    <img alt="" id="image-preview" class="img-fluid mt-3"
+                                <div class="preview-image-container  mt-3">
+                                    <div class="image-wrapper">
+                                        <img alt="" id="image-preview" class="img-fluid mt-3"
                                         src="{{ asset('storage/' . $dish->image) }}">
+                                    </div>
                                 </div>
                             @else
                                 {{-- preview image in edit form --}}
                                 <div class="preview-image-container col mt-3">
-                                    <img alt="" class="img-fluid mt-3"
+                                    <div class="image-wrapper">
+
+                                        <img alt="" class="img-fluid mt-3"
                                         src="{{ asset('storage/' . $dish->image) }}">
+                                    </div>
                                 </div>
                             @endif
                         </div>
                     </div>
                     {{-- price input   --}}
-                    <div class="col-6">
+                    <div class="col">
                         <div class="card bg-dish p-2">
                             <label class="form-label text-white" for="price">Price*</label>
                             <div class="input-group mb-3">
@@ -115,7 +120,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-6">
+                    <div class="col">
                         <div class="card bg-dish p-2 d-flex flex-column h-100">
 
                             <div class="btn-container d-flex gap-2">
@@ -146,6 +151,10 @@
             position: absolute;
             top: -3.5rem;
         }
+
+        .img-input-card{
+                height: 100%;
+            }
     </style>
 @endsection
 

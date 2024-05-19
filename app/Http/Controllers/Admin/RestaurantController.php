@@ -26,8 +26,18 @@ class RestaurantController extends Controller
      */
     public function index()
     {
-        $restaurants = Restaurant::orderBy('id', 'DESC')->paginate(10);
-        // $types= Type::all();
+
+       // Ottieni l'id dell'utente autenticato
+$userId = Auth::user()->id;
+
+// Ottieni l'id del ristorante dell'utente
+$userRestaurant = Restaurant::where('user_id', $userId)->first();
+$userRestaurantId = $userRestaurant ? $userRestaurant->id : null;
+
+// Esegui la query per ottenere tutti i ristoranti tranne quello dell'utente
+$restaurants = Restaurant::where('id', '!=', $userRestaurantId)
+    ->orderBy('id', 'DESC')
+    ->paginate(12);
         return view('admin.restaurant.index', compact('restaurants'));
     }
 

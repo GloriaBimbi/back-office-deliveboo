@@ -17,9 +17,10 @@
                     class="img-fluid" style="width: 60%">
             </div>
             <div class="card-container">
-                <div class="row g-3">
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
                     @foreach ($restaurants as $restaurant)
-                    <div class="col-4">
+                    <div class="col">
+                        <a href="{{ route('admin.restaurants.show', $restaurant)}}">
                         <div class="card h-100 restaurant-card">
                         <div class="card-top">
                             <img src="{{ $restaurant->getImage() }}" class="card-img-top" alt="restaurant image" />
@@ -34,9 +35,11 @@
                         <div class="card-body">
                             <h2>{{ $restaurant->name }}</h2>
                             <p class="restaurant-address">{{ $restaurant->address }}</p>
-                            <a href="{{ route('admin.restaurants.show', $restaurant)}}" class="btn btn-success"><i class="fa-solid fa-eye"></i></a>
+
                         </div>
                         </div>
+                    </a>
+
                     </div>
                     @endforeach
                 </div>

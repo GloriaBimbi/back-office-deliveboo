@@ -17,9 +17,10 @@
                     style="width: 60%">
             </div>
             <div class="card-container">
-                <div class="row g-3">
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
                     @foreach ($dishes as $dish)
-                        <div class="col-4">
+                        <div class="col">
+                            <a href="{{ route('admin.dishes.show', $dish) }}">
                             <div class="card h-100 dish-card">
                                 <div class="card-top">
                                     <img src="{{ $dish->getImage() }}" class="card-img-top" alt="dish image" />
@@ -31,10 +32,11 @@
                                 <div class="card-body">
                                     <h2>{{ $dish->name }}</h2>
                                     <p class="card-price">${{ $dish->price }}</p>
-                                    <a href="{{ route('admin.dishes.show', $dish) }}" class="btn btn-success"><i
-                                            class="fa-solid fa-eye"></i></a>
+
                                 </div>
                             </div>
+                        </a>
+
                         </div>
                     @endforeach
                 </div>

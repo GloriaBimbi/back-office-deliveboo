@@ -3,76 +3,84 @@
 @section('title', 'Dish Details')
 
 @section('content')
-    <section>
+    <section id='dish-show'>
         <div class="container my-5">
-            @if (Auth::user()->id == $dish->restaurant->user->id)
-                <a href="{{ route('admin.dashboard') }}" class="back-button"><i class="fa-solid fa-arrow-rotate-left"></i> Go
-                    Back</a>
-            @else
-                <a href="{{ url()->previous() }}" class="back-button"><i class="fa-solid fa-arrow-rotate-left"></i> Go Back</a>
-            @endif
-            <div class="card dish-card mt-4">
-                <div class="card-header">
-                    <h2 class="text-info my-4 text-capitalize card-title">
-                        {{ $dish->name }} ({{ $dish->restaurant->name }})
-                    </h2>
-                </div>
-                <div class="card-body dish-card">
-                    <div class="row">
-                        <div class="col-6">
-                            <ul class="list-group  list-group-flush">
-                                <li class="list-group-item dish-card"><span class="text-info fw-medium">Price: </span>
-                                    ${{ $dish->price }}</li>
-                                <li class="list-group-item dish-card"><span class="text-info fw-medium">Ingredients list: </span>
-                                    {{ $dish->ingredients_list }}</li>
-                                @if (Auth::user()->id == $dish->restaurant->user->id)
-                                    <li class="list-group-item d-flex align-items-center dish-card ">
-                                        <span class="text-info fw-medium ">Visible: </span>
-                                        <form action="{{ route('admin.dishes.update-visible', $dish) }}" method="POST">
-                                            @csrf
-                                            @method('PATCH')
-                                            <label class="switch ">
-                                                <input type="checkbox" id="visible" @checked($dish->visible)
-                                                    name="visible">
-                                                <span class="slider"></span>
-                                            </label>
-                                        </form>
-                                    </li>
-                                @endif
-                            </ul>
-                            @if ($dish->description)
-                                <div class="card dish-card mt-5">
-                                    <p class="text-info fw-medium card-title text-center pt-3 fs-5">Dish description:</p>
-                                    <p class="card-text text-center  pb-4">{{ $dish->description }}</p>
-                                </div>
-                            @endif
-                        </div>
-                        <div class="col-6"><img src="{{ $dish->getImage() }}" alt="dish image" class="img-fluid">
-                        </div>
-                    </div>
-                </div>
+            <div class="page-controls d-flex justify-content-between">
+
                 @if (Auth::user()->id == $dish->restaurant->user->id)
-                <div class="card-footer">
-                    <div class="row d-flex align-items-center">
-                        <div class="col">
-
-                         
-                                <a class="btn btn-dark" href="{{ route('admin.dishes.edit', $dish) }}">
-                                    {{ __('Edit dish') }}
-
-                                </a>
+                <a href="{{ route('admin.dashboard') }}" class="back-button d-flex justify-content-center align-items-center"><i class="fa-solid fa-arrow-rotate-left"></i> Go
+                    Back</a>
+                    @else
+                    <a href="{{ url()->previous() }}" class="back-button d-flex justify-content-center align-items-center"><i class="fa-solid fa-arrow-rotate-left"></i> Go Back</a>
+                    @endif
+                    @if (Auth::user()->id == $dish->restaurant->user->id)
+                        <div class="dropstart">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa-solid fa-gear"></i>
+                            </button>
+                            <ul class="dropdown-menu" id="dropdown">
+                                <li><a class="dropdown-item bg-warning text-white" href="{{route('admin.dishes.edit', $dish)}}"><i class="fa-solid fa-pencil"></i></a></li>
+                                <li><button class="dropdown-item bg-danger text-white" data-bs-toggle="modal" data-bs-target="#delete-dish-{{ $dish->id }}"><i class="fa-solid fa-trash"></i></button></li>
+                            </ul>
                         </div>
-
-                        <div class="col text-end">
-
-                            <a class="text-danger text-decoration-underline" data-bs-toggle="modal"
-                                data-bs-target="#delete-dish-{{ $dish->id }}">Delete Dish</a>
+                    @endif
+                </div>
+                <div class="dish-wrapper mt-3">
+                    <div class="row g-2 bg-white">
+                        <div class="col-12 col-md-6 mt-0 px-0">
+                            <div class="img-wrapper">
+                                <img src="{{ $dish->getImage() }}" alt="dish image" class="img-fluid">
+                                <h1 class="text-capitalize"> {{ $dish->name }} ({{ $dish->restaurant->name }})</h1>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 mt-0 px-0">
+                            <div class="dish-details  px-2 py-5">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <p class="text-info fw-medium ">Price: </p>
+                                    </div>
+                                    <div class="col-6 text-end">
+                                        <p class="text-info fw-medium h3">${{ $dish->price }}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <p class="text-info fw-medium mb-0">Ingredients list: </p>
+                                    </div>
+                                    <div class="col-12 ">
+                                        <p class="ingredients-list px-3">{{ $dish->ingredients_list }}</p>
+                                    </div>
+                                </div>
+                                @if ($dish->description)
+                                <div class="row">
+                                    <div class="col-12">
+                                        <p class="text-info fw-medium mb-0">Description: </p>
+                                    </div>
+                                    <div class="col-12 ">
+                                        <p class="description px-3">{{ $dish->description }}</p>
+                                    </div>
+                                </div>
+                                @endif
+                                @if (Auth::user()->id == $dish->restaurant->user->id)
+                                <li class="list-group-item d-flex align-items-center ">
+                                    <span class="text-info fw-medium ">Visible: </span>
+                                    <form action="{{ route('admin.dishes.update-visible', $dish) }}" method="POST">
+                                        @csrf
+                                        @method('PATCH')
+                                        <label class="switch ">
+                                            <input type="checkbox" id="visible" @checked($dish->visible)
+                                                name="visible">
+                                            <span class="slider"></span>
+                                        </label>
+                                    </form>
+                                </li>
+                                @endif
 
                         </div>
-                        @endif
                     </div>
                 </div>
-            </div>
+
+
     </section>
 
 @endsection
@@ -169,11 +177,16 @@
     @endsection
 
     @section('js')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+hu1J6a6DRsvVf8C/eNq+1D8dsDzh" crossorigin="anonymous"></script>
+
         <script>
             const checkbox = document.getElementById('visible');
             checkbox.addEventListener('change', () => {
                 const form = checkbox.closest('form');
                 form.submit();
             });
+
+
+            
         </script>
     @endsection

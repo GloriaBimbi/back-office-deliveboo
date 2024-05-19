@@ -53,11 +53,13 @@
                             </cite>
                             <hr>
                             <h3>Type</h3>
-                            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-2">
+                            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-2">
                                 @foreach ($restaurant->types as $type)
                                     <div class="col">
-                                        <div class="card h-100">
-                                            <img src="{{ $type->getImage() }}" class="card-img-top" alt="...">
+                                        <div class="card type-card h-100">
+                                            <div class="img-wrapper">
+                                                <img src="{{ $type->getImage() }}" class="card-img-top img-fluid h-100" alt="...">
+                                            </div>
                                             <div class="card-body">
                                                 <h5 class="card-title text-capitalize">{{ $type->name }}</h5>
                                             </div>
@@ -80,6 +82,7 @@
             </div>
         </section>
 
+        @if(Auth::user()->id == $restaurant->user->id)
         <section id="dashboard-controls">
             <div class="container-fluid gap-2">
                 <div class="control-wrapper">
@@ -114,11 +117,12 @@
                 </div> --}}
             </div>
         </section>
+        @endif
 
         {{-- restaurant's dishes --}}
         <section>
             <div class="container-fluid " id="restaurant-dishes">
-                <div class="row row-cols-4 h-100 g-2 my-3">
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 h-100 g-2 my-3">
 
                     {{-- add dishes --}}
                     @if (Auth::user()->id == $restaurant->user->id)
