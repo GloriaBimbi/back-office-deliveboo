@@ -1,5 +1,5 @@
 <x-mail::message>
-    # Ciao {{ $order->name }}
+    # Hi! 😎
 
     Your payment of ${{ $order->total_price }} has been successfully completed.
 
@@ -14,5 +14,5 @@
         Vedi dettagli ordine
     </x-mail::button> --}}
 
-    Grazie, il team di Deliveboo
+    Thank You from the Deliveboo Team
 </x-mail::message>
