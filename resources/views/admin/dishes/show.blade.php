@@ -36,12 +36,6 @@
                         <div class="col-12 col-md-6 mt-0 px-0">
                             <div class="dish-details  px-2 py-5">
                                 <div class="row">
-                                    <div class="col-6">
-                                        <p class="text-info fw-medium ">Price: </p>
-                                    </div>
-                                    <div class="col-6 text-end">
-                                        <p class="text-info fw-medium h3">${{ $dish->price }}</p>
-                                    </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-12">
@@ -59,11 +53,15 @@
                                     <div class="col-12 ">
                                         <p class="description px-3">{{ $dish->description }}</p>
                                     </div>
+                                    <div class="col-6">
+                                        <p class="text-info fw-medium mt-3 m-0">Price: </p>
+                                        <p class="text-primary fw-medium fs-4">${{ $dish->price }}</p>
+                                    </div>
                                 </div>
                                 @endif
                                 @if (Auth::user()->id == $dish->restaurant->user->id)
-                                <li class="list-group-item d-flex align-items-center ">
-                                    <span class="text-info fw-medium ">Visible: </span>
+                                <li class="list-group-item d-flex align-items-center">
+                                    <span class="text-info fw-medium">Visible: </span>
                                     <form action="{{ route('admin.dishes.update-visible', $dish) }}" method="POST">
                                         @csrf
                                         @method('PATCH')
