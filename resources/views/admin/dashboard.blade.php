@@ -39,11 +39,11 @@
                             {{-- restaurant details --}}
                             <h1>{{ $restaurant->name }}</h1>
                             <p>By <strong>{{ $restaurant->user->name }}</strong></p>
-                            <div class="row">
-                                <div class="col-6">
+                            <div class="row row-cols-1 row-cols-lg-2 ">
+                                <div class="col">
                                     <p>Località - <strong>{{ $restaurant->address }}</strong></p>
                                 </div>
-                                <div class="col-6 text-end">
+                                <div class="col text-end">
                                     <p>P.iva - <strong>{{ $restaurant->piva }}</strong></p>
                                 </div>
                             </div>
