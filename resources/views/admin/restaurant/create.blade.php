@@ -15,8 +15,8 @@
                     <img src="{{ asset('storage/' . 'addrestaurant.png') }}" alt="page-title-create-restaurant"
                         class="img-fluid" style="width: 60%">
                 </div>
-                <div class="row row-cols-1 row-cols-md-2 g-2">
                 <div class="fs-6 text-white">* fields are required</div>
+                <div class="row row-cols-1 row-cols-md-2 g-2">
                     <div class="col input-col">
                         {{-- restaurant name input  --}}
                         <div class="card bg-res p-3 mb-2">
