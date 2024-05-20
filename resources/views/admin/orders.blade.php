@@ -126,7 +126,7 @@
                             <td>{{ $order->phone }}</td>
                             <td>{{ $order->email }}</td>
                             <td>{{ $order->created_at }}</td>
-                            <td>{{ $order->total_price }}</td>
+                            <td>${{ $order->total_price }}</td>
                         </tr>
                     @endforeach
                 </tbody>
