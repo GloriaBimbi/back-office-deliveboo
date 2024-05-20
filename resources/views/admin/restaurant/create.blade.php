@@ -123,15 +123,15 @@
                                         <div class="col-6 form-check @error('types') is-invalid @enderror">
                                             <input type="checkbox" id="types-{{ $type->id }}"
                                                 value="{{ $type->id }}" name="types[]"
-                                                class="form-check-input bg-res @error('types') is-invalid @enderror"
+                                                class="form-check-input  @error('types') is-invalid @enderror"
                                                 {{ in_array($type->id, old('types', $restaurant->types->pluck('id')->toArray() ?? [])) ? 'checked' : '' }}>
                                             <label for="types-{{ $type->id }}"
-                                                class="form-check-label   @error('types') is-invalid @enderror">{{ $type->name }}</label>
+                                                class="form-check-label  @error('types') is-invalid @enderror">{{ $type->name }}</label>
                                         </div>
                                     @endforeach
-                                    <div class="invalid-feedback" id="checkbox-error"></div>
+                                    <div class="invalid-feedback fs-5 text-warning" id="checkbox-error"></div>
                                     @error('types')
-                                        <div class="invalid-feedback">{{ $message }}</div>
+                                        <div class="invalid-feedback ">{{ $message }}</div>
                                     @enderror
                                 </div>
                         </div>
@@ -191,7 +191,6 @@
 
                 <div class="d-flex gap-3 mt-3">
                     <button class="btn btn-primary w-50" type="submit" id="submit-button">Submit</button>
-                    <button class="btn btn-warning w-50" type="reset">Reset</button>
                 </div>
             </form>
         </div>

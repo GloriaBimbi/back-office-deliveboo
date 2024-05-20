@@ -147,7 +147,7 @@
                                                 <p class="card-text">${{ $dish->price }}</p>
                                             </div>
                                             @if($dish->visible == false)
-                                                <div class="not-available">Not Available</div>
+                                                <div class="not-available fw-medium fs-4 text-warning">Not Available</div>
                                             @endif
                                         </div>
                                     </a>
