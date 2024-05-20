@@ -1,14 +1,14 @@
 <x-mail::message>
     # Ciao {{ $order->name }}
 
-    Il tuo pagamento di ${{ $order->total_price }} è stato completato con successo.
+    Your payment of ${{ $order->total_price }} has been successfully completed.
 
-    Dettagli ordine:
+    Order Details:
     @foreach ($order->dishes as $dish)
         - {{ $dish->name }} (Quantità: {{ $dish->pivot->quantity }})
     @endforeach
 
-    Grazie per aver acquistato con noi!
+    Thank you for ordering from us!
 
     {{-- <x-mail::button :url="$proj_url">
         Vedi dettagli ordine
