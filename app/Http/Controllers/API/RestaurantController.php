@@ -50,7 +50,7 @@ class RestaurantController extends Controller
                 });
             }
         }
-        $restaurants = $restaurants->with((['user:id,name,email', 'dishes:id,restaurant_id,name,image,description,price,ingredients_list,slug', 'types:id,name,logo,color']))
+        $restaurants = $restaurants->with((['user:id,name,email', 'dishes:id,restaurant_id,name,image,description,price,ingredients_list,slug,visible', 'types:id,name,logo,color']))
         ->paginate(12);
         
         foreach ($restaurants as $restaurant) {
@@ -79,7 +79,7 @@ class RestaurantController extends Controller
     public function show($slug)
     {
         $restaurant = Restaurant::select(['id', 'user_id', 'name', 'description', 'address', 'image', 'slug'])
-            ->with(['user:id,name,email', 'dishes:id,restaurant_id,name,image,description,price,ingredients_list,slug', 'types:id,name,logo,color'])
+            ->with(['user:id,name,email', 'dishes:id,restaurant_id,name,image,description,price,ingredients_list,slug,visible', 'types:id,name,logo,color'])
             ->where('slug', $slug)
             ->first();
         // ->paginate(10);
@@ -89,6 +89,11 @@ class RestaurantController extends Controller
                 $dish->image = !empty($dish->image)
                     ? $dish->getImage()
                     : null;
+            }
+            if($dish->visible ==1){
+                $dish->visible = true;
+            } else{
+                $dish->visible = false;
             }
         }
         if (!str_starts_with($restaurant->image, 'https')) {
