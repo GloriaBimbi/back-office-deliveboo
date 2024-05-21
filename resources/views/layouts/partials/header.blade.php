@@ -1,6 +1,6 @@
 <header class="border-bottom">
     <nav class="navbar navbar-expand-lg">
-        <div class="container-fluid">
+        <div class="container">
             <a class="navbar-brand" href="#">
                 <img src="{{ asset('storage/' . 'Delivebootitle.png') }}" alt="" style="width: 64px" href="#">
             </a>
@@ -19,7 +19,7 @@
 
                     @guest
                         <li class="nav-item">
-                            <a class="" class="nav-link" aria-current="page" href="http://localhost:5173/">Order</a>
+                            <a class="nav-link button" aria-current="page" href="http://localhost:5173/">Order</a>
                         </li>
                     </ul>
                 @else
